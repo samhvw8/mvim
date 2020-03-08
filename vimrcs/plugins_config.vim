@@ -22,86 +22,34 @@ let s:mvim = expand('<sfile>:p:h')."/.."
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
+
+" 
 Plug 'jiangmiao/auto-pairs'
-Plug 'w0rp/ale'
-Plug 'maxbrunsfeld/vim-yankstack'
-" Plug 'mileszs/ack.vim'
-Plug 'jlanzarotta/bufexplorer'
-" Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'chr4/nginx.vim'
-Plug 'amix/open_file_under_cursor.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'altercation/vim-colors-solarized' 
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'groenewege/vim-less'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-expand-region'
-Plug 'junegunn/goyo.vim'
-Plug 'amix/vim-zenroom2'
-Plug 'airblade/vim-gitgutter'
-Plug 'morhetz/gruvbox'
-Plug 'nvie/vim-flake8'
-Plug 'digitaltoad/vim-pug'
-
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+"
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-speeddating'
-
-Plug 'vim-scripts/mayansmoke'
-Plug 'vim-scripts/tlib'
-" Plug 'vim-scripts/mru.vim'
-Plug 'vim-scripts/indentpython.vim'
-" Plug 'vim-scripts/peaksea'
-Plug 'vim-scripts/matchit.zip'
-
-Plug 'mhinz/vim-startify'
-Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
-
+Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'amix/open_file_under_cursor.vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-
-Plug 'vim-ruby/vim-ruby'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'peitalin/vim-jsx-typescript'
-Plug 'herringtondarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-let g:fzf_install = 'yes | ./install'
-Plug 'junegunn/fzf', { 'do': g:fzf_install }
-" Plug 'majutsushi/tagbar'
-" Plug 'marijnh/tern_for_vim'
-Plug 'mattn/emmet-vim'
-Plug 'kana/vim-textobj-user' " for expand region
-Plug 'kana/vim-textobj-indent' " for expand region
-
-Plug 'luochen1990/rainbow'
-Plug 'mechatroner/rainbow_csv'
-Plug 'ap/vim-css-color'
-Plug 'jceb/vim-orgmode'
 Plug 'junegunn/vim-easy-align'
 
-Plug 'wellle/targets.vim'
-
+" sub windows or sidebar startus bar
+Plug 'jlanzarotta/bufexplorer'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
-
-
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:fzf_install = 'yes | ./install'
+Plug 'junegunn/fzf', { 'do': g:fzf_install }
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -109,6 +57,53 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+
+" Interface
+Plug 'amix/vim-zenroom2'
+Plug 'junegunn/goyo.vim'
+
+" startup
+Plug 'mhinz/vim-startify'
+
+
+
+Plug 'vim-scripts/mayansmoke'
+Plug 'vim-scripts/tlib'
+
+" text object visual, select ..
+Plug 'vim-scripts/matchit.zip'
+Plug 'wellle/targets.vim'
+Plug 'kana/vim-textobj-user' " for expand region
+Plug 'kana/vim-textobj-indent' " for expand region
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-expand-region'
+
+" Lang & syntax
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'groenewege/vim-less'
+Plug 'chr4/nginx.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'herringtondarkholme/yats.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'nvie/vim-flake8'
+Plug 'luochen1990/rainbow'
+Plug 'mechatroner/rainbow_csv'
+Plug 'ap/vim-css-color'
+Plug 'jceb/vim-orgmode'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+
+" Auto complete & lint
+Plug 'w0rp/ale'
+Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+
 
 call plug#end()
 call plug#helptags()
