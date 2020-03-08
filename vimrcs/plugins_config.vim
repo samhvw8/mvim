@@ -22,7 +22,7 @@ let s:mvim = expand('<sfile>:p:h')."/.."
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
-
+Plug 'arzg/vim-colors-xcode'
 " 
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -371,3 +371,5 @@ nnoremap <Leader>m :UndotreeToggle<cr>
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_post_private = 1 " private default
+
+colorscheme xcodedarkhc
