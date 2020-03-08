@@ -18,7 +18,7 @@ endfunction
 """"""""""""""""""""""""""""""
 " => Load junegunn/vim-plug
 """"""""""""""""""""""""""""""
-let s:mvim = expand('<sfile>:p:h')."/.."
+let s:mvim = stdpath('config')
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
@@ -32,7 +32,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-speeddating'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -68,8 +67,8 @@ Plug 'mhinz/vim-startify'
 
 
 
-Plug 'vim-scripts/mayansmoke'
-Plug 'vim-scripts/tlib'
+" Plug 'vim-scripts/mayansmoke'
+" Plug 'vim-scripts/tlib'
 
 " text object visual, select ..
 Plug 'vim-scripts/matchit.zip'
@@ -81,34 +80,132 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
 
 " Lang & syntax
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'mattn/emmet-vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'groenewege/vim-less'
+" Plug 'garbas/vim-snipmate'
+" Plug 'honza/vim-snippets'
+" Plug 'mattn/emmet-vim'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'herringtondarkholme/yats.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'rust-lang/rust.vim'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'herringtondarkholme/yats.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
 Plug 'jceb/vim-orgmode'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Auto complete & lint
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'w0rp/ale'
-Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+
+" Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 
 
 call plug#end()
 call plug#helptags()
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
@@ -176,20 +273,6 @@ endfunction
 """"""""""""""""""""""""""""""
 " Enable all functions in all modes
 let g:user_zen_mode='a'
-
-""""""""""""""""""""""""""""""
-" => snipMate (beside <TAB> support <CTRL-j>)
-""""""""""""""""""""""""""""""
-ino <C-j> <C-r>=snipMate#TriggerSnippet()<cr>
-snor <C-j> <esc>i<right><C-r>=snipMate#TriggerSnippet()<cr>
-
-
-""""""""""""""""""""""""""""""
-" => Vim grep
-""""""""""""""""""""""""""""""
-let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
-set grepprg=/bin/grep\ -nH
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -261,7 +344,7 @@ let g:ale_completion_enabled = 1
 
 let g:ale_fix_on_save = 1
 
-nmap <silent> <leader>a <Plug>(ale_next_wrap)
+nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
 
 " Disabling highlighting
 let g:ale_set_highlights = 0
@@ -280,12 +363,12 @@ let g:gitgutter_enabled=1
 " YcmCompleter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_autoclose_preview_window_after_completion=0
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
-" inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+" let g:ycm_autoclose_preview_window_after_completion=0
+" map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" " nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+" " inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
-let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
+" let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Emmet

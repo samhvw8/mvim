@@ -51,5 +51,7 @@ plugged/*
 !plugged/.gitkeep
 
 
-temp_dir/*
-!temp_dir/.gitkeep
+temp_dirs/*
+!temp_dirs/.gitkeep
+
+.netrwhist

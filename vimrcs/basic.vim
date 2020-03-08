@@ -72,6 +72,9 @@ set foldcolumn=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+highlight Pmenu ctermbg=111217 guibg=#111217
+
 " Enable syntax highlighting
 syntax enable 
 
@@ -104,7 +107,7 @@ set noswapfile
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=expand('<sfile>:p:h')."/../temp_dirs/undodir"
+    set undodir=~/.config/nvim/temp_dirs
     set undofile
 catch
 endtry
@@ -131,7 +134,7 @@ set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
-map <C-space> /
+map <S-space> /
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
