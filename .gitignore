@@ -49,3 +49,7 @@ Temporary Items
 
 plugged/*
 !plugged/.gitkeep
+
+
+temp_dir/*
+!temp_dir/.gitkeep
