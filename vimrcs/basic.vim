@@ -69,6 +69,11 @@ set tm=500
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+""""""""""""""""""""""""""""""
+" => Shell section
+""""""""""""""""""""""""""""""
+set termguicolors
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,7 +139,7 @@ set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
-map <S-space> /
+map <s-space> /
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
