@@ -3,6 +3,8 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile  .py,.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 
+autocmd BufWritePre *.txt,*.js,*.ts, *.jsx, *.tsx,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
@@ -140,3 +142,12 @@ autocmd BufRead *.twig set syntax=html filetype=html
 " => Markdown
 """"""""""""""""""""""""""""""
 let vim_markdown_folding_disabled = 1
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+

@@ -28,31 +28,42 @@ Plug 'maxbrunsfeld/vim-yankstack'
 " Plug 'mileszs/ack.vim'
 Plug 'jlanzarotta/bufexplorer'
 " Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-scripts/mayansmoke'
 Plug 'scrooloose/nerdtree'
 Plug 'chr4/nginx.vim'
 Plug 'amix/open_file_under_cursor.vim'
-Plug 'vim-scripts/tlib'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'altercation/vim-colors-solarized' 
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'groenewege/vim-less'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
-Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
-Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
 Plug 'amix/vim-zenroom2'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'nvie/vim-flake8'
 Plug 'digitaltoad/vim-pug'
+
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-speeddating'
+
+Plug 'vim-scripts/mayansmoke'
+Plug 'vim-scripts/tlib'
 " Plug 'vim-scripts/mru.vim'
+Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/peaksea'
+Plug 'vim-scripts/matchit.zip'
+
+Plug 'mhinz/vim-startify'
 Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'mattn/gist-vim'
@@ -65,11 +76,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'vim-scripts/indentpython.vim'
+
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-scripts/peaksea'
+
 let g:fzf_install = 'yes | ./install'
 Plug 'junegunn/fzf', { 'do': g:fzf_install }
 " Plug 'majutsushi/tagbar'
@@ -77,6 +88,19 @@ Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'mattn/emmet-vim'
 Plug 'kana/vim-textobj-user' " for expand region
 Plug 'kana/vim-textobj-indent' " for expand region
+
+Plug 'luochen1990/rainbow'
+Plug 'mechatroner/rainbow_csv'
+Plug 'ap/vim-css-color'
+Plug 'jceb/vim-orgmode'
+Plug 'junegunn/vim-easy-align'
+
+Plug 'wellle/targets.vim'
+
+Plug 'mbbill/undotree'
+
+
+
 
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -156,9 +180,8 @@ function! s:denite_my_settings() abort
         \ denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <Space>
         \ denite#do_map('toggle_select').'j'
+  map <silent><buffer> <Esc>: <Plug>(denite_filter_quit) <cr>
 endfunction
-
-imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
 
 " denite content search
 """"""""""""""""""""""""""""""
@@ -198,9 +221,10 @@ set grepprg=/bin/grep\ -nH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
+" let g:NERDTreeWinPos = "right"
+let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
@@ -338,6 +362,7 @@ let g:gitgutter_enabled=1
 
 let g:ycm_autoclose_preview_window_after_completion=0
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 " inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
@@ -409,3 +434,38 @@ call expand_region#custom_text_objects('python', {
 " To go to the previous search results do:
 "   <leader>p
 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-startify
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ let g:startify_session_dir = s:mvim. '/session'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_highlight_lines = 0
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rainbow
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" org
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
+      \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
+      \ ['CANCELED(c)']]
+
+let g:org_agenda_files = ['~/org/index.org']
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-easy-align
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" undotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>m :UndotreeToggle<cr>

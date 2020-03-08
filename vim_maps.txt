@@ -1,55 +1,47 @@
 
 
-n  <NL>        *@:call nerdtree#ui_glue#invokeKeyMap("<C-j>")<CR>
-n  <C-K>       *@:call nerdtree#ui_glue#invokeKeyMap("<C-k>")<CR>
-n  <CR>        *@:call nerdtree#ui_glue#invokeKeyMap("<CR>")<CR>
+n  <CR>        *@:call startify#open_buffers()<CR>
 n  ,hp          @<Plug>(GitGutterPreviewHunk)
 n  ,hu          @<Plug>(GitGutterUndoHunk)
 n  ,hs          @<Plug>(GitGutterStageHunk)
 x  ,hs          @<Plug>(GitGutterStageHunk)
-n  ?           *@:call nerdtree#ui_glue#invokeKeyMap("?")<CR>
-n  A           *@:call nerdtree#ui_glue#invokeKeyMap("A")<CR>
-n  B           *@:call nerdtree#ui_glue#invokeKeyMap("B")<CR>
-n  C           *@:call nerdtree#ui_glue#invokeKeyMap("C")<CR>
-n  CD          *@:call nerdtree#ui_glue#invokeKeyMap("CD")<CR>
-n  D           *@:call nerdtree#ui_glue#invokeKeyMap("D")<CR>
-n  F           *@:call nerdtree#ui_glue#invokeKeyMap("F")<CR>
-n  I           *@:call nerdtree#ui_glue#invokeKeyMap("I")<CR>
-n  J           *@:call nerdtree#ui_glue#invokeKeyMap("J")<CR>
-n  K           *@:call nerdtree#ui_glue#invokeKeyMap("K")<CR>
-n  O           *@:call nerdtree#ui_glue#invokeKeyMap("O")<CR>
-n  P           *@:call nerdtree#ui_glue#invokeKeyMap("P")<CR>
-n  R           *@:call nerdtree#ui_glue#invokeKeyMap("R")<CR>
-n  T           *@:call nerdtree#ui_glue#invokeKeyMap("T")<CR>
-n  U           *@:call nerdtree#ui_glue#invokeKeyMap("U")<CR>
-n  X           *@:call nerdtree#ui_glue#invokeKeyMap("X")<CR>
-n  [c           @<Plug>(GitGutterPrevHunk)
-n  ]c           @<Plug>(GitGutterNextHunk)
+n  0           *@:call startify#open_buffers(18)<CR>
+n  10          *@:call startify#open_buffers(31)<CR>
+n  1           *@:call startify#open_buffers(19)<CR>
+n  2           *@:call startify#open_buffers(20)<CR>
+n  3           *@:call startify#open_buffers(21)<CR>
+n  4           *@:call startify#open_buffers(22)<CR>
+n  5           *@:call startify#open_buffers(23)<CR>
+n  6           *@:call startify#open_buffers(24)<CR>
+n  7           *@:call startify#open_buffers(25)<CR>
+n  8           *@:call startify#open_buffers(26)<CR>
+n  9           *@:call startify#open_buffers(27)<CR>
+n  B           *@:call startify#set_batchmode('B')<CR>
+n  N           *@'j '[v:searchforward].'N'
+n  S           *@:call startify#set_batchmode('S')<CR>
+n  T           *@:call startify#set_batchmode('T')<CR>
+n  V           *@:call startify#set_batchmode('V')<CR>
 x  ac           @<Plug>(GitGutterTextObjectOuterVisual)
 o  ac           @<Plug>(GitGutterTextObjectOuterPending)
-n  cd          *@:call nerdtree#ui_glue#invokeKeyMap("cd")<CR>
-n  e           *@:call nerdtree#ui_glue#invokeKeyMap("e")<CR>
-n  f           *@:call nerdtree#ui_glue#invokeKeyMap("f")<CR>
-n  go          *@:call nerdtree#ui_glue#invokeKeyMap("go")<CR>
-n  gs          *@:call nerdtree#ui_glue#invokeKeyMap("gs")<CR>
-n  gi          *@:call nerdtree#ui_glue#invokeKeyMap("gi")<CR>
+n  b           *@:call startify#set_mark('B')<CR>
+n  e           *@:call startify#open_buffers(14)<CR>
+n  i           *@:enew | startinsert<CR>
 x  ic           @<Plug>(GitGutterTextObjectInnerVisual)
 o  ic           @<Plug>(GitGutterTextObjectInnerPending)
-n  i           *@:call nerdtree#ui_glue#invokeKeyMap("i")<CR>
-n  m           *@:call nerdtree#ui_glue#invokeKeyMap("m")<CR>
-n  o           *@:call nerdtree#ui_glue#invokeKeyMap("o")<CR>
-n  p           *@:call nerdtree#ui_glue#invokeKeyMap("p")<CR>
-n  q           *@:call nerdtree#ui_glue#invokeKeyMap("q")<CR>
-n  r           *@:call nerdtree#ui_glue#invokeKeyMap("r")<CR>
-n  s           *@:call nerdtree#ui_glue#invokeKeyMap("s")<CR>
-n  t           *@:call nerdtree#ui_glue#invokeKeyMap("t")<CR>
-n  u           *@:call nerdtree#ui_glue#invokeKeyMap("u")<CR>
-n  x           *@:call nerdtree#ui_glue#invokeKeyMap("x")<CR>
-n  <MiddleMouse> *@:call nerdtree#ui_glue#invokeKeyMap("<MiddleMouse>")<CR>
-n  <2-LeftMouse> *@:call nerdtree#ui_glue#invokeKeyMap("<2-LeftMouse>")<CR>
-n  <LeftRelease> *@<LeftRelease>:call nerdtree#ui_glue#invokeKeyMap("<LeftRelease>")<CR>
-   <C-B>         :CtrlPBuffer<CR>
-   <C-F>         <Plug>(ctrlp)
+n  n           *@' j'[v:searchforward].'n'
+n  q           *@:call startify#open_buffers(33)<CR>
+n  s           *@:call startify#set_mark('S')<CR>
+n  t           *@:call startify#set_mark('T')<CR>
+n  v           *@:call startify#set_mark('V')<CR>
+n  <MiddleMouse> *@:enew | execute 'normal! "'.(v:register=='"'?'*':v:register).'gp'<CR>
+n  <2-LeftMouse> *@:call startify#open_buffers()<CR>
+n  <LeftMouse> *@:call <SNR>151_leftmouse()<CR>
+n  <Insert>    *@:enew | startinsert<CR>
+   <M-n>       *@:call AutoPairsJump()<CR>
+   <M-p>       *@:call AutoPairsToggle()<CR>
+x  <C-A>         <Plug>SpeedDatingUp
+n  <C-A>         <Plug>SpeedDatingUp
+n  <C-B>         :Denite buffer<CR>
    <C-H>         <C-W>h
 x  <Tab>         <Plug>snipMateVisual
 s  <Tab>         <Plug>snipMateNextOrTrigger
@@ -63,6 +55,8 @@ x  <C-S>       * :<C-U>call multiple_cursors#new("v", 0)<CR>
 n  <C-S>       * :call multiple_cursors#new("n", 1)<CR>
 n  <C-W><C-F>  * :call GotoFile("new")<CR>
 n  <C-W>f      * :call GotoFile("new")<CR>
+x  <C-X>         <Plug>SpeedDatingDown
+n  <C-X>         <Plug>SpeedDatingDown
 v  <C-Y>c        <Plug>(emmet-code-pretty)
 n  <C-Y>m        <Plug>(emmet-merge-lines)
 n  <C-Y>A        <Plug>(emmet-anchorize-summary)
@@ -90,44 +84,41 @@ v  $$          * <Esc>`>a"<Esc>`<i"<Esc>
 v  $3          * <Esc>`>a}<Esc>`<i{<Esc>
 v  $2          * <Esc>`>a]<Esc>`<i[<Esc>
 v  $1          * <Esc>`>a)<Esc>`<i(<Esc>
-o  %             <Plug>(MatchitOperationForward)
-x  %             <Plug>(MatchitVisualForward)
-n  %             <Plug>(MatchitNormalForward)
+o  %           * v:<C-U>call <SNR>83_Match_wrapper('',1,'o') <CR>
+v  %           * :<C-U>call <SNR>83_Match_wrapper('',1,'v') <CR>m'gv``
+n  %           * :<C-U>call <SNR>83_Match_wrapper('',1,'n') <CR>
 v  *           * :<C-U>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 v  +             <Plug>(expand_region_expand)
 n  +             <Plug>(expand_region_expand)
+n  ,d          * :YcmShowDetailedDiagnostic<CR>
 n  ,bv         & :BufExplorerVerticalSplit<CR>
 n  ,bs         & :BufExplorerHorizontalSplit<CR>
 n  ,bt         & :ToggleBufExplorer<CR>
-   ,p            :cp<CR>
    ,n            :cn<CR>
    ,co           ggVGy:tabnew<CR>:set syntax=qf<CR>pgg
    ,cc           :botright cope<CR>
-v  ,r          * :call VisualSelection('replace', '')<CR>
-   ,g            :Ack<Space>
-n  ,d          * :GitGutterToggle<CR>
+   ,g            :YcmCompleter GoToDefinitionElseDeclaration<CR>
 n  ,a            <Plug>(ale_next_wrap)
 n  ,z          * :Goyo<CR>
    ,nf           :NERDTreeFind<CR>
    ,nb           :NERDTreeFromBookmark<Space>
    ,nn           :NERDTreeToggle<CR>
-   ,j            :CtrlP<CR>
-   ,f            :MRU<CR>
+n  ,j            :Denite -start-filter file/rec<CR>
    ,o            :BufExplorer<CR>
    ,pp           :setlocal paste!<CR>
-   ,x            :e ~/buffer.md<CR>
-   ,q            :e ~/buffer<CR>
+   ,xo           :e ~/buffer.org<CR>
+   ,xm           :e ~/buffer.md<CR>
+   ,xn           :e ~/buffer<CR>
    ,m          * mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
-   ,s?           z=
-   ,sa           zg
-   ,sp           [s
-   ,sn           ]s
-   ,ss           :setlocal spell!<CR>
+   ,P          * "+p
+   ,Y          * "+y
+   ,p            :cp<CR>
+   ,y          * "*y
    ,cd           :cd %:p:h<CR>:pwd<CR>
    ,te           :tabedit <C-R>=expand("%:p:h")<CR>/
 n  ,tl           :exe "tabn ".g:lasttab<CR>
-   ,t,           :tabnext<Space>
-   ,tm           :tabmove<Space>
+   ,t,           :tabnext <CR>
+   ,tm           :tabmove<CR>
    ,tc           :tabclose<CR>
    ,to           :tabonly<CR>
    ,tn           :tabnew<CR>
@@ -136,128 +127,274 @@ n  ,tl           :exe "tabn ".g:lasttab<CR>
    ,ba           :bufdo bd<CR>
    ,bd           :Bclose<CR>:tabclose<CR>gT
    ,<CR>         :noh<CR>
-s  0             <SNR>37_yank_with_key("0")
+s  0             <SNR>40_yank_with_key("0")
 nox0             ^
-s  1             <SNR>37_yank_with_key("1")
-s  2             <SNR>37_yank_with_key("2")
-s  3             <SNR>37_yank_with_key("3")
-s  4             <SNR>37_yank_with_key("4")
-s  5             <SNR>37_yank_with_key("5")
-s  6             <SNR>37_yank_with_key("6")
-s  7             <SNR>37_yank_with_key("7")
-s  8             <SNR>37_yank_with_key("8")
-s  9             <SNR>37_yank_with_key("9")
-x  P           * :<C-U>call <SNR>37_paste_with_key("P", "v", v:register, v:count1)<CR>
-n  P           * :<C-U>call <SNR>37_paste_with_key("P", "n", v:register, v:count1)<CR>
+s  1             <SNR>40_yank_with_key("1")
+s  2             <SNR>40_yank_with_key("2")
+s  3             <SNR>40_yank_with_key("3")
+s  4             <SNR>40_yank_with_key("4")
+s  5             <SNR>40_yank_with_key("5")
+s  6             <SNR>40_yank_with_key("6")
+s  7             <SNR>40_yank_with_key("7")
+s  8             <SNR>40_yank_with_key("8")
+s  9             <SNR>40_yank_with_key("9")
+n  <p          & :<C-U>call <SNR>79_putline(v:count1 . ']p', 'Below')<CR><']
+n  <P          & :<C-U>call <SNR>79_putline(v:count1 . '[p', 'Above')<CR><']
+n  =p          & :<C-U>call <SNR>79_putline(v:count1 . ']p', 'Below')<CR>=']
+n  =P          & :<C-U>call <SNR>79_putline(v:count1 . '[p', 'Above')<CR>=']
+n  =op         * <Nop>
+n  =o            <SNR>79_legacy_option_map(nr2char(getchar()))
+n  >p          & :<C-U>call <SNR>79_putline(v:count1 . ']p', 'Below')<CR>>']
+n  >P          & :<C-U>call <SNR>79_putline(v:count1 . '[p', 'Above')<CR>>']
+x  @(targets)  * :<C-U>call targets#do()<CR>
+o  @(targets)  * :<C-U>call targets#do()<CR>
+x  A             targets#e('o', 'A', 'A')
+o  A             targets#e('o', 'A', 'A')
+x  I             targets#e('o', 'I', 'I')
+o  I             targets#e('o', 'I', 'I')
+x  P           * :<C-U>call <SNR>40_paste_with_key("P", "v", v:register, v:count1)<CR>
+n  P           * :<C-U>call <SNR>40_paste_with_key("P", "n", v:register, v:count1)<CR>
 x  S             <Plug>VSurround
 v  Si            S(i_<Esc>f)
-o  [%            <Plug>(MatchitOperationMultiBackward)
-x  [%            <Plug>(MatchitVisualMultiBackward)
-n  [%            <Plug>(MatchitNormalMultiBackward)
-o  ]%            <Plug>(MatchitOperationMultiForward)
-x  ]%            <Plug>(MatchitVisualMultiForward)
-n  ]%            <Plug>(MatchitNormalMultiForward)
+o  [%          * v:<C-U>call <SNR>83_MultiMatch("bW", "o") <CR>
+v  [%            <Esc>[%m'gv``
+n  [%          * :<C-U>call <SNR>83_MultiMatch("bW", "n") <CR>
+n  [xx           <Plug>unimpaired_line_xml_encode
+x  [x            <Plug>unimpaired_xml_encode
+n  [x            <Plug>unimpaired_xml_encode
+n  [uu           <Plug>unimpaired_line_url_encode
+x  [u            <Plug>unimpaired_url_encode
+n  [u            <Plug>unimpaired_url_encode
+n  [yy           <Plug>unimpaired_line_string_encode
+x  [y            <Plug>unimpaired_string_encode
+n  [y            <Plug>unimpaired_string_encode
+n  [P            <Plug>unimpairedPutAbove
+n  [p            <Plug>unimpairedPutAbove
+n  [op         & :call <SNR>79_setup_paste()<CR>O
+n  [o+         & :set cursorline cursorcolumn<CR>
+n  [ox         & :set cursorline cursorcolumn<CR>
+n  [ov         & :set virtualedit+=all<CR>
+n  [ow         & :setlocal wrap<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [os         & :setlocal spell<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [or         & :setlocal relativenumber<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [on         & :setlocal number<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [ol         & :setlocal list<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [oi         & :set ignorecase<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [oh         & :set hlsearch<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [od         & :diffthis<CR>
+n  [o|         & :setlocal cursorcolumn<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [ou         & :setlocal cursorcolumn<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [o_         & :setlocal cursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [o-         & :setlocal cursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [oc         & :setlocal cursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  [ob         & :set background=light<CR>
+x  [e            <Plug>unimpairedMoveSelectionUp
+n  [e            <Plug>unimpairedMoveUp
+n  [<Space>      <Plug>unimpairedBlankUp
+o  [n            <Plug>unimpairedContextPrevious
+x  [n            <Plug>unimpairedContextPrevious
+n  [n            <Plug>unimpairedContextPrevious
+n  [f            <Plug>unimpairedDirectoryPrevious
+n  [<C-T>        <Plug>unimpairedTPPrevious
+n  [T            <Plug>unimpairedTFirst
+n  [t            <Plug>unimpairedTPrevious
+n  [<C-Q>        <Plug>unimpairedQPFile
+n  [Q            <Plug>unimpairedQFirst
+n  [q            <Plug>unimpairedQPrevious
+n  [<C-L>        <Plug>unimpairedLPFile
+n  [L            <Plug>unimpairedLFirst
+n  [l            <Plug>unimpairedLPrevious
+n  [B            <Plug>unimpairedBFirst
+n  [b            <Plug>unimpairedBPrevious
+n  [A            <Plug>unimpairedAFirst
+n  [a            <Plug>unimpairedAPrevious
+n  [h            <Plug>(GitGutterPrevHunk)
+n  \           * :Denite grep<CR>
+o  ]%          * v:<C-U>call <SNR>83_MultiMatch("W",  "o") <CR>
+v  ]%            <Esc>]%m'gv``
+n  ]%          * :<C-U>call <SNR>83_MultiMatch("W",  "n") <CR>
+n  ]xx           <Plug>unimpaired_line_xml_decode
+x  ]x            <Plug>unimpaired_xml_decode
+n  ]x            <Plug>unimpaired_xml_decode
+n  ]uu           <Plug>unimpaired_line_url_decode
+x  ]u            <Plug>unimpaired_url_decode
+n  ]u            <Plug>unimpaired_url_decode
+n  ]yy           <Plug>unimpaired_line_string_decode
+x  ]y            <Plug>unimpaired_string_decode
+n  ]y            <Plug>unimpaired_string_decode
+n  ]P            <Plug>unimpairedPutBelow
+n  ]p            <Plug>unimpairedPutBelow
+n  ]op         & :call <SNR>79_setup_paste()<CR>o
+n  ]o+         & :set nocursorline nocursorcolumn<CR>
+n  ]ox         & :set nocursorline nocursorcolumn<CR>
+n  ]ov         & :set virtualedit-=all<CR>
+n  ]ow         & :setlocal nowrap<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]os         & :setlocal nospell<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]or         & :setlocal norelativenumber<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]on         & :setlocal nonumber<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]ol         & :setlocal nolist<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]oi         & :set noignorecase<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]oh         & :set nohlsearch<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]od         & :diffoff<CR>
+n  ]o|         & :setlocal nocursorcolumn<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]ou         & :setlocal nocursorcolumn<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]o_         & :setlocal nocursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]o-         & :setlocal nocursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]oc         & :setlocal nocursorline<C-R>=<SNR>79_statusbump()<CR><CR>
+n  ]ob         & :set background=dark<CR>
+x  ]e            <Plug>unimpairedMoveSelectionDown
+n  ]e            <Plug>unimpairedMoveDown
+n  ]<Space>      <Plug>unimpairedBlankDown
+o  ]n            <Plug>unimpairedContextNext
+x  ]n            <Plug>unimpairedContextNext
+n  ]n            <Plug>unimpairedContextNext
+n  ]f            <Plug>unimpairedDirectoryNext
+n  ]<C-T>        <Plug>unimpairedTPNext
+n  ]T            <Plug>unimpairedTLast
+n  ]t            <Plug>unimpairedTNext
+n  ]<C-Q>        <Plug>unimpairedQNFile
+n  ]Q            <Plug>unimpairedQLast
+n  ]q            <Plug>unimpairedQNext
+n  ]<C-L>        <Plug>unimpairedLNFile
+n  ]L            <Plug>unimpairedLLast
+n  ]l            <Plug>unimpairedLNext
+n  ]B            <Plug>unimpairedBLast
+n  ]b            <Plug>unimpairedBNext
+n  ]A            <Plug>unimpairedALast
+n  ]a            <Plug>unimpairedANext
+n  ]h            <Plug>(GitGutterNextHunk)
 n  _             <Plug>(expand_region_shrink)
 v  _             <Plug>(expand_region_shrink)
-x  a%            <Plug>(MatchitVisualTextObject)
-v  aI          * :<C-U>cal <SNR>65_HandleTextObjectMapping(0, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
-o  aI          * :<C-U>cal <SNR>65_HandleTextObjectMapping(0, 1, 0, [line("."), line("."), col("."), col(".")])<CR>
-v  ai          * :<C-U>cal <SNR>65_HandleTextObjectMapping(0, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
-o  ai          * :<C-U>cal <SNR>65_HandleTextObjectMapping(0, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
-s  a             <SNR>37_yank_with_key("a")
-s  b             <SNR>37_yank_with_key("b")
+x  a             targets#e('o', 'a', 'a')
+o  a             targets#e('o', 'a', 'a')
+v  a%            <Esc>[%v]%
+v  aI          * :<C-U>cal <SNR>64_HandleTextObjectMapping(0, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
+o  aI          * :<C-U>cal <SNR>64_HandleTextObjectMapping(0, 1, 0, [line("."), line("."), col("."), col(".")])<CR>
+v  ai          * :<C-U>cal <SNR>64_HandleTextObjectMapping(0, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
+o  ai          * :<C-U>cal <SNR>64_HandleTextObjectMapping(0, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
+s  a             <SNR>40_yank_with_key("a")
+s  b             <SNR>40_yank_with_key("b")
+n  cop         * <Nop>
+n  co            <SNR>79_legacy_option_map(nr2char(getchar()))
 n  cr            <Plug>(abolish-coerce-word)
 n  cS            <Plug>CSurround
 n  cs            <Plug>Csurround
-s  c             <SNR>37_yank_with_key("c")
+s  c             <SNR>40_yank_with_key("c")
+n  d<C-X>        <Plug>SpeedDatingNowLocal
+n  d<C-A>        <Plug>SpeedDatingNowUTC
 n  ds            <Plug>Dsurround
-s  d             <SNR>37_yank_with_key("d")
-x  d           * <SNR>37_yank_with_key("d")
-n  d           * <SNR>37_yank_with_key("d")
-s  e             <SNR>37_yank_with_key("e")
-s  f             <SNR>37_yank_with_key("f")
+s  d             <SNR>40_yank_with_key("d")
+x  d           * <SNR>40_yank_with_key("d")
+n  d           * <SNR>40_yank_with_key("d")
+s  e             <SNR>40_yank_with_key("e")
+s  f             <SNR>40_yank_with_key("f")
 v  gx            <Plug>NetrwBrowseXVis
 n  gx            <Plug>NetrwBrowseX
-o  g%            <Plug>(MatchitOperationBackward)
-x  g%            <Plug>(MatchitVisualBackward)
-n  g%            <Plug>(MatchitNormalBackward)
+o  g%          * v:<C-U>call <SNR>83_Match_wrapper('',0,'o') <CR>
+v  g%          * :<C-U>call <SNR>83_Match_wrapper('',0,'v') <CR>m'gv``
+n  g%          * :<C-U>call <SNR>83_Match_wrapper('',0,'n') <CR>
 n  gcu           <Plug>Commentary<Plug>Commentary
 n  gcc           <Plug>CommentaryLine
 o  gc            <Plug>Commentary
 n  gc            <Plug>Commentary
 x  gc            <Plug>Commentary
+x  gS            <Plug>VgSurround
 x  g<M-s>      * :<C-U>call multiple_cursors#select_all("v", 0)<CR>
 n  g<M-s>      * :call multiple_cursors#select_all("n", 0)<CR>
 x  g<C-S>      * :<C-U>call multiple_cursors#new("v", 0)<CR>
 n  g<C-S>      * :call multiple_cursors#new("n", 0)<CR>
-x  gS            <Plug>VgSurround
 n  gf          * :call GotoFile("")<CR>
-s  g             <SNR>37_yank_with_key("g")
-x  gP          * :<C-U>call <SNR>37_paste_with_key("gP", "v", v:register, v:count1)<CR>
-n  gP          * :<C-U>call <SNR>37_paste_with_key("gP", "n", v:register, v:count1)<CR>
-x  gp          * :<C-U>call <SNR>37_paste_with_key("gp", "v", v:register, v:count1)<CR>
-n  gp          * :<C-U>call <SNR>37_paste_with_key("gp", "n", v:register, v:count1)<CR>
-v  gv          * :call VisualSelection('gv', '')<CR>
-s  h             <SNR>37_yank_with_key("h")
-v  iI          * :<C-U>cal <SNR>65_HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
-o  iI          * :<C-U>cal <SNR>65_HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>
-v  ii          * :<C-U>cal <SNR>65_HandleTextObjectMapping(1, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
-o  ii          * :<C-U>cal <SNR>65_HandleTextObjectMapping(1, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
-s  i             <SNR>37_yank_with_key("i")
-s  j             <SNR>37_yank_with_key("j")
-s  k             <SNR>37_yank_with_key("k")
-s  l             <SNR>37_yank_with_key("l")
-s  m             <SNR>37_yank_with_key("m")
-s  n             <SNR>37_yank_with_key("n")
-s  o             <SNR>37_yank_with_key("o")
-s  p             <SNR>37_yank_with_key("p")
-x  p           * :<C-U>call <SNR>37_paste_with_key("p", "v", v:register, v:count1)<CR>
-n  p           * :<C-U>call <SNR>37_paste_with_key("p", "n", v:register, v:count1)<CR>
-s  q             <SNR>37_yank_with_key("q")
-s  r             <SNR>37_yank_with_key("r")
-s  s             <SNR>37_yank_with_key("s")
-s  t             <SNR>37_yank_with_key("t")
-s  u             <SNR>37_yank_with_key("u")
-s  v             <SNR>37_yank_with_key("v")
-s  w             <SNR>37_yank_with_key("w")
-s  x             <SNR>37_yank_with_key("x")
+s  g             <SNR>40_yank_with_key("g")
+x  gP          * :<C-U>call <SNR>40_paste_with_key("gP", "v", v:register, v:count1)<CR>
+n  gP          * :<C-U>call <SNR>40_paste_with_key("gP", "n", v:register, v:count1)<CR>
+x  gp          * :<C-U>call <SNR>40_paste_with_key("gp", "v", v:register, v:count1)<CR>
+n  gp          * :<C-U>call <SNR>40_paste_with_key("gp", "n", v:register, v:count1)<CR>
+n  ga            <Plug>(EasyAlign)
+x  ga            <Plug>(EasyAlign)
+s  h             <SNR>40_yank_with_key("h")
+x  i             targets#e('o', 'i', 'i')
+o  i             targets#e('o', 'i', 'i')
+v  iI          * :<C-U>cal <SNR>64_HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
+o  iI          * :<C-U>cal <SNR>64_HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>
+v  ii          * :<C-U>cal <SNR>64_HandleTextObjectMapping(1, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv
+o  ii          * :<C-U>cal <SNR>64_HandleTextObjectMapping(1, 0, 0, [line("."), line("."), col("."), col(".")])<CR>
+s  i             <SNR>40_yank_with_key("i")
+s  j             <SNR>40_yank_with_key("j")
+s  k             <SNR>40_yank_with_key("k")
+s  l             <SNR>40_yank_with_key("l")
+s  m             <SNR>40_yank_with_key("m")
+s  n             <SNR>40_yank_with_key("n")
+s  o             <SNR>40_yank_with_key("o")
+s  p             <SNR>40_yank_with_key("p")
+x  p           * :<C-U>call <SNR>40_paste_with_key("p", "v", v:register, v:count1)<CR>
+n  p           * :<C-U>call <SNR>40_paste_with_key("p", "n", v:register, v:count1)<CR>
+s  q             <SNR>40_yank_with_key("q")
+s  r             <SNR>40_yank_with_key("r")
+s  s             <SNR>40_yank_with_key("s")
+s  t             <SNR>40_yank_with_key("t")
+s  u             <SNR>40_yank_with_key("u")
+s  v             <SNR>40_yank_with_key("v")
+s  w             <SNR>40_yank_with_key("w")
+s  x             <SNR>40_yank_with_key("x")
+n  yop         & :call <SNR>79_setup_paste()<CR>0C
+n  yo+         & :set <C-R>=<SNR>79_cursor_options()<CR><CR>
+n  yox         & :set <C-R>=<SNR>79_cursor_options()<CR><CR>
+n  yov         & :set <C-R>=(&virtualedit =~# "all") ? "virtualedit-=all" : "virtualedit+=all"<CR><CR>
+n  yow         & :setlocal <C-R>=<SNR>79_toggle("wrap")<CR><CR>
+n  yos         & :setlocal <C-R>=<SNR>79_toggle("spell")<CR><CR>
+n  yor         & :setlocal <C-R>=<SNR>79_toggle("relativenumber")<CR><CR>
+n  yon         & :setlocal <C-R>=<SNR>79_toggle("number")<CR><CR>
+n  yol         & :setlocal <C-R>=<SNR>79_toggle("list")<CR><CR>
+n  yoi         & :set <C-R>=<SNR>79_toggle("ignorecase")<CR><CR>
+n  yoh         & :set <C-R>=<SNR>79_toggle("hlsearch")<CR><CR>
+n  yod         & :<C-R>=&diff ? "diffoff" : "diffthis"<CR><CR>
+n  yo|         & :setlocal <C-R>=<SNR>79_toggle("cursorcolumn")<CR><CR>
+n  you         & :setlocal <C-R>=<SNR>79_toggle("cursorcolumn")<CR><CR>
+n  yo_         & :setlocal <C-R>=<SNR>79_toggle("cursorline")<CR><CR>
+n  yo-         & :setlocal <C-R>=<SNR>79_toggle("cursorline")<CR><CR>
+n  yoc         & :setlocal <C-R>=<SNR>79_toggle("cursorline")<CR><CR>
+n  yob         & :set background=<C-R>=&background == "dark" ? "light" : "dark"<CR><CR>
 n  y<C-G>      & :<C-U>call setreg(v:register, fugitive#Object(@%))<CR>
 n  ySS           <Plug>YSsurround
 n  ySs           <Plug>YSsurround
 n  yss           <Plug>Yssurround
 n  yS            <Plug>YSurround
 n  ys            <Plug>Ysurround
-s  y             <SNR>37_yank_with_key("y")
-x  y           * <SNR>37_yank_with_key("y")
-n  y           * <SNR>37_yank_with_key("y")
-s  z             <SNR>37_yank_with_key("z")
-   <Plug>AirlineSelectNextTab * :<C-U>call <SNR>131_jump_to_tab(v:count1)<CR>
-   <Plug>AirlineSelectPrevTab * :<C-U>call <SNR>131_jump_to_tab(-v:count1)<CR>
-   <Plug>AirlineSelectTab9 * :call <SNR>131_select_tab(8)<CR>
-   <Plug>AirlineSelectTab8 * :call <SNR>131_select_tab(7)<CR>
-   <Plug>AirlineSelectTab7 * :call <SNR>131_select_tab(6)<CR>
-   <Plug>AirlineSelectTab6 * :call <SNR>131_select_tab(5)<CR>
-   <Plug>AirlineSelectTab5 * :call <SNR>131_select_tab(4)<CR>
-   <Plug>AirlineSelectTab4 * :call <SNR>131_select_tab(3)<CR>
-   <Plug>AirlineSelectTab3 * :call <SNR>131_select_tab(2)<CR>
-   <Plug>AirlineSelectTab2 * :call <SNR>131_select_tab(1)<CR>
-   <Plug>AirlineSelectTab1 * :call <SNR>131_select_tab(0)<CR>
+s  y             <SNR>40_yank_with_key("y")
+x  y           * <SNR>40_yank_with_key("y")
+n  y           * <SNR>40_yank_with_key("y")
+s  z             <SNR>40_yank_with_key("z")
+   <Plug>AirlineSelectNextTab * :<C-U>call <SNR>143_jump_to_tab(v:count1)<CR>
+   <Plug>AirlineSelectPrevTab * :<C-U>call <SNR>143_jump_to_tab(-v:count1)<CR>
+   <Plug>AirlineSelectTab9 * :call <SNR>143_select_tab(8)<CR>
+   <Plug>AirlineSelectTab8 * :call <SNR>143_select_tab(7)<CR>
+   <Plug>AirlineSelectTab7 * :call <SNR>143_select_tab(6)<CR>
+   <Plug>AirlineSelectTab6 * :call <SNR>143_select_tab(5)<CR>
+   <Plug>AirlineSelectTab5 * :call <SNR>143_select_tab(4)<CR>
+   <Plug>AirlineSelectTab4 * :call <SNR>143_select_tab(3)<CR>
+   <Plug>AirlineSelectTab3 * :call <SNR>143_select_tab(2)<CR>
+   <Plug>AirlineSelectTab2 * :call <SNR>143_select_tab(1)<CR>
+   <Plug>AirlineSelectTab1 * :call <SNR>143_select_tab(0)<CR>
 s  <S-Tab>       <Plug>snipMateBack
 v  <Plug>NetrwBrowseXVis * :<C-U>call netrw#BrowseXVis()<CR>
 n  <Plug>NetrwBrowseX * :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
-v  <Plug>(MatchitVisualTextObject)   <Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)
-o  <Plug>(MatchitOperationMultiForward) * :<C-U>call matchit#MultiMatch("W",  "o")<CR>
-o  <Plug>(MatchitOperationMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "o")<CR>
-v  <Plug>(MatchitVisualMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>m'gv``
-v  <Plug>(MatchitVisualMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>m'gv``
-n  <Plug>(MatchitNormalMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>
-n  <Plug>(MatchitNormalMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>
-o  <Plug>(MatchitOperationBackward) * :<C-U>call matchit#Match_wrapper('',0,'o')<CR>
-o  <Plug>(MatchitOperationForward) * :<C-U>call matchit#Match_wrapper('',1,'o')<CR>
-v  <Plug>(MatchitVisualBackward) * :<C-U>call matchit#Match_wrapper('',0,'v')<CR>m'gv``
-v  <Plug>(MatchitVisualForward) * :<C-U>call matchit#Match_wrapper('',1,'v')<CR>m'gv``
-n  <Plug>(MatchitNormalBackward) * :<C-U>call matchit#Match_wrapper('',0,'n')<CR>
-n  <Plug>(MatchitNormalForward) * :<C-U>call matchit#Match_wrapper('',1,'n')<CR>
+n  <Plug>(EasyAlignOperator) * :set opfunc=<SNR>106_easy_align_op<CR>g@
+v  <Plug>(EasyAlignRepeat) * :<C-U>call <SNR>106_repeat_in_visual()<CR>
+n  <Plug>(EasyAlignRepeat) * :call <SNR>106_easy_align_repeat()<CR>
+v  <Plug>(LiveEasyAlign) * :<C-U>call <SNR>106_live_easy_align_op(visualmode(), 1)<CR>
+n  <Plug>(LiveEasyAlign) * :set opfunc=<SNR>106_live_easy_align_op<CR>g@
+v  <Plug>(EasyAlign) * :<C-U>call <SNR>106_easy_align_op(visualmode(), 1)<CR>
+n  <Plug>(EasyAlign) * :set opfunc=<SNR>106_easy_align_op<CR>g@
+o  <Plug>(textobj-indent-i) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-i","-","o")<CR>
+v  <Plug>(textobj-indent-i) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-i","-","v")<CR>
+o  <Plug>(textobj-indent-a) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-a","-","o")<CR>
+v  <Plug>(textobj-indent-a) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-a","-","v")<CR>
+o  <Plug>(textobj-indent-same-i) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-i","same","o")<CR>
+v  <Plug>(textobj-indent-same-i) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-i","same","v")<CR>
+o  <Plug>(textobj-indent-same-a) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-a","same","o")<CR>
+v  <Plug>(textobj-indent-same-a) & <SNR>103_(save-cursor-pos):<C-U>call g:__textobj_indent.do_by_function("select-a","same","v")<CR>
+n  <SNR>103_   * <SNR>103_
+   <SNR>103_(save-cursor-pos) * <SNR>103_save_cursor_pos()
 v  <Plug>(emmet-code-pretty) * :call emmet#codePretty()<CR>
 n  <Plug>(emmet-merge-lines) * :call emmet#mergeLines()<CR>
 n  <Plug>(emmet-anchorize-summary) * :call emmet#anchorizeURL(1)<CR>
@@ -279,8 +416,94 @@ n  <Plug>(emmet-update-tag) * :call emmet#updateTag()<CR>
 n  <Plug>(emmet-expand-word) * :call emmet#expandAbbr(1,"")<CR>
 v  <Plug>(emmet-expand-abbr) * :call emmet#expandAbbr(2,"")<CR>
 n  <Plug>(emmet-expand-abbr) * :call emmet#expandAbbr(3,"")<CR>
-n  <Plug>(abolish-coerce-word) * <SNR>80_coerce(nr2char(getchar())).'iw'
-n  <Plug>(abolish-coerce) * <SNR>80_coerce(nr2char(getchar()))
+n  <Plug>(startify-open-buffers) * :<C-U>call startify#open_buffers()<CR>
+n  <Plug>SpeedDatingFallbackDown * <C-X>
+n  <Plug>SpeedDatingFallbackUp * <C-A>
+n  <Plug>SpeedDatingNowUTC * :<C-U>call speeddating#timestamp(1,v:count)<CR>
+n  <Plug>SpeedDatingNowLocal * :<C-U>call speeddating#timestamp(0,v:count)<CR>
+x  <Plug>SpeedDatingDown * :<C-U>call speeddating#incrementvisual(-v:count1)<CR>
+x  <Plug>SpeedDatingUp * :<C-U>call speeddating#incrementvisual(v:count1)<CR>
+n  <Plug>SpeedDatingDown * :<C-U>call speeddating#increment(-v:count1)<CR>
+n  <Plug>SpeedDatingUp * :<C-U>call speeddating#increment(v:count1)<CR>
+n  <Plug>unimpaired_line_xml_decode * <SNR>79_TransformSetup("xml_decode")."_"
+x  <Plug>unimpaired_xml_decode * <SNR>79_TransformSetup("xml_decode")
+n  <Plug>unimpaired_xml_decode * <SNR>79_TransformSetup("xml_decode")
+n  <Plug>unimpaired_line_xml_encode * <SNR>79_TransformSetup("xml_encode")."_"
+x  <Plug>unimpaired_xml_encode * <SNR>79_TransformSetup("xml_encode")
+n  <Plug>unimpaired_xml_encode * <SNR>79_TransformSetup("xml_encode")
+n  <Plug>unimpaired_line_url_decode * <SNR>79_TransformSetup("url_decode")."_"
+x  <Plug>unimpaired_url_decode * <SNR>79_TransformSetup("url_decode")
+n  <Plug>unimpaired_url_decode * <SNR>79_TransformSetup("url_decode")
+n  <Plug>unimpaired_line_url_encode * <SNR>79_TransformSetup("url_encode")."_"
+x  <Plug>unimpaired_url_encode * <SNR>79_TransformSetup("url_encode")
+n  <Plug>unimpaired_url_encode * <SNR>79_TransformSetup("url_encode")
+n  <Plug>unimpaired_line_string_decode * <SNR>79_TransformSetup("string_decode")."_"
+x  <Plug>unimpaired_string_decode * <SNR>79_TransformSetup("string_decode")
+n  <Plug>unimpaired_string_decode * <SNR>79_TransformSetup("string_decode")
+n  <Plug>unimpaired_line_string_encode * <SNR>79_TransformSetup("string_encode")."_"
+x  <Plug>unimpaired_string_encode * <SNR>79_TransformSetup("string_encode")
+n  <Plug>unimpaired_string_encode * <SNR>79_TransformSetup("string_encode")
+n  <Plug>unimpairedPutBelow * :call <SNR>79_putline(']p', 'Below')<CR>
+n  <Plug>unimpairedPutAbove * :call <SNR>79_putline('[p', 'Above')<CR>
+n  <Plug>unimpairedPaste * :call <SNR>79_setup_paste()<CR>
+   <Plug>unimpairedMoveSelectionDown * :<C-U>call <SNR>79_MoveSelectionDown(v:count1)<CR>
+   <Plug>unimpairedMoveSelectionUp * :<C-U>call <SNR>79_MoveSelectionUp(v:count1)<CR>
+n  <Plug>unimpairedMoveDown * :<C-U>call <SNR>79_Move('+',v:count1,'Down')<CR>
+n  <Plug>unimpairedMoveUp * :<C-U>call <SNR>79_Move('--',v:count1,'Up')<CR>
+n  <Plug>unimpairedBlankDown * :<C-U>call <SNR>79_BlankDown(v:count1)<CR>
+n  <Plug>unimpairedBlankUp * :<C-U>call <SNR>79_BlankUp(v:count1)<CR>
+o  <Plug>unimpairedContextNext * :<C-U>call <SNR>79_ContextMotion(0)<CR>
+o  <Plug>unimpairedContextPrevious * :<C-U>call <SNR>79_ContextMotion(1)<CR>
+x  <Plug>unimpairedContextNext * :<C-U>exe 'normal! gv'|call <SNR>79_Context(0)<CR>
+x  <Plug>unimpairedContextPrevious * :<C-U>exe 'normal! gv'|call <SNR>79_Context(1)<CR>
+n  <Plug>unimpairedContextNext * :<C-U>call <SNR>79_Context(0)<CR>
+n  <Plug>unimpairedContextPrevious * :<C-U>call <SNR>79_Context(1)<CR>
+n  <Plug>unimpairedDirectoryPrevious * :<C-U>edit <C-R>=<SNR>79_fnameescape(fnamemodify(<SNR>79_FileByOffset(-v:count1), ':.'))<CR><CR>
+n  <Plug>unimpairedDirectoryNext * :<C-U>edit <C-R>=<SNR>79_fnameescape(fnamemodify(<SNR>79_FileByOffset(v:count1), ':.'))<CR><CR>
+n  <Plug>unimpairedTPNext * :<C-U>exe "p".(v:count ? v:count : "")."tnext"<CR>
+n  <Plug>unimpairedTPPrevious * :<C-U>exe "p".(v:count ? v:count : "")."tprevious"<CR>
+n  <Plug>unimpairedTLast * :<C-U>exe "".(v:count ? v:count : "")."tlast"<CR>
+n  <Plug>unimpairedTFirst * :<C-U>exe "".(v:count ? v:count : "")."tfirst"<CR>
+n  <Plug>unimpairedTNext * :<C-U>exe "".(v:count ? v:count : "")."tnext"<CR>
+n  <Plug>unimpairedTPrevious * :<C-U>exe "".(v:count ? v:count : "")."tprevious"<CR>
+n  <Plug>unimpairedQNFile * :<C-U>exe "".(v:count ? v:count : "")."cnfile"<CR>zv
+n  <Plug>unimpairedQPFile * :<C-U>exe "".(v:count ? v:count : "")."cpfile"<CR>zv
+n  <Plug>unimpairedQLast * :<C-U>exe "".(v:count ? v:count : "")."clast"<CR>zv
+n  <Plug>unimpairedQFirst * :<C-U>exe "".(v:count ? v:count : "")."cfirst"<CR>zv
+n  <Plug>unimpairedQNext * :<C-U>exe "".(v:count ? v:count : "")."cnext"<CR>zv
+n  <Plug>unimpairedQPrevious * :<C-U>exe "".(v:count ? v:count : "")."cprevious"<CR>zv
+n  <Plug>unimpairedLNFile * :<C-U>exe "".(v:count ? v:count : "")."lnfile"<CR>zv
+n  <Plug>unimpairedLPFile * :<C-U>exe "".(v:count ? v:count : "")."lpfile"<CR>zv
+n  <Plug>unimpairedLLast * :<C-U>exe "".(v:count ? v:count : "")."llast"<CR>zv
+n  <Plug>unimpairedLFirst * :<C-U>exe "".(v:count ? v:count : "")."lfirst"<CR>zv
+n  <Plug>unimpairedLNext * :<C-U>exe "".(v:count ? v:count : "")."lnext"<CR>zv
+n  <Plug>unimpairedLPrevious * :<C-U>exe "".(v:count ? v:count : "")."lprevious"<CR>zv
+n  <Plug>unimpairedBLast * :<C-U>exe "".(v:count ? v:count : "")."blast"<CR>
+n  <Plug>unimpairedBFirst * :<C-U>exe "".(v:count ? v:count : "")."bfirst"<CR>
+n  <Plug>unimpairedBNext * :<C-U>exe "".(v:count ? v:count : "")."bnext"<CR>
+n  <Plug>unimpairedBPrevious * :<C-U>exe "".(v:count ? v:count : "")."bprevious"<CR>
+n  <Plug>unimpairedALast * :<C-U>exe "".(v:count ? v:count : "")."last"<CR>
+n  <Plug>unimpairedAFirst * :<C-U>exe "".(v:count ? v:count : "")."first"<CR>
+n  <Plug>unimpairedANext * :<C-U>exe "".(v:count ? v:count : "")."next"<CR>
+n  <Plug>unimpairedAPrevious * :<C-U>exe "".(v:count ? v:count : "")."previous"<CR>
+n  <Plug>(abolish-coerce-word) * <SNR>78_coerce(nr2char(getchar())).'iw'
+n  <Plug>(abolish-coerce) * <SNR>78_coerce(nr2char(getchar()))
+n  <Plug>CommentaryUndo   :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"<CR>
+n  <Plug>ChangeCommentary * c:<C-U>call <SNR>77_textobject(1)<CR>
+o  <Plug>Commentary * :<C-U>call <SNR>77_textobject(get(v:, 'operator', '') ==# 'c')<CR>
+n  <Plug>CommentaryLine * <SNR>77_go() . '_'
+n  <Plug>Commentary * <SNR>77_go()
+x  <Plug>Commentary * <SNR>77_go()
+v  <Plug>VgSurround * :<C-U>call <SNR>75_opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>
+v  <Plug>VSurround * :<C-U>call <SNR>75_opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
+n  <Plug>YSurround * <SNR>75_opfunc2('setup')
+n  <Plug>Ysurround * <SNR>75_opfunc('setup')
+n  <Plug>YSsurround * <SNR>75_opfunc2('setup').'_'
+n  <Plug>Yssurround * '^'.v:count1.<SNR>75_opfunc('setup').'g_'
+n  <Plug>CSurround * :<C-U>call <SNR>75_changesurround(1)<CR>
+n  <Plug>Csurround * :<C-U>call <SNR>75_changesurround()<CR>
+n  <Plug>Dsurround * :<C-U>call <SNR>75_dosurround(<SNR>75_inputtarget())<CR>
+n  <Plug>SurroundRepeat * .
 n  <Plug>GitGutterPreviewHunk * :call gitgutter#utility#warn('please change your map <Plug>GitGutterPreviewHunk to <Plug>(GitGutterPreviewHunk)')<CR>
 n  <Plug>(GitGutterPreviewHunk) * :GitGutterPreviewHunk<CR>
 n  <Plug>GitGutterUndoHunk * :call gitgutter#utility#warn('please change your map <Plug>GitGutterUndoHunk to <Plug>(GitGutterUndoHunk)')<CR>
@@ -297,41 +520,24 @@ x  <Plug>(GitGutterTextObjectOuterVisual) * :<C-U>call gitgutter#hunk#text_objec
 x  <Plug>(GitGutterTextObjectInnerVisual) * :<C-U>call gitgutter#hunk#text_object(1)<CR>
 o  <Plug>(GitGutterTextObjectOuterPending) * :<C-U>call gitgutter#hunk#text_object(0)<CR>
 o  <Plug>(GitGutterTextObjectInnerPending) * :<C-U>call gitgutter#hunk#text_object(1)<CR>
-n  <Plug>CommentaryUndo   :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"<CR>
-n  <Plug>ChangeCommentary * c:<C-U>call <SNR>76_textobject(1)<CR>
-o  <Plug>Commentary * :<C-U>call <SNR>76_textobject(get(v:, 'operator', '') ==# 'c')<CR>
-n  <Plug>CommentaryLine * <SNR>76_go() . '_'
-n  <Plug>Commentary * <SNR>76_go()
-x  <Plug>Commentary * <SNR>76_go()
 x  <Plug>(expand_region_shrink) * :<C-U>call expand_region#next('v', '-')<CR>
 x  <Plug>(expand_region_expand) * :<C-U>call expand_region#next('v', '+')<CR>
 n  <Plug>(expand_region_expand) * :<C-U>call expand_region#next('n', '+')<CR>
 x  <M-s>       * :<C-U>call multiple_cursors#select_all("v", 0)<CR>
 n  <M-s>       * :call multiple_cursors#select_all("n", 1)<CR>
-v  <Plug>VgSurround * :<C-U>call <SNR>69_opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>
-v  <Plug>VSurround * :<C-U>call <SNR>69_opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>
-n  <Plug>YSurround * <SNR>69_opfunc2('setup')
-n  <Plug>Ysurround * <SNR>69_opfunc('setup')
-n  <Plug>YSsurround * <SNR>69_opfunc2('setup').'_'
-n  <Plug>Yssurround * '^'.v:count1.<SNR>69_opfunc('setup').'g_'
-n  <Plug>CSurround * :<C-U>call <SNR>69_changesurround(1)<CR>
-n  <Plug>Csurround * :<C-U>call <SNR>69_changesurround()<CR>
-n  <Plug>Dsurround * :<C-U>call <SNR>69_dosurround(<SNR>69_inputtarget())<CR>
-n  <Plug>SurroundRepeat * .
-x  <Plug>snipMateVisual * :<C-U>call <SNR>66_grab_visual()<CR>gv"_c
+x  <Plug>snipMateVisual * :<C-U>call <SNR>65_grab_visual()<CR>gv"_c
 s  <Plug>snipMateBack * <Esc>a<C-R>=snipMate#BackwardsSnippet()<CR>
 s  <Plug>snipMateNextOrTrigger * <Esc>a<C-R>=snipMate#TriggerSnippet()<CR>
-n  <Plug>(ctrlp) * :<C-U>CtrlP<CR>
 x  <M-P>         <Plug>yankstack_substitute_newer_paste
 n  <M-P>         <Plug>yankstack_substitute_newer_paste
 x  <M-p>         <Plug>yankstack_substitute_older_paste
 n  <M-p>         <Plug>yankstack_substitute_older_paste
-x  <Plug>yankstack_after_paste * :<C-U>call <SNR>37_after_paste()<CR>
-n  <Plug>yankstack_after_paste * :call <SNR>37_after_paste()<CR>
-x  <Plug>yankstack_substitute_newer_paste * :<C-U>call <SNR>37_substitute_paste(-v:count1, 'v')<CR>
-x  <Plug>yankstack_substitute_older_paste * :<C-U>call <SNR>37_substitute_paste(v:count1, 'v')<CR>
-n  <Plug>yankstack_substitute_newer_paste * :<C-U>call <SNR>37_substitute_paste(-v:count1, 'n')<CR>
-n  <Plug>yankstack_substitute_older_paste * :<C-U>call <SNR>37_substitute_paste(v:count1, 'n')<CR>
+x  <Plug>yankstack_after_paste * :<C-U>call <SNR>40_after_paste()<CR>
+n  <Plug>yankstack_after_paste * :call <SNR>40_after_paste()<CR>
+x  <Plug>yankstack_substitute_newer_paste * :<C-U>call <SNR>40_substitute_paste(-v:count1, 'v')<CR>
+x  <Plug>yankstack_substitute_older_paste * :<C-U>call <SNR>40_substitute_paste(v:count1, 'v')<CR>
+n  <Plug>yankstack_substitute_newer_paste * :<C-U>call <SNR>40_substitute_paste(-v:count1, 'n')<CR>
+n  <Plug>yankstack_substitute_older_paste * :<C-U>call <SNR>40_substitute_paste(v:count1, 'n')<CR>
 n  <Plug>(ale_rename) * :ALERename<CR>
 n  <Plug>(ale_documentation) * :ALEDocumentation<CR>
 n  <Plug>(ale_hover) * :ALEHover<CR>
@@ -383,8 +589,33 @@ n  <M-j>         mz:m+<CR>`z
    <C-Space>     ?
    ½             $
 
-i  <BS>        * <SNR>143_OnDeleteChar( "\<BS>" )
-i  <C-Space>   * <C-R>=<SNR>143_RequestSemanticCompletion()<CR>
+i  <M-n>       *@<Esc>:call AutoPairsJump()<CR>a
+i  <M-p>       *@AutoPairsToggle()
+i  <M-b>       *@<C-R>=AutoPairsBackInsert()<CR>
+i  <M-e>       *@<C-R>=AutoPairsFastWrap()<CR>
+i  <BS>        *@<C-R>=AutoPairsDelete()<CR>
+i  <M-'>       *@<C-R>=AutoPairsMoveCharacter('''')<CR>
+i  <M-">       *@<C-R>=AutoPairsMoveCharacter('"')<CR>
+i  <M-}>       *@<C-R>=AutoPairsMoveCharacter('}')<CR>
+i  <M-{>       *@<C-R>=AutoPairsMoveCharacter('{')<CR>
+i  <M-]>       *@<C-R>=AutoPairsMoveCharacter(']')<CR>
+i  <M-[>       *@<C-R>=AutoPairsMoveCharacter('[')<CR>
+i  <M-)>       *@<C-R>=AutoPairsMoveCharacter(')')<CR>
+i  <M-(>       *@<C-R>=AutoPairsMoveCharacter('(')<CR>
+i  <C-H>       *@<C-R>=AutoPairsDelete()<CR>
+i  <CR>        &@<CR><SNR>80_DiscretionaryEnd<SNR>35_AutoPairsReturn
+i  <Space>     *@<C-]><C-R>=AutoPairsSpace()<CR>
+i  "           *@<C-R>=AutoPairsInsert('"')<CR>
+i  '           *@<C-R>=AutoPairsInsert('''')<CR>
+i  (           *@<C-R>=AutoPairsInsert('(')<CR>
+i  )           *@<C-R>=AutoPairsInsert(')')<CR>
+i  [           *@<C-R>=AutoPairsInsert('[')<CR>
+i  ]           *@<C-R>=AutoPairsInsert(']')<CR>
+i  `           *@<C-R>=AutoPairsInsert('`')<CR>
+i  {           *@<C-R>=AutoPairsInsert('{')<CR>
+i  }           *@<C-R>=AutoPairsInsert('}')<CR>
+i  <BS>        * <SNR>159_OnDeleteChar( "\<BS>" )
+i  <C-Space>   * <C-R>=<SNR>159_RequestSemanticCompletion()<CR>
 i  <Nul>         <C-Space>
 i  <Up>        * pumvisible() ? "\<C-P>" : "\<Up>"
 i  <Down>      * pumvisible() ? "\<C-N>" : "\<Down>"
@@ -406,38 +637,44 @@ i  <Plug>(emmet-balance-tag-inward) * <Esc>:call emmet#balanceTag(1)<CR>
 i  <Plug>(emmet-update-tag) * <C-R>=emmet#util#closePopup()<CR><C-R>=emmet#updateTag()<CR>
 i  <Plug>(emmet-expand-word) * <C-R>=emmet#util#closePopup()<CR><C-R>=emmet#expandAbbr(1,"")<CR>
 i  <Plug>(emmet-expand-abbr) * <C-R>=emmet#util#closePopup()<CR><C-R>=emmet#expandAbbr(0,"")<CR>
-i  <Plug>ISurround * <C-R>=<SNR>69_insert(1)<CR>
-i  <Plug>Isurround * <C-R>=<SNR>69_insert()<CR>
+i  <Plug>AlwaysEnd & <SNR>80_AlwaysEnd
+i  <Plug>DiscretionaryEnd & <SNR>80_DiscretionaryEnd
+i  <SNR>80_AlwaysEnd * <C-R>=<SNR>80_crend(1)<CR>
+i  <SNR>80_DiscretionaryEnd * <C-R>=<SNR>80_crend(0)<CR>
+i  <Plug>ISurround * <C-R>=<SNR>75_insert(1)<CR>
+i  <Plug>Isurround * <C-R>=<SNR>75_insert()<CR>
 i  <Plug>snipMateShow * <C-R>=snipMate#ShowAvailableSnips()<CR>
 i  <Plug>snipMateBack * <C-R>=snipMate#BackwardsSnippet()<CR>
 i  <Plug>snipMateTrigger * <C-R>=snipMate#TriggerSnippet(1)<CR>
 i  <Plug>snipMateNextOrTrigger * <C-R>=snipMate#TriggerSnippet()<CR>
 i  <M-P>         <Plug>yankstack_substitute_newer_paste
 i  <M-p>         <Plug>yankstack_substitute_older_paste
-i  <Plug>yankstack_after_paste * <C-O>:call <SNR>37_after_paste()<CR>
-i  <Plug>yankstack_substitute_newer_paste * <C-R>=<SNR>37_substitute_paste(-v:count1, 'i')<CR>
-i  <Plug>yankstack_substitute_older_paste * <C-R>=<SNR>37_substitute_paste(v:count1, 'i')<CR>
+i  <Plug>yankstack_after_paste * <C-O>:call <SNR>40_after_paste()<CR>
+i  <Plug>yankstack_substitute_newer_paste * <C-R>=<SNR>40_substitute_paste(-v:count1, 'i')<CR>
+i  <Plug>yankstack_substitute_older_paste * <C-R>=<SNR>40_substitute_paste(v:count1, 'i')<CR>
 i  <Plug>(ale_complete) * <C-\><C-O>:ALEComplete<CR>
 c  <Plug>(ale_show_completion_menu) * <Nop>
 i  <Plug>(ale_show_completion_menu) * <C-X><C-O>
-i  <Plug>AutoPairsReturn & <SNR>32_AutoPairsReturn
-i  <SNR>32_AutoPairsReturn * <C-R>=AutoPairsReturn()<CR>
+i  <Plug>AutoPairsReturn & <SNR>35_AutoPairsReturn
+i  <SNR>35_AutoPairsReturn * <C-R>=AutoPairsReturn()<CR>
 i  ½             $
 c  ½             $
 c  <C-A>       * <Home>
 c  <C-E>       * <End>
 i  <C-G>S        <Plug>ISurround
 i  <C-G>s        <Plug>Isurround
-i  <C-H>       * <SNR>143_OnDeleteChar( "\<C-H>" )
+i  <C-H>       * <SNR>159_OnDeleteChar( "\<C-H>" )
 i  <Tab>       * pumvisible() ? "\<C-N>" : "\<Tab>"
 i  <NL>        * <C-R>=snipMate#TriggerSnippet()<CR>
 c  <C-K>       * <C-U>
+i  <CR>        * <SNR>159_StopCompletion( "\<CR>" )
 c  <C-N>       * <Down>
 c  <C-P>       * <Up>
 i  <C-R><Tab>    <Plug>snipMateShow
 c  <C-R><C-G>  & fnameescape(fugitive#Object(@%))
 i  <C-S>         <Plug>Isurround
-i  <C-Y>       * <SNR>143_StopCompletion( "\<C-Y>" )
+i  <C-X><CR>   & <CR><SNR>80_AlwaysEnd
+i  <C-Y>       * <SNR>159_StopCompletion( "\<C-Y>" )
 i  <C-Y>m        <Plug>(emmet-merge-lines)
 i  <C-Y>A        <Plug>(emmet-anchorize-summary)
 i  <C-Y>a        <Plug>(emmet-anchorize-url)
