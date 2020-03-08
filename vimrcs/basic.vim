@@ -104,7 +104,7 @@ set noswapfile
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-    set undodir=expand('<sfile>:p:h')."/../temp_dirs/undodir"
+    set undodir=~/.config/nvim/temp_dirs
     set undofile
 catch
 endtry
