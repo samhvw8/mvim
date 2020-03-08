@@ -66,8 +66,10 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'mhinz/vim-startify'
 Plug 'rust-lang/rust.vim'
 Plug 'plasticboy/vim-markdown'
-Plug 'mattn/gist-vim'
+
 Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+
 Plug 'vim-ruby/vim-ruby'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'peitalin/vim-jsx-typescript'
@@ -100,8 +102,6 @@ Plug 'wellle/targets.vim'
 Plug 'mbbill/undotree'
 
 
-
-
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -122,13 +122,6 @@ let g:bufExplorerShowRelativePath=1
 let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
-
-
-""""""""""""""""""""""""""""""
-" => MRU plugin
-""""""""""""""""""""""""""""""
-" let MRU_Max_Entries = 400
-" map <leader>f :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -183,26 +176,11 @@ function! s:denite_my_settings() abort
   map <silent><buffer> <Esc>: <Plug>(denite_filter_quit) <cr>
 endfunction
 
-" denite content search
-""""""""""""""""""""""""""""""
-" => CTRL-P
-""""""""""""""""""""""""""""""
-" let g:ctrlp_working_path_mode = 0
-
-" let g:ctrlp_map = '<C-f>'
-" map <leader>j :CtrlP<cr>
-" map <C-b> :CtrlPBuffer<cr>
-
-" let g:ctrlp_max_height = 20
-" let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
-
-
 """"""""""""""""""""""""""""""
 " => ZenCoding
 """"""""""""""""""""""""""""""
 " Enable all functions in all modes
 let g:user_zen_mode='a'
-
 
 """"""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
@@ -231,33 +209,6 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Tagbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" map  <leader>t :TagbarToggle<CR>
-
-" let g:tagbar_type_typescript = {                                                  
-"   \ 'ctagsbin' : 'tstags',                                                        
-"   \ 'ctagsargs' : '-f-',                                                           
-"   \ 'kinds': [                                                                     
-"     \ 'e:enums:0:1',                                                               
-"     \ 'f:function:0:1',                                                            
-"     \ 't:typealias:0:1',                                                           
-"     \ 'M:Module:0:1',                                                              
-"     \ 'I:import:0:1',                                                              
-"     \ 'i:interface:0:1',                                                           
-"     \ 'C:class:0:1',                                                               
-"     \ 'm:method:0:1',                                                              
-"     \ 'p:property:0:1',                                                            
-"     \ 'v:variable:0:1',                                                            
-"     \ 'c:const:0:1',                                                              
-"   \ ],                                                                            
-"   \ 'sort' : 0                                                                    
-" \ } 
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:multi_cursor_use_default_mapping=0
@@ -279,31 +230,6 @@ let g:multi_cursor_quit_key            = '<Esc>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => lightline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:lightline = {
-"       \ 'colorscheme': 'wombat',
-"       \ 'active': {
-"       \   'left': [ ['mode', 'paste'],
-"       \             ['fugitive', 'readonly', 'filename', 'modified'] ],
-"       \   'right': [ [ 'lineinfo' ], ['percent'] ]
-"       \ },
-"       \ 'component': {
-"       \   'readonly': '%{&filetype=="help"?"":&readonly?"🔒":""}',
-"       \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-"       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-"       \ },
-"       \ 'component_visible_condition': {
-"       \   'readonly': '(&filetype!="help"&& &readonly)',
-"       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-"       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-"       \ },
-"       \ 'separator': { 'left': ' ', 'right': ' ' },
-"       \ 'subseparator': { 'left': ' ', 'right': ' ' }
-"       \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-airline
@@ -354,7 +280,6 @@ let g:ale_lint_on_enter = 0
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
-" nnoremap <silent> <leader>d :GitGutterToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YcmCompleter
@@ -409,32 +334,6 @@ call expand_region#custom_text_objects('python', {
       \ })
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ack searching and cope displaying
-"    requires ack.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use the the_silver_searcher if possible (much faster than Ack)
-" if executable('ag')
-"   let g:ackprg = 'ag --vimgrep --smart-case'
-" endif
-
-" " When you press gv you Ack after the selected text
-" vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
-
-" " When you press <leader>r you can search and replace the selected text
-" vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with Ack, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
  let g:startify_session_dir = s:mvim. '/session'
@@ -469,3 +368,11 @@ nmap ga <Plug>(EasyAlign)
 " undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>m :UndotreeToggle<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_post_private = 1 " private default
