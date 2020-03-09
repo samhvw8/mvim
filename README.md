@@ -9,6 +9,7 @@ brew install neovim ag
 
 pip install  pynvim
 
+brew install ripgrep
 ```
 
 ## file .bashrc or .zshrc

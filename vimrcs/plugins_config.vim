@@ -49,13 +49,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:fzf_install = 'yes | ./install'
 Plug 'junegunn/fzf', { 'do': g:fzf_install }
-if has('nvim')
-  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/denite.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'junegunn/fzf.vim'
+
+
+" else
+"   Plug 'Shougo/denite.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 
 " Interface
@@ -226,50 +227,77 @@ let g:yankstack_yank_keys = ['y', 'd']
 
 nmap <C-p> <Plug>yankstack_substitute_older_paste
 nmap <C-n> <Plug>yankstack_substitute_newer_paste
+
+""""""""""""""""""""""""""""""
+" => fzf.vim
+""""""""""""""""""""""""""""""
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+nmap <LEADER>j :Files<CR>
+nnoremap \ :RG<CR>
+
+
+
 """"""""""""""""""""""""""""""
 " => denite
 """"""""""""""""""""""""""""""
-call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#option('default', 'prompt', 'λ')
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
-      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
+" call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+" call denite#custom#option('default', 'prompt', 'λ')
+" call denite#custom#var('grep', 'command', ['ag'])
+" call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+" call denite#custom#var('grep', 'recursive_opts', [])
+" call denite#custom#var('grep', 'pattern_opt', [])
+" call denite#custom#var('grep', 'separator', ['--'])
+" call denite#custom#var('grep', 'final_opts', [])
+" call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+" call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+"       \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
+"       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
 
-nmap <LEADER>j :Denite -start-filter file/rec<CR>
-nmap <C-b>  :Denite buffer<CR>
-nnoremap \ :Denite grep<CR>
+" nmap <LEADER>j :Denite -start-filter file/rec<CR>
+" nmap <C-b>  :Denite buffer<CR>
+" nnoremap \ :Denite grep<CR>
 
-call denite#custom#source(
-\ 'grep', 'matchers', ['matcher_regexp'])
+" call denite#custom#source(
+" \ 'grep', 'matchers', ['matcher_regexp'])
 
-" use ag for content search
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-        \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-        \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-        \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> <C-v>
-        \ denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-x>
-        \ denite#do_map('do_action', 'split')
-  nnoremap <silent><buffer><expr> <Esc>
-        \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-        \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-        \ denite#do_map('toggle_select').'j'
-  map <silent><buffer> <Esc>: <Plug>(denite_filter_quit) <cr>
-endfunction
+" " use ag for content search
+" autocmd FileType denite call s:denite_my_settings()
+" function! s:denite_my_settings() abort
+"   nnoremap <silent><buffer><expr> <CR>
+"         \ denite#do_map('do_action')
+"   nnoremap <silent><buffer><expr> d
+"         \ denite#do_map('do_action', 'delete')
+"   nnoremap <silent><buffer><expr> p
+"         \ denite#do_map('do_action', 'preview')
+"   nnoremap <silent><buffer><expr> <C-v>
+"         \ denite#do_map('do_action', 'vsplit')
+"   nnoremap <silent><buffer><expr> <C-x>
+"         \ denite#do_map('do_action', 'split')
+"   nnoremap <silent><buffer><expr> <Esc>
+"         \ denite#do_map('quit')
+"   nnoremap <silent><buffer><expr> i
+"         \ denite#do_map('open_filter_buffer')
+"   nnoremap <silent><buffer><expr> <Space>
+"         \ denite#do_map('toggle_select').'j'
+"   map <silent><buffer> <Esc>: <Plug>(denite_filter_quit) <cr>
+" endfunction
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
