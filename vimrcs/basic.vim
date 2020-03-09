@@ -139,7 +139,7 @@ set wrap "Wrap lines
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
-map <s-space> /
+" map <s-space> /
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
