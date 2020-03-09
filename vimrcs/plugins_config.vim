@@ -113,6 +113,9 @@ call plug#helptags()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi CocUnderline gui=underline term=underline
+hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
+hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
