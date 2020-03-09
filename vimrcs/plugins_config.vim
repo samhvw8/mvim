@@ -249,7 +249,7 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-nmap <LEADER>j :Files<CR>
+nmap <LEADER>j :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap \ :RG<CR>
 
 
@@ -464,6 +464,10 @@ let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
       \ ['CANCELED(c)']]
 
 let g:org_agenda_files = ['~/org/index.org']
+
+let g:org_export_emacs="/usr/local/bin/emacs"  
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
