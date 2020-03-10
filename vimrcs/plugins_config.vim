@@ -33,7 +33,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-Plug 'maxbrunsfeld/vim-yankstack'
+" Plug 'maxbrunsfeld/vim-yankstack'
+" Plug 'unblevable/quick-scope'       
+Plug 'easymotion/vim-easymotion'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'amix/open_file_under_cursor.vim'
 Plug 'mattn/webapi-vim'
@@ -105,7 +107,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'w0rp/ale'
 
 " Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-
 
 call plug#end()
 call plug#helptags()
@@ -223,10 +224,10 @@ map <leader>o :BufExplorer<cr>
 """"""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
-let g:yankstack_yank_keys = ['y', 'd']
-
-nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-n> <Plug>yankstack_substitute_newer_paste
+" let g:yankstack_yank_keys = ['y', 'd']
+" 
+" nmap <C-p> <Plug>yankstack_substitute_older_paste
+" nmap <C-n> <Plug>yankstack_substitute_newer_paste
 
 """"""""""""""""""""""""""""""
 " => fzf.vim
@@ -360,6 +361,9 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ale (syntax checker and linter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'   " status line format
+let g:ale_statusline_format     = ['⨉ %d', '⚠ %d', '⬥ ok']       " error status format
+let g:ale_lint_delay            = 500                            " relint max once per [amount] milliseconds
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
@@ -490,4 +494,22 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_post_private = 1 " private default
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme xcodedarkhc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quick-scope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" " Trigger a highlight in the appropriate direction when pressing these keys:
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" " Trigger a highlight only when pressing f and F
+" let g:qs_max_chars=80
+" let g:qs_lazy_highlight = 1
+" augroup qs_colors
+"   autocmd!
+"   autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+"   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+" augroup END
