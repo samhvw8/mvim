@@ -531,8 +531,10 @@ nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
-
 " JK motions: Line motions
 map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><Leader>w <Plug>(easymotion-w)
+map <Leader><Leader>W <Plug>(easymotion-W)
+map <c-f> <Plug>(easymotion-lineanywhere)
+map <c-F> <Plug>(easymotion-linebackward)
