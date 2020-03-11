@@ -8,10 +8,15 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "python"
   ],
   "tsserver.trace.server": "verbose",
   "tsserver.log": "verbose",
   "tsserver.npm": "/usr/local/bin/npm",
-  "coc.preferences.colorSupport": true
+  "coc.preferences.colorSupport": true,
+  "python.jediEnabled": true,
+  "python.jediPath": "/usr/local/lib/python3.7/site-packages",
+  "python.formatting.provider": "black",
+  "python.analysis.logLevel":"Trace",
 }
