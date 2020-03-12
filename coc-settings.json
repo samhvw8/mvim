@@ -9,7 +9,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "python"
+    "python",
+    "json"
   ],
   "tsserver.trace.server": "verbose",
   "tsserver.log": "verbose",
@@ -19,4 +20,16 @@
   "python.jediPath": "/usr/local/lib/python3.7/site-packages",
   "python.formatting.provider": "black",
   "python.analysis.logLevel":"Trace",
+  "diagnostic.enableSign": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.messageTarget": "float",
+  "suggest.echodocSupport": true,
+  "signature.enable": true,
+  "signature.target": "echo",
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+"diagnostic.refreshAfterSave": true
 }
+
+
+
