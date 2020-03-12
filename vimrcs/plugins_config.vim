@@ -71,6 +71,9 @@ Plug 'mhinz/vim-startify'
 
 
 
+Plug 'Shougo/echodoc.vim'
+
+
 " Plug 'vim-scripts/mayansmoke'
 " Plug 'vim-scripts/tlib'
 
@@ -99,13 +102,14 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
+Plug 'cespare/vim-toml'
 " Plug 'ap/vim-css-color'
 Plug 'jceb/vim-orgmode'
 " Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Auto complete & lint
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 
@@ -156,13 +160,13 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-autocmd CursorHold * silent call CocAction('doHover')
+" autocmd CursorHold * silent call CocActionAsync('doHover')
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
 
@@ -189,8 +193,8 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-
-" Apply AutoFix to problem on the current line.
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
@@ -372,32 +376,32 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ale (syntax checker and linter)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'   " status line format
-let g:ale_statusline_format     = ['⨉ %d', '⚠ %d', '⬥ ok']       " error status format
-let g:ale_lint_delay            = 500                            " relint max once per [amount] milliseconds
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'python': ['flake8'],
-\   'go': ['go', 'golint', 'errcheck']
-\}
+" let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'   " status line format
+" let g:ale_statusline_format     = ['⨉ %d', '⚠ %d', '⬥ ok']       " error status format
+" let g:ale_lint_delay            = 500                            " relint max once per [amount] milliseconds
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'python': ['flake8'],
+" \   'go': ['go', 'golint', 'errcheck']
+" \}
 
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'typescriptreact': ['eslint'],
-\   'python': ['black']
-\}
-let g:ale_completion_enabled = 1
+" let g:ale_fixers = {
+" \   'javascript': ['eslint'],
+" \   'typescriptreact': ['eslint'],
+" \   'python': ['black']
+" \}
+" let g:ale_completion_enabled = 1
 
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
-nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
+" nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
 
-" Disabling highlighting
-let g:ale_set_highlights = 0
+" " Disabling highlighting
+" let g:ale_set_highlights = 0
 
-" Only run linting when saving the file
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
+" " Only run linting when saving the file
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_enter = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -533,11 +537,12 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-" nmap s <Plug>(easymotion-overwin-f)
+"
+nmap <C-f> <Plug>(easymotion-overwin-f)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
+" nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -546,5 +551,14 @@ map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 map <Leader><Leader>w <Plug>(easymotion-w)
 map <Leader><Leader>W <Plug>(easymotion-W)
-map <c-f> <Plug>(easymotion-lineanywhere)
-map <c-F> <Plug>(easymotion-linebackward)
+map <Leader>s <Plug>(easymotion-lineforward)
+map <Leader>S  <Plug>(easymotion-linebackward)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" echodoc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Or, you could use neovim's virtual virtual text feature.
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'virtual'
