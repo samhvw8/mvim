@@ -265,7 +265,7 @@ endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
-nmap <LEADER>j :Files <C-R>=expand('%:h')<CR><CR>
+nmap <LEADER>j :Files<CR>
 nnoremap \ :Rg<CR>
 
 
