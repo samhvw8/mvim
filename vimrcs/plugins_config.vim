@@ -23,7 +23,7 @@ call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
 Plug 'arzg/vim-colors-xcode'
-" 
+"
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
@@ -34,8 +34,11 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 " Plug 'maxbrunsfeld/vim-yankstack'
-" Plug 'unblevable/quick-scope'       
+" Plug 'unblevable/quick-scope'
 Plug 'easymotion/vim-easymotion'
+Plug 'matze/vim-move'
+
+Plug 'justinmk/vim-sneak'
 " Plug 'haya14busa/vim-easyoperator-line'
 " Plug 'haya14busa/vim-easyoperator-phrase'
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -45,7 +48,7 @@ Plug 'mattn/gist-vim'
 Plug 'junegunn/vim-easy-align'
 
 " sub windows or sidebar startus bar
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
@@ -109,12 +112,26 @@ Plug 'jceb/vim-orgmode'
 
 " Auto complete & lint
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'Chiel92/vim-autoformat'
 " Plug 'w0rp/ale'
 
 " Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'brooth/far.vim'
 
 call plug#end()
 call plug#helptags()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-autoformat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
+augroup mvimAutoFormatConfig
+    autocmd!
+    au BufWrite * :Autoformat
+augroup end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -125,14 +142,14 @@ hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
 hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -141,10 +158,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    " Use `complete_info` if your (Neo)Vim version supports it.
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -163,11 +180,11 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " autocmd CursorHold * silent call CocActionAsync('doHover')
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocActionAsync('doHover')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -182,11 +199,11 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " setup formatexpr specified filetype(s).
+    autocmd filetype typescript,json setl formatexpr=cocaction('formatselected')
+    " update signature help on jump placeholder.
+    autocmd user cocjumpplaceholder call cocactionasync('showsignaturehelp')
 augroup end
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -223,18 +240,18 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerFindActive=1
-let g:bufExplorerSortBy='name'
-map <leader>o :BufExplorer<cr>
+" let g:bufExplorerDefaultHelp=0
+" let g:bufExplorerShowRelativePath=1
+" let g:bufExplorerFindActive=1
+" let g:bufExplorerSortBy='name'
+" map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
 " => YankStack
 """"""""""""""""""""""""""""""
 " let g:yankstack_yank_keys = ['y', 'd']
-" 
+"
 " nmap <C-p> <Plug>yankstack_substitute_older_paste
 " nmap <C-n> <Plug>yankstack_substitute_newer_paste
 
@@ -242,30 +259,31 @@ map <leader>o :BufExplorer<cr>
 " => fzf.vim
 """"""""""""""""""""""""""""""
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
+            \ call fzf#vim#grep(
+            \   'git grep --line-number '.shellescape(<q-args>), 0,
+            \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
 
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+            \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 nmap <LEADER>j :Files<CR>
+nmap <LEADER>o :Buffers<CR>
 nnoremap \ :Rg<CR>
 
 
@@ -351,7 +369,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config
-" Annotate strings with gettext 
+" Annotate strings with gettext
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
@@ -424,47 +442,47 @@ let g:gitgutter_enabled=1
 " Emmet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:user_emmet_settings = {
-  \    'javascript': {'extends': 'jsx'},
-  \    'javascript.jsx': {'extends': 'jsx'},
-  \    'typescript': {'extends': 'jsx'},
-  \    'typescript.tsx': {'extends': 'jsx'}
-  \ }
+" let g:user_emmet_settings = {
+"             \    'javascript': {'extends': 'jsx'},
+"             \    'javascript.jsx': {'extends': 'jsx'},
+"             \    'typescript': {'extends': 'jsx'},
+"             \    'typescript.tsx': {'extends': 'jsx'}
+"             \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " expand_region
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:expand_region_text_objects = {
-      \ 'iw'  :0,
-      \ 'iW'  :0,
-      \ 'i"'  :0,
-      \ 'i''' :0,
-      \ 'i]'  :1,
-      \ 'ib'  :1, 
-      \ 'iB'  :1, 
-      \ 'it'  :1,
-      \ 'aw'  :0,
-      \ 'aW'  :0,
-      \ 'a"'  :0,
-      \ 'a''' :0,
-      \ 'a]'  :0,
-      \ 'ab'  :1, 
-      \ 'aB'  :1,
-      \ 'at'  :1,
-      \ 'il'  :1,
-      \ 'ip'  :1 
-      \ }
+            \ 'iw'  :0,
+            \ 'iW'  :0,
+            \ 'i"'  :0,
+            \ 'i''' :0,
+            \ 'i]'  :1,
+            \ 'ib'  :1,
+            \ 'iB'  :1,
+            \ 'it'  :1,
+            \ 'aw'  :0,
+            \ 'aW'  :0,
+            \ 'a"'  :0,
+            \ 'a''' :0,
+            \ 'a]'  :0,
+            \ 'ab'  :1,
+            \ 'aB'  :1,
+            \ 'at'  :1,
+            \ 'il'  :1,
+            \ 'ip'  :1
+            \ }
 
 call expand_region#custom_text_objects('python', {
-      \ 'ii' :1, 
-      \ 'ai' :1,
-      \ })
+            \ 'ii' :1,
+            \ 'ai' :1,
+            \ })
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- let g:startify_session_dir = s:mvim. '/session'
+let g:startify_session_dir = s:mvim. '/session'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -479,12 +497,12 @@ let g:rainbow_active = 1
 " org
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
-      \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
-      \ ['CANCELED(c)']]
+            \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
+            \ ['CANCELED(c)']]
 
 let g:org_agenda_files = ['~/org/index.org']
 
-let g:org_export_emacs="/usr/local/bin/emacs"  
+let g:org_export_emacs="/usr/local/bin/emacs"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -538,7 +556,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 "
-nmap <C-f> <Plug>(easymotion-overwin-f)
+" nmap <C-f> <Plug>(easymotion-overwin-f)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
@@ -562,3 +580,42 @@ map <Leader>S  <Plug>(easymotion-linebackward)
 " Or, you could use neovim's virtual virtual text feature.
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'virtual'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-sneak
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:sneak#use_ic_scs = 1
+let g:sneak#label = 1
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" move
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let g:move_key_modifier = 'M'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" iamcco/markdown-preview.nvim
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" far.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" set lazyredraw            " improve scrolling performance when navigating through large results
+" set regexpengine=1        " use old regexp engine
+" set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
+
+" " shortcut for far.vim find
+" nnoremap <silent> <Find-Shortcut>  :Farf<cr>
+" vnoremap <silent> <Find-Shortcut>  :Farf<cr>
+
+" " shortcut for far.vim remplace
+" nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+" vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
+
