@@ -1,16 +1,6 @@
 {
     "tslint.autoFixOnSave": false,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "css",
-        "markdown",
-        "Markdown",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "python",
-        "json"
-    ],
+    "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "Markdown", "javascript", "javascriptreact", "typescript", "typescriptreact", "json"],
     "tsserver.trace.server": "verbose",
     "tsserver.log": "verbose",
     "tsserver.npm": "/usr/local/bin/npm",
@@ -18,7 +8,7 @@
     "python.jediEnabled": true,
     "python.jediPath": "/usr/local/lib/python3.7/site-packages",
     "python.formatting.provider": "black",
-    "python.analysis.logLevel":"Trace",
+    "python.analysis.logLevel": "Trace",
     "diagnostic.enableSign": true,
     "diagnostic.refreshOnInsertMode": true,
     "diagnostic.messageTarget": "float",
@@ -27,10 +17,6 @@
     "signature.target": "echo",
     "codeLens.enable": true,
     "diagnostic.virtualText": true,
-    "diagnostic.refreshAfterSave": true,
     "tslint.jsEnable": true,
     "tslint.suppressWhileTypeErrorsPresent": false
 }
-
-
-

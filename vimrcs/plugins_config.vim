@@ -100,19 +100,23 @@ Plug 'chr4/nginx.vim'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'herringtondarkholme/yats.vim'
 " Plug 'pangloss/vim-javascript'
+"
+Plug 'leafgarland/typescript-vim'
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'cespare/vim-toml'
-" Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 Plug 'jceb/vim-orgmode'
 " Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Auto complete & lint
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'Chiel92/vim-autoformat'
+
+Plug 'sbdchd/neoformat'
+" Plug 'Chiel92/vim-autoformat'
 " Plug 'w0rp/ale'
 
 " Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
@@ -123,15 +127,38 @@ call plug#end()
 call plug#helptags()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neoformat
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+augroup fmt
+    autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+
+let g:neoformat_enabled_python = ['black']
+
+" Enable alignment
+let g:neoformat_basic_format_align = 1
+
+" Enable tab to spaces conversion
+let g:neoformat_basic_format_retab = 1
+
+" Enable trimmming of trailing whitespace
+let g:neoformat_basic_format_trim = 1
+
+let g:neoformat_run_all_formatters = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-autoformat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:autoformat_autoindent = 0
 " let g:autoformat_retab = 0
 " let g:autoformat_remove_trailing_spaces = 0
-augroup mvimAutoFormatConfig
-    autocmd!
-    au BufWrite * :Autoformat
-augroup end
+" augroup mvimAutoFormatConfig
+"     autocmd!
+"     au BufWrite * :Autoformat
+" augroup end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
