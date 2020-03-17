@@ -615,3 +615,12 @@ let g:move_key_modifier = 'M'
 " nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
 " vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim commentary
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup commmentary_setup
+    autocmd!
+    autocmd FileType scss setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+augroup END
+
