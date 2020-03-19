@@ -89,7 +89,7 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-set updatetime=150
+set updatetime=100
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
