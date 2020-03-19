@@ -135,7 +135,6 @@ augroup fmt
     autocmd BufWritePre * undojoin | Neoformat
 augroup END
 
-
 let g:neoformat_enabled_python = ['black']
 
 " Enable alignment
@@ -148,6 +147,7 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
 let g:neoformat_run_all_formatters = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-autoformat
@@ -419,36 +419,41 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'   " status line format
 " let g:ale_statusline_format     = ['⨉ %d', '⚠ %d', '⬥ ok']       " error status format
-" let g:ale_lint_delay            = 500                            " relint max once per [amount] milliseconds
-" let g:ale_linters = {
-" \   'javascript': ['eslint'],
-" \   'python': ['flake8'],
-" \   'go': ['go', 'golint', 'errcheck']
-" \}
+" let g:ale_lint_delay            = 300                            " relint max once per [amount] milliseconds
+" let g:ale_linters = {}
 
-" let g:ale_fixers = {
-" \   'javascript': ['eslint'],
-" \   'typescriptreact': ['eslint'],
-" \   'python': ['black']
-" \}
+" let g:ale_fixers = {}
 " let g:ale_completion_enabled = 1
 
-" let g:ale_fix_on_save = 1
+" " let g:ale_fix_on_save = 1
 
-" nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
+" " nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
 
 " " Disabling highlighting
-" let g:ale_set_highlights = 0
+" let g:ale_set_highlights = 1
 
 " " Only run linting when saving the file
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_enter = 0
 
-
+" let g:ale_virtualtext_cursor = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_enabled=1
+
+" set updatetime=100
+
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '▎'
+let g:gitgutter_sign_removed = '▏'
+let g:gitgutter_sign_removed_first_line = '▔'
+let g:gitgutter_sign_modified_removed = '▋'
+" ---------------------------------------------------------
+highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
+highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
+highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YcmCompleter
@@ -630,7 +635,6 @@ let g:move_key_modifier = 'M'
 " far.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" set lazyredraw            " improve scrolling performance when navigating through large results
 " set regexpengine=1        " use old regexp engine
 " set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
 
