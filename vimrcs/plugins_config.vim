@@ -22,7 +22,10 @@ let s:mvim = stdpath('config')
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
+Plug 'tpope/vim-sensible'             | " Sensible defaults
+
 Plug 'arzg/vim-colors-xcode'
+" Plug 'ajmwagar/vim-deus'
 "
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -64,36 +67,43 @@ Plug 'junegunn/fzf.vim'
 "   Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 
+" Plug 'wincent/vcs-jump'               | " Jump to git things
 
 " Interface
 Plug 'amix/vim-zenroom2'
 Plug 'junegunn/goyo.vim'
-
+Plug 'camspiers/lens.vim'                 | " Window resizing plugin
+Plug 'Yggdroot/indentLine'
+Plug 'blueyed/vim-diminactive'
 " startup
 Plug 'mhinz/vim-startify'
 
-
-
+Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 Plug 'Shougo/echodoc.vim'
+Plug 'dhruvasagar/vim-table-mode'                                        | " Better handling for tables in markdown
+Plug 'kkoomen/vim-doge'  " doc genrernator
 
-
+" Plug 'tomtom/tcomment_vim'                | " Better commenting
 " Plug 'vim-scripts/mayansmoke'
 " Plug 'vim-scripts/tlib'
 
 " text object visual, select ..
-Plug 'vim-scripts/matchit.zip'
+Plug 'andymass/vim-matchup'
 Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user' " for expand region
 Plug 'kana/vim-textobj-indent' " for expand region
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
+Plug 'junegunn/vim-peekaboo'
 
+Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 " Lang & syntax
-" Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': ['python']}
 " Plug 'honza/vim-snippets'
 " Plug 'mattn/emmet-vim'
-" Plug 'digitaltoad/vim-pug'
+" Plug 'digiRaltoad/vim-pug'
 " Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
 " Plug 'rust-lang/rust.vim'
@@ -102,13 +112,20 @@ Plug 'chr4/nginx.vim'
 " Plug 'pangloss/vim-javascript'
 "
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+" Plug 'gko/vim-coloresque'
+" Plug 'norcalli/nvim-colorizer.lua'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'ap/vim-css-color'
+
+
+
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'cespare/vim-toml'
-Plug 'ap/vim-css-color'
 Plug 'jceb/vim-orgmode'
 " Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
@@ -121,7 +138,12 @@ Plug 'sbdchd/neoformat'
 
 " Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-" Plug 'brooth/far.vim'
+Plug 'brooth/far.vim'
+
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+
+
+Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 call plug#helptags()
@@ -253,6 +275,15 @@ omap af <Plug>(coc-funcobj-a)
 " coc-tsserver, coc-python are the examples of servers that support it.
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
+
+nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
+" Get symbols
+nnoremap <silent> <Leader>cs :<C-u>CocList -I symbols<CR>
+" Get errors
+nnoremap <silent> <Leader>cl :<C-u>CocList locationlist<CR>
+" Get available commands
+nnoremap <silent> <Leader>cc :<C-u>CocList commands<CR>
+nnoremap <silent> <Leader>cd :<C-u>CocList diagnostics<CR>
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -558,6 +589,10 @@ let g:gist_post_private = 1 " private default
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=dark
+" color deus
+" hi NonText ctermfg=gray guifg=grey10
 colorscheme xcodedarkhc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -735,4 +770,111 @@ augroup commmentary_setup
     autocmd!
     autocmd FileType scss setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
 augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent Guides
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 1
+let g:indent_guides_exclude_filetypes = ['help', 'startify', 'fzf', 'openterm', 'neoterm', 'calendar']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vcs
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nmap <Leader>g <Plug>(VcsJump)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" table mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:table_mode_corner = '|'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nvim-colorizer.lua
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lua require 'colorizer'.setup()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" machakann/vim-highlightedyank
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:highlightedyank_highlight_duration = 250
+highlight HighlightedyankRegion cterm=reverse gui=reverse
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" andymass/vim-matchup
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:loaded_matchit = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Yggdroot/indentLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 1
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" peitalin/vim-jsx-typescript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" dark red
+hi tsxTagName guifg=#E06C75
+
+" orange
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxCloseTagName guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+
+" yellow
+hi tsxAttrib guifg=#F8BD7F cterm=italic
+hi ReactState guifg=#C176A7
+hi ReactProps guifg=#D19A66
+hi ApolloGraphQL guifg=#CB886B
+hi Events ctermfg=204 guifg=#56B6C2
+hi ReduxKeywords ctermfg=204 guifg=#C678DD
+hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
+hi WebBrowser ctermfg=204 guifg=#56B6C2
+hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" brooth/far.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" shortcut for far.vim find
+nnoremap <silent> <leader><leader>;  :Farf<cr>
+vnoremap <silent> <leader><leader>;  :Farf<cr>
+
+" shortcut for far.vim replace
+nnoremap <silent> <leader><leader>'  :Farr<cr>
+vnoremap <silent> <leader><leader>'  :Farr<cr>
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/numirias/semshi
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+
+
+
+
+
+
 
