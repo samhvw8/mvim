@@ -1,20 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-" Build helper function
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" function! BuildYCM(info)
-"   " info is a dictionary with 3 fields
-"   " - name:   name of the plugin
-"   " - status: 'installed', 'updated', or 'unchanged'
-"   " - force:  set on PlugInstall! or PlugUpdate!
-"   if a:info.status == 'installed' || a:info.force
-"     !./install.py --all
-"   endif
-" endfunction
-
-
-
 """"""""""""""""""""""""""""""
 " => Load junegunn/vim-plug
 """"""""""""""""""""""""""""""
@@ -25,51 +8,35 @@ Plug 'junegunn/vim-plug'
 Plug 'tpope/vim-sensible'             | " Sensible defaults
 
 Plug 'arzg/vim-colors-xcode'
-" Plug 'ajmwagar/vim-deus'
-"
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-"
+
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-" Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'amix/open_file_under_cursor.vim' " map gf
+Plug 'junegunn/vim-easy-align'
+
 " Plug 'unblevable/quick-scope'
 Plug 'easymotion/vim-easymotion'
 Plug 'matze/vim-move'
-
 Plug 'justinmk/vim-sneak'
-" Plug 'haya14busa/vim-easyoperator-line'
-" Plug 'haya14busa/vim-easyoperator-phrase'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'amix/open_file_under_cursor.vim'
+
+
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-Plug 'junegunn/vim-easy-align'
-
-" sub windows or sidebar startus bar
-" Plug 'jlanzarotta/bufexplorer'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
-Plug 'mbbill/undotree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:fzf_install = 'yes | ./install'
-Plug 'junegunn/fzf', { 'do': g:fzf_install }
-Plug 'junegunn/fzf.vim'
-
-" else
-"   Plug 'Shougo/denite.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-
-" Plug 'wincent/vcs-jump'               | " Jump to git things
 
 " Interface
+Plug 'mbbill/undotree'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
 Plug 'amix/vim-zenroom2'
 Plug 'junegunn/goyo.vim'
 Plug 'camspiers/lens.vim'                 | " Window resizing plugin
@@ -77,15 +44,16 @@ Plug 'Yggdroot/indentLine'
 Plug 'blueyed/vim-diminactive'
 " startup
 Plug 'mhinz/vim-startify'
+let g:fzf_install = 'yes | ./install'
+Plug 'junegunn/fzf', { 'do': g:fzf_install }
+Plug 'junegunn/fzf.vim'
 
 Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 Plug 'Shougo/echodoc.vim'
 Plug 'dhruvasagar/vim-table-mode'                                        | " Better handling for tables in markdown
-Plug 'kkoomen/vim-doge'  " doc genrernator
-
-" Plug 'tomtom/tcomment_vim'                | " Better commenting
-" Plug 'vim-scripts/mayansmoke'
-" Plug 'vim-scripts/tlib'
+Plug 'kkoomen/vim-doge'  " doc genrernator <Leader>d
+Plug 'junegunn/vim-peekaboo'
+Plug 'machakann/vim-highlightedyank'
 
 " text object visual, select ..
 Plug 'andymass/vim-matchup'
@@ -93,9 +61,8 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user' " for expand region
 Plug 'kana/vim-textobj-indent' " for expand region
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'terryma/vim-expand-region'
-Plug 'junegunn/vim-peekaboo'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 " Lang & syntax
@@ -104,46 +71,35 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'honza/vim-snippets'
 " Plug 'mattn/emmet-vim'
 " Plug 'digiRaltoad/vim-pug'
-" Plug 'groenewege/vim-less'
 Plug 'chr4/nginx.vim'
 " Plug 'rust-lang/rust.vim'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'herringtondarkholme/yats.vim'
 " Plug 'pangloss/vim-javascript'
-"
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'jceb/vim-orgmode'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 " Plug 'gko/vim-coloresque'
 " Plug 'norcalli/nvim-colorizer.lua'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Plug 'ap/vim-css-color'
-
-
-
 " Plug 'maxmellon/vim-jsx-pretty'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'nvie/vim-flake8'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'cespare/vim-toml'
-Plug 'jceb/vim-orgmode'
 " Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'sbdchd/neoformat'
+" Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'nvie/vim-flake8'
 
 " Auto complete & lint
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'sbdchd/neoformat'
-" Plug 'Chiel92/vim-autoformat'
-" Plug 'w0rp/ale'
-
-" Plug 'ycm-core/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'brooth/far.vim'
-
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
 
-Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
 call plug#helptags()
