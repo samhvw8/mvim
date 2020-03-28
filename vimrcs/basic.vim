@@ -8,9 +8,6 @@ set hidden
 filetype plugin on
 filetype indent on
 
-" Set to auto read when a file is changed from the outside
-set autoread
-au FocusGained,BufEnter * checktime
 
 let mapleader = " "
 let maplocalleader = " "
@@ -18,6 +15,8 @@ let maplocalleader = " "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set to auto read when a file is changed from the outside
+set autoread
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 " Turn on the Wild menu
@@ -68,6 +67,8 @@ set tm=500
 
 " Add a bit extra margin to the left
 set foldcolumn=1
+
+set relativenumber
 
 """"""""""""""""""""""""""""""
 " => Shell section
@@ -171,8 +172,10 @@ map <leader>tt :tabnext <cr>
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
+augroup tab_setup
+    autocmd!
+    au TabLeave * let g:lasttab = tabpagenr()
+augroup end
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -189,7 +192,12 @@ catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+augroup buffer_setup
+    autocmd!
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au FocusGained,BufEnter * checktime
+augroup end
 
 
 """"""""""""""""""""""""""""""
@@ -213,6 +221,41 @@ map 0 ^
 " nmap <M-k> mz:m-2<cr>`z
 " vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 " vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => save
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+nnoremap <leader>w :update<cr>
+
+
+
+" ----------------------------------------------------------------------------
+" <F8> | Color scheme selector
+" ----------------------------------------------------------------------------
+function! s:rotate_colors()
+  if !exists('s:colors')
+    let s:colors = s:colors()
+  endif
+  let name = remove(s:colors, 0)
+  call add(s:colors, name)
+  execute 'colorscheme' name
+  redraw
+  echo name
+endfunction
+nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
+
+
+
+
+
+
+
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copy paste
@@ -254,10 +297,10 @@ vnoremap $e <esc>`>a"<esc>`<i"<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Omni complete functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" => Omni complete functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Error
 " map <leader>cc :botright cope<cr>
@@ -266,7 +309,11 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " map <leader>p :cp<cr>
 
 " Make sure that enter is never overriden in the quickfix window
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+augroup quickfix_setup
+    autocmd!
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+augroup end
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -336,3 +383,37 @@ endfunc
 func! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
+
+function! s:colors(...)
+  return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
+        \                  'v:val !~ "^/usr/"'),
+        \           'fnamemodify(v:val, ":t:r")'),
+        \       '!a:0 || stridx(v:val, a:1) >= 0')
+
+endfunction
+
+
+
+" ----------------------------------------------------------------------------
+" Todo
+" ----------------------------------------------------------------------------
+function! s:todo() abort
+  let entries = []
+  for cmd in ['git grep -niI -e TODO -e FIXME -e XXX 2> /dev/null',
+            \ 'grep -rniI -e TODO -e FIXME -e XXX * 2> /dev/null']
+    let lines = split(system(cmd), '\n')
+    if v:shell_error != 0 | continue | endif
+    for line in lines
+      let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
+      call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
+    endfor
+    break
+  endfor
+
+  if !empty(entries)
+    call setqflist(entries)
+    copen
+  endif
+endfunction
+command! Todo call s:todo()
+
