@@ -5,7 +5,6 @@ let s:mvim = stdpath('config')
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
-Plug 'tpope/vim-sensible'             | " Sensible defaults
 " Override configs by directory
 Plug 'arielrossanigo/dir-configs-override.vim'
 
