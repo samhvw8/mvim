@@ -3,7 +3,7 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 
 augroup extra_space
     autocmd!
-    au BufRead,BufNewFile  .py,.pyw,*.c,*.h match BadWhitespace /\s\+$/
+    au BufRead,BufNewFile  *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
     autocmd BufWritePre *.txt,*.js,*.ts,*.jsx,*.tsx,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 augroup end
 
@@ -15,7 +15,7 @@ let python_highlight_all = 1
 augroup python_filetype_setup
     autocmd!
     " Python indentation
-    au BufNewFile, BufRead *.py
+    au BufNewFile,BufRead *.py
                 \ set tabstop=4 |
                 \ set softtabstop=4 |
                 \ set shiftwidth=4 |

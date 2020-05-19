@@ -8,6 +8,22 @@
   "diagnostic.refreshAfterSave": false,
   "diagnostic.refreshOnInsertMode": true,
   "diagnostic.virtualText": true,
+  "json.enable": true,
+  "json.format.enable": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["bower.json", ".bower.json"],
+      "url": "http://schemastore.org/schemas/json/bower"
+    },
+    {
+      "fileMatch": ["tsconfig.json"],
+      "url": "http://json.schemastore.org/tsconfig"
+    },
+    {
+      "fileMatch": ["package.json"],
+      "url": "http://json.schemastore.org/package"
+    }
+  ],
   "python.analysis.logLevel": "Trace",
   "python.formatting.provider": "black",
   "python.jediEnabled": true,
@@ -23,8 +39,37 @@
   "tsserver.log": "verbose",
   "tsserver.npm": "/usr/local/bin/npm",
   "tsserver.trace.server": "verbose",
+  "yaml.completion": true,
+  "yaml.format.bracketSpacing": true,
+  "yaml.format.enable": true,
+  "yaml.format.proseWrap": "always",
+  "yaml.format.singleQuote": true,
+  "yaml.hover": true,
+  "yaml.schemaStore.enable": true,
+  "yaml.validate": true,
   "yaml.schemas": {
-    "kubernetes": "*.y*ml",
-    "http://json.schemastore.org/ansible-stable-2.7": "playbook/**/*.y*ml"
-  }
+    "http://json.schemastore.org/circleciconfig": "/.circleci/config.yml",
+    "http://json.schemastore.org/huskyrc": "/.huskyrc.yml",
+    "http://json.schemastore.org/travis": "/.travis.yml",
+    "http://json.schemastore.org/stylelintrc": "/.stylelintrc.yml",
+    "http://json.schemastore.org/eslintrc": "/.eslintrc.yml",
+    "http://json.schemastore.org/gitlab-ci": "/.gitlab-ci.yml",
+    "http://json.schemastore.org/prettierrc": "/.prettierrc.yml",
+    "kubernetes": "/*.y*ml",
+    "http://json.schemastore.org/ansible-stable-2.7": "/playbook/**/*.y*ml"
+  },
+  "diagnostic-languageserver.filetypes": {
+    "zsh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "zsh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
+  },
+  "docker.enable": true,
+  "languageserver": {}
 }

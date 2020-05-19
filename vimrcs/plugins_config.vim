@@ -1,4 +1,5 @@
 """"""""""""""""""""""""""""""
+let g:matchup_surround_enabled = 1
 " => Load junegunn/vim-plug
 """"""""""""""""""""""""""""""
 let s:mvim = stdpath('config')
@@ -38,7 +39,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-abolish' " Press crs (coerce to snake_case). MixedCase (crm), camelCase (crc), snake_case (crs), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt)
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
@@ -81,7 +82,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'Shougo/echodoc.vim'
+
 Plug 'dhruvasagar/vim-table-mode'                                        | " Better handling for tables in markdown
+Plug 'fmoralesc/vim-pad' ,  { 'branch': 'devel' }
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'mzlogin/vim-markdown-toc'
+
 Plug 'junegunn/vim-peekaboo'
 Plug 'kkoomen/vim-doge'  " doc genrernator <Leader>d
 Plug 'machakann/vim-highlightedyank'
@@ -125,7 +133,6 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'cespare/vim-toml'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'leafgarland/typescript-vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'luochen1990/rainbow'
@@ -151,10 +158,6 @@ Plug 'AndrewRadev/linediff.vim'
 Plug 'jaxbot/semantic-highlight.vim'
 
 Plug 'vimgineers/vim-hugefile'
-Plug 'fmoralesc/vim-pad' ,  { 'branch': 'devel' }
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-
 
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 
@@ -170,6 +173,17 @@ Plug 'vim-scripts/scratch.vim'
 Plug 'google/vim-jsonnet'
 
 Plug 'gilsondev/searchtasks.vim' " Plugin to search the labels often used as TODO, FIXME and XXX.
+
+Plug 'roxma/nvim-yarp'
+
+" Plug 'itchyny/vim-cursorword'
+"
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
+
+Plug 'tomtom/tcomment_vim'
+
+Plug 'antoinemadec/coc-fzf'
 
 call plug#end()
 call plug#helptags()
@@ -223,8 +237,8 @@ nnoremap gsj :SplitjoinJoin<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 'tpope/vim-commentary'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map  gc  <Plug>Commentary
-nmap gcc <Plug>CommentaryLine
+" map  gc  <Plug>Commentary
+" nmap gcc <Plug>CommentaryLine
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -239,6 +253,43 @@ augroup mvimAutoFormatConfig
 augroup end
 let g:formatters_python = []
 
+augroup disable_autoformat
+
+  autocmd!
+  " Python indentation
+  au BufNewFile,BufRead *.yml,*.yaml,*.xml 
+        \ let g:autoformat_retab = 0 |
+        \ let g:autoformat_autoindent = 0 |
+        \ let g:autoformat_remove_trailing_spaces = 0
+
+augroup end
+
+augroup disable_json_large
+
+  let g:large_file = 10485760 " 10MB
+
+  " Set options:
+  "   eventignore+=FileType (no syntax highlighting etc
+  "   assumes FileType always on)
+  "   noswapfile (save copy of file)
+  "   bufhidden=unload (save memory when other file is viewed)
+  "   buftype=nowritefile (is read-only)
+  "   undolevels=-1 (no undo possible)
+  autocmd!
+  au BufReadPre *
+        \ let f=expand("<afile>") |
+        \ if getfsize(f) > g:large_file |
+        \ set eventignore+=FileType |
+        \ setlocal bufhidden=unload |
+        \ let g:formatters_json = [] |
+        \ let g:autoformat_autoindent = 0 |
+        \ let g:autoformat_retab = 0 |
+        \ let g:autoformat_remove_trailing_spaces = 0 |
+        \ else |
+        \ set eventignore-=FileType |
+        \ endif
+
+augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " coc
@@ -380,16 +431,16 @@ omap af <Plug>(coc-funcobj-a)
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 
-nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
+nnoremap <silent> <Leader>co :<C-u>CocFzfList outline<CR>
 " Get symbols
-nnoremap <silent> <Leader>cs :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <Leader>cs :<C-u>Vista finder<CR>
 " Get errors
-nnoremap <silent> <Leader>cl :<C-u>CocList locationlist<CR>
+nnoremap <silent> <Leader>cl :<C-u>CocFzfList locationlist<CR>
 " Get available commands
-nnoremap <silent> <Leader>cc :<C-u>CocList commands<CR>
-nnoremap <silent> <Leader>cd :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <Leader>cc :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <Leader>cd :<C-u>CocFzfList diagnostics<CR>
 
-nnoremap <silent> <Leader>ce :<C-u>CocList extensions<CR>
+nnoremap <silent> <Leader>ce :<C-u>CocFzfList extensions<CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -715,6 +766,7 @@ let g:startify_lists = [
 let g:startify_commands = [
       \   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
       \   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
+      \   { 'uc': [ 'Update coc nvim plugin', ':CocUpdate' ] },
       \ ]
 
 let g:startify_bookmarks = [
@@ -960,6 +1012,7 @@ let g:mkdp_page_title = '「${name}」'
 augroup commmentary_setup
   autocmd!
   autocmd FileType scss setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+  autocmd FileType vue setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1001,7 +1054,23 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " andymass/vim-matchup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:loaded_matchit = 1
+" let g:loaded_matchit = 1
+"1 let g:matchup_enabled = 0
+let g:matchup_surround_enabled = 1
+let g:matchup_transmute_enabled = 1
+hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic
+hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=underline gui=underline
+hi MatchParenCur cterm=underline gui=underline
+hi MatchWordCur cterm=underline gui=underline
+
+augroup matchup_matchparen_disable_ft
+  autocmd!
+  autocmd FileType tex let [b:matchup_matchparen_fallback,
+        \ b:matchup_matchparen_enabled] = [0, 0]
+augroup END
+
+let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_hi_surround_always = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1047,6 +1116,7 @@ hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " brooth/far.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:far#enable_undo=1
 " shortcut for far.vim find
 nnoremap <silent> <leader><leader>;  :Farf<cr>
 vnoremap <silent> <leader><leader>;  :Farf<cr>
@@ -1083,6 +1153,24 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 let g:vista_default_executive = 'ctags'
 
+let g:vista_executive_for = {
+      \'c': 'coc', 
+      \'cpp': 'coc', 
+      \'css': 'coc', 
+      \'go': 'coc', 
+      \'html': 'coc', 
+      \'javascript': 'coc', 
+      \'php': 'coc',
+      \'python': 'coc',
+      \'rust': 'coc', 
+      \'typescript': 'coc', 
+      \ }
+
+let g:vista_ctags_cmd = {
+      \ 'haskell': 'hasktags -x -o - -c',
+      \ }
+
+
 let g:vista_fzf_preview = ['right:50%']
 
 
@@ -1098,7 +1186,7 @@ let g:vista#renderer#icons = {
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" liuchengxu/vista.vim
+" https://github.com/rhysd/git-messenger.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " nmap <Leader>gm <Plug>(git-messenger) default
@@ -1238,6 +1326,29 @@ let g:jsonnet_fmt_on_save = 1
 let g:searchtasks_list=["TODO", "FIXME", "XXX"]
 
 
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/mzlogin/vim-markdown-toc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let g:vmt_cycle_list_item_markers = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/skywind3000/asynctasks.vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:asyncrun_open = 6
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/posva/vim-vue
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:vue_pre_processors = 'detect_on_enter'
 
 
 
