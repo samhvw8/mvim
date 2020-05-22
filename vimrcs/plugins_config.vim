@@ -66,6 +66,8 @@ Plug 'mattn/webapi-vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'liuchengxu/nerdtree-dash'
+Plug 'jistr/vim-nerdtree-tabs'
 
 Plug 'Yggdroot/indentLine'
 Plug 'amix/vim-zenroom2'
@@ -184,6 +186,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tomtom/tcomment_vim'
 
 Plug 'antoinemadec/coc-fzf'
+
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 call plug#helptags()
@@ -405,9 +409,9 @@ nmap <leader>f  <Plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " setup formatexpr specified filetype(s).
-  autocmd filetype typescript,json setl formatexpr=cocaction('formatselected')
+  autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
   " update signature help on jump placeholder.
-  autocmd user cocjumpplaceholder call cocactionasync('showsignaturehelp')
+  autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
 augroup end
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -441,6 +445,7 @@ nnoremap <silent> <Leader>cc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <Leader>cd :<C-u>CocFzfList diagnostics<CR>
 
 nnoremap <silent> <Leader>ce :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> <Leader>cr :<C-u>CocFzfListResume<CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -451,6 +456,38 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Explorer
+let g:coc_explorer_global_presets = {
+      \   'floating': {
+      \      'position': 'floating',
+      \   },
+      \   'floatingLeftside': {
+      \      'position': 'floating',
+      \      'floating-position': 'left-center',
+      \      'floating-width': 30,
+      \   },
+      \   'floatingRightside': {
+      \      'position': 'floating',
+      \      'floating-position': 'right-center',
+      \      'floating-width': 30,
+      \   },
+      \   'simplify': {
+      \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+      \   }
+      \ }
+
+" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+" Use preset argument to open it
+nmap <space>ed :CocCommand explorer --preset .vim<CR>
+nmap <space>ef :CocCommand explorer --preset floating<CR>
+
+" List all presets
+nmap <space>el :CocList explPresets
+
+nmap <space>e :CocCommand explorer<CR>
+
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
 """"""""""""""""""""""""""""""
@@ -894,6 +931,12 @@ let g:sneak#use_ic_scs = 1
 let g:sneak#label = 1
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+
+" Change the colors
+highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
+highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+
+let g:sneak#prompt = '🔎 '
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1058,10 +1101,14 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 "1 let g:matchup_enabled = 0
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
-hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic
-hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=underline gui=underline
-hi MatchParenCur cterm=underline gui=underline
-hi MatchWordCur cterm=underline gui=underline
+augroup matchup_matchparen_highlight
+  autocmd!
+  autocmd ColorScheme * hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic 
+  autocmd ColorScheme * hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=underline gui=underline
+  autocmd ColorScheme * hi MatchParenCur cterm=underline gui=underline
+  autocmd ColorScheme * hi MatchWordCur cterm=underline gui=underline
+augroup END
+
 
 augroup matchup_matchparen_disable_ft
   autocmd!
@@ -1151,19 +1198,9 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
 
-let g:vista_default_executive = 'ctags'
+let g:vista_default_executive = 'coc'
 
 let g:vista_executive_for = {
-      \'c': 'coc', 
-      \'cpp': 'coc', 
-      \'css': 'coc', 
-      \'go': 'coc', 
-      \'html': 'coc', 
-      \'javascript': 'coc', 
-      \'php': 'coc',
-      \'python': 'coc',
-      \'rust': 'coc', 
-      \'typescript': 'coc', 
       \ }
 
 let g:vista_ctags_cmd = {
@@ -1351,7 +1388,29 @@ let g:asyncrun_open = 6
 let g:vue_pre_processors = 'detect_on_enter'
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'liuchengxu/vim-which-key'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  '<space>'<CR>
+set timeoutlen=1000
 
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'liuchengxu/vim-which-key'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
+
+" Floaterm
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
