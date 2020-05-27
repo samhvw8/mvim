@@ -90,13 +90,13 @@
     "gf": "gotoSource:file",
     "gb": "gotoSource:buffer",
     "[[": "sourcePrev",
-    "]]": "sourceNext",
-    "[d": "diagnosticPrev",
-    "]d": "diagnosticNext",
-    "[c": "gitPrev",
-    "]c": "gitNext",
-    "<<": "gitStage",
-    ">>": "gitUnstage"
+      "]]": "sourceNext",
+      "[d": "diagnosticPrev",
+        "]d": "diagnosticNext",
+        "[c": "gitPrev",
+          "]c": "gitNext",
+          "<<": "gitStage",
+          ">>": "gitUnstage"
   },
   "json.schemas": [
     {
@@ -176,10 +176,6 @@
   "cSpell.userWords": [
     "pymongo"
   ],
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "yank.enableCompletion": true,
   "yank.limit": 10,
   "yank.highlight.duration": 250,

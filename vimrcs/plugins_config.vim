@@ -737,7 +737,14 @@ highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
 highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 highlight DiffChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
+" highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
+" highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
+" highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+" highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
+" highlight GitGutterAdd    guifg=#009900 ctermfg=2
+" highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+" highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
