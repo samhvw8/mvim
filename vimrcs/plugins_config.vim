@@ -92,9 +92,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mzlogin/vim-markdown-toc'
 
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'kkoomen/vim-doge'  " doc genrernator <Leader>d
-Plug 'machakann/vim-highlightedyank'
+" Plug 'machakann/vim-highlightedyank'
 Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 
 " text object visual, select ..
@@ -189,6 +189,12 @@ Plug 'antoinemadec/coc-fzf'
 
 Plug 'voldikss/vim-floaterm'
 
+Plug 'tjdevries/coc-zsh'
+
+Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+
+
+Plug 'neoclide/jsonc.vim'
 call plug#end()
 call plug#helptags()
 
@@ -300,7 +306,6 @@ augroup end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:coc_global_extensions = [
-      \ 'coc-bookmark',
       \ 'coc-clangd',
       \ 'coc-css',
       \ 'coc-cssmodules',
@@ -318,10 +323,12 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lua',
+      \ 'coc-markdownlint',
       \ 'coc-marketplace',
       \ 'coc-metals',
       \ 'coc-omni',
       \ 'coc-phpls',
+      \ 'coc-project',
       \ 'coc-python',
       \ 'coc-rls',
       \ 'coc-sh',
@@ -342,12 +349,10 @@ let g:coc_global_extensions = [
       \ 'coc-word',
       \ 'coc-xml',
       \ 'coc-yaml',
+      \ 'coc-yank',
       \ ]
 
 
-hi CocUnderline gui=underline term=underline
-hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
-hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -406,20 +411,32 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 
-augroup mygroup
+augroup coc_setup
   autocmd!
+  autocmd ColorScheme * call s:Highlight()
   " setup formatexpr specified filetype(s).
   autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
   " update signature help on jump placeholder.
   autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
 augroup end
+
+function! s:Highlight() abort
+  call matchadd('ColorColumn', '\%81v', 100)
+  hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
+  hi CocUnderline gui=underline term=underline
+  hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
+  hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
+  hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+endfunction
+
+
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
@@ -435,17 +452,18 @@ omap af <Plug>(coc-funcobj-a)
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 
-nnoremap <silent> <Leader>co :<C-u>CocFzfList outline<CR>
+nnoremap <silent> <leader>lo :<C-u>CocFzfList outline<CR>
 " Get symbols
-nnoremap <silent> <Leader>cs :<C-u>Vista finder<CR>
+nnoremap <silent> <leader>ls :<C-u>Vista finder<CR>
 " Get errors
-nnoremap <silent> <Leader>cl :<C-u>CocFzfList locationlist<CR>
+nnoremap <silent> <leader>ll :<C-u>CocFzfList locationlist<CR>
 " Get available commands
-nnoremap <silent> <Leader>cc :<C-u>CocFzfList commands<CR>
-nnoremap <silent> <Leader>cd :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <leader>lc :<C-u>CocFzfList commands<CR>
+nnoremap <silent> <leader>ld :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
 
-nnoremap <silent> <Leader>ce :<C-u>CocFzfList extensions<CR>
-nnoremap <silent> <Leader>cr :<C-u>CocFzfListResume<CR>
+nnoremap <silent> <leader>le :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> <leader>lr :<C-u>CocFzfListResume<CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -488,23 +506,11 @@ nmap <space>el :CocList explPresets
 
 nmap <space>e :CocCommand explorer<CR>
 
-""""""""""""""""""""""""""""""
-" => bufExplorer plugin
-""""""""""""""""""""""""""""""
-" let g:bufExplorerDefaultHelp=0
-" let g:bufExplorerShowRelativePath=1
-" let g:bufExplorerFindActive=1
-" let g:bufExplorerSortBy='name'
-" map <leader>o :BufExplorer<cr>
-
 
 """"""""""""""""""""""""""""""
-" => YankStack
-""""""""""""""""""""""""""""""
-" let g:yankstack_yank_keys = ['y', 'd']
-"
-" nmap <C-p> <Plug>yankstack_substitute_older_paste
-" nmap <C-n> <Plug>yankstack_substitute_newer_paste
+" coc yank
+"""""""""""""""""""""""""""""
+nnoremap <silent> <space>@  :<C-u>CocList -A --normal yank<cr>
 
 """"""""""""""""""""""""""""""
 " => fzf.vim
@@ -726,10 +732,13 @@ let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▋'
 " ---------------------------------------------------------
-highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
-highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
-highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
+highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
+highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+highlight DiffChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YcmCompleter
@@ -1089,12 +1098,17 @@ let g:table_mode_corner = '|'
 " machakann/vim-highlightedyank
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:highlightedyank_highlight_duration = 250
-highlight HighlightedyankRegion cterm=reverse gui=reverse
+" let g:highlightedyank_highlight_duration = 250
+
+" can be use with Coc-yank
+
+highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse 
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " andymass/vim-matchup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:loaded_matchit = 1
@@ -1345,8 +1359,8 @@ let g:choosewin_overlay_enable = 1
 " junegunn/vim-peekaboo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:peekaboo_prefix = '<leader>'
-let g:peekaboo_ins_prefix = '<c-x>'
+" let g:peekaboo_prefix = '<leader>'
+" let g:peekaboo_ins_prefix = '<c-x>'
 
 
 

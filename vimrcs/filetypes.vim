@@ -1,11 +1,12 @@
 " Flagging unnecessary whitespaces
-highlight BadWhitespace ctermbg=red guibg=darkred
+" highlight BadWhitespace ctermbg=red guibg=darkred
 
 augroup extra_space
     autocmd!
     au BufRead,BufNewFile  *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
     autocmd BufWritePre *.txt,*.js,*.ts,*.jsx,*.tsx,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 augroup end
+
 
 """"""""""""""""""""""""""""""
 " => Python section
@@ -146,3 +147,14 @@ augroup end
 
 " " yellow
 " hi tsxAttrib guifg=#F8BD7F cterm=italic
+"
+"
+"
+""""""""""""""""""""""""""""""
+" => jsonc
+"""""""""""""""""""""""""""""""
+
+augroup json_c_setup
+    autocmd!
+    autocmd BufRead,BufNewFile *.json set filetype=jsonc
+augroup end

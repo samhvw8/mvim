@@ -172,5 +172,16 @@
     }
   },
   "docker.enable": true,
-  "languageserver": {}
+  "languageserver": {},
+  "cSpell.userWords": [
+    "pymongo"
+  ],
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "yank.enableCompletion": true,
+  "yank.limit": 10,
+  "yank.highlight.duration": 250,
+  "yank.highlight.enable": true
 }
