@@ -158,3 +158,15 @@ augroup json_c_setup
     autocmd!
     autocmd BufRead,BufNewFile *.json set filetype=jsonc
 augroup end
+""""""""""""""""""""""""""""""
+" => yaml
+"""""""""""""""""""""""""""""""
+
+augroup yaml
+    autocmd!
+    autocmd BufNewFile,BufRead *.yaml,*.yml 
+                \ set shiftwidth=2 |
+                \ set softtabstop=2 |
+                \ set tabstop=2 |
+                \ set expandtab |
+augroup end

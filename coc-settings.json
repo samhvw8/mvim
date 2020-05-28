@@ -150,8 +150,9 @@
     "http://json.schemastore.org/eslintrc": "/.eslintrc.yml",
     "http://json.schemastore.org/gitlab-ci": "/.gitlab-ci.yml",
     "http://json.schemastore.org/prettierrc": "/.prettierrc.yml",
-    "kubernetes": "/*.y*ml",
-    "http://json.schemastore.org/ansible-stable-2.7": "/playbook/**/*.y*ml"
+    "http://json.schemastore.org/ansible-stable-2.7": "/playbook/**/*.y*ml",
+    "https://raw.githubusercontent.com/docker/compose/master/compose/config/config_schema_v3.8.json": "docker-compose*.y*ml"
+    /* "kubernetes": "/*.y*ml", */
   },
   "diagnostic-languageserver.filetypes": {
     "zsh": "shellcheck"

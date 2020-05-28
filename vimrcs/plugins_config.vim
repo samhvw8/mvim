@@ -195,6 +195,8 @@ Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
 
 Plug 'neoclide/jsonc.vim'
+Plug 'dhruvasagar/vim-zoom'
+Plug 'stephpy/vim-yaml'
 call plug#end()
 call plug#helptags()
 
@@ -406,6 +408,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rf <Plug>(coc-refactor)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -416,6 +419,7 @@ augroup coc_setup
   autocmd ColorScheme * call s:Highlight()
   " setup formatexpr specified filetype(s).
   autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
+  autocmd User CocQuickfixChange :CocList --normal quickfix
   " update signature help on jump placeholder.
   autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
 augroup end
