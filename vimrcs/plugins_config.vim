@@ -6,29 +6,28 @@ let s:mvim = stdpath('config')
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
-" Override configs by directory
 Plug 'arielrossanigo/dir-configs-override.vim'
 
 " Colors
-Plug 'AlessandroYorba/Despacio'
-Plug 'ajmwagar/vim-deus'
-Plug 'arcticicestudio/nord-vim'
 Plug 'arzg/vim-colors-xcode'
-Plug 'chriskempson/vim-tomorrow-theme'
-Plug 'dracula/vim'
-Plug 'jacoborus/tender.vim'
-Plug 'jaredgorski/spacecamp'
-Plug 'joshdick/onedark.vim'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'morhetz/gruvbox'
-Plug 'nanotech/jellybeans.vim'
-Plug 'nightsense/cosmic_latte'
-Plug 'nightsense/snow'
-Plug 'nightsense/stellarized'
-Plug 'tomasr/molokai'
-Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'w0ng/vim-hybrid'
-Plug 'yuttie/hydrangea-vim'
+" Plug 'AlessandroYorba/Despacio'
+" Plug 'ajmwagar/vim-deus'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'chriskempson/vim-tomorrow-theme'
+" Plug 'dracula/vim'
+" Plug 'jacoborus/tender.vim'
+" Plug 'jaredgorski/spacecamp'
+" Plug 'joshdick/onedark.vim'
+" Plug 'kristijanhusak/vim-hybrid-material'
+" Plug 'morhetz/gruvbox'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'nightsense/cosmic_latte'
+" Plug 'nightsense/snow'
+" Plug 'nightsense/stellarized'
+" Plug 'tomasr/molokai'
+" Plug 'tyrannicaltoucan/vim-deep-space'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'yuttie/hydrangea-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -37,7 +36,6 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'amix/open_file_under_cursor.vim' " map gf
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
-Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-abolish' " Press crs (coerce to snake_case). MixedCase (crm), camelCase (crc), snake_case (crs), UPPER_CASE (cru), dash-case (cr-), dot.case (cr.), space case (cr<space>), and Title Case (crt)
 " Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -48,17 +46,17 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-eunuch'
 
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 Plug 'idanarye/vim-merginal'           " help with merges and rebase
-Plug 'junegunn/gv.vim'
+" Plug 'junegunn/gv.vim'
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
 
 " Plug 'unblevable/quick-scope'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/vim-asterisk'
 Plug 'justinmk/vim-sneak'
 Plug 'matze/vim-move'
-
 Plug 'mattn/webapi-vim'
 
 " Interface
@@ -84,7 +82,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 
 Plug 'Shougo/echodoc.vim'
-
 Plug 'dhruvasagar/vim-table-mode'                                        | " Better handling for tables in markdown
 Plug 'fmoralesc/vim-pad' ,  { 'branch': 'devel' }
 Plug 'vim-pandoc/vim-pandoc'
@@ -105,12 +102,10 @@ Plug 'kana/vim-textobj-indent' " for expand region
 Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user' " for expand region
 " Plug 'sgur/vim-textobj-parameter'
-Plug 'terryma/vim-expand-region'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-expand-region'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'wellle/targets.vim'
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
-
-
 
 " Lang & syntax
 " Auto complete & lint
@@ -132,17 +127,19 @@ Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 " Plug 'rust-lang/rust.vim'
 " Plug 'sbdchd/neoformat'
 Plug 'Chiel92/vim-autoformat'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'cespare/vim-toml'
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Plug 'Vimjas/vim-python-pep8-indent'
+" Plug 'cespare/vim-toml'
 Plug 'leafgarland/typescript-vim'
-Plug 'liuchengxu/vista.vim'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'sheerun/vim-polyglot' " for all lang syntax
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " for css lib
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " for css lib
+
+Plug 'liuchengxu/vista.vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'brooth/far.vim' " find and replace all project
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'arecarn/vim-fold-cycle'
@@ -197,6 +194,13 @@ Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 Plug 'neoclide/jsonc.vim'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'stephpy/vim-yaml'
+
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+
+Plug 'AndrewRadev/multichange.vim'
+
+
 call plug#end()
 call plug#helptags()
 
@@ -207,7 +211,19 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=dark
+" color deus
+" hi NonText ctermfg=gray guifg=grey10
+colorscheme xcodedarkhc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
 " neoformat
 
 " augroup fmt
@@ -265,7 +281,10 @@ augroup mvimAutoFormatConfig
 augroup end
 let g:formatters_python = []
 
-augroup disable_autoformat
+let g:formatters_vue = ['eslint_local']
+let g:formatters_javascript = []
+
+augroup auto_format_config
 
   autocmd!
   " Python indentation
@@ -273,6 +292,10 @@ augroup disable_autoformat
         \ let g:autoformat_retab = 0 |
         \ let g:autoformat_autoindent = 0 |
         \ let g:autoformat_remove_trailing_spaces = 0
+  au BufNewFile,BufRead *.vue
+        \ let g:autoformat_remove_trailing_spaces = 1 |
+        \ let g:autoformat_autoindent = 1 |
+        \ let g:autoformat_retab = 1
 
 augroup end
 
@@ -318,6 +341,7 @@ let g:coc_global_extensions = [
       \ 'coc-emoji',
       \ 'coc-explorer',
       \ 'coc-flutter',
+      \ 'coc-git',
       \ 'coc-go',
       \ 'coc-gocode',
       \ 'coc-highlight',
@@ -345,7 +369,6 @@ let g:coc_global_extensions = [
       \ 'coc-tailwindcss',
       \ 'coc-tslint-plugin',
       \ 'coc-tsserver',
-      \ 'coc-ultisnips',
       \ 'coc-vetur',
       \ 'coc-vimlsp',
       \ 'coc-word',
@@ -360,6 +383,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -449,6 +473,10 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
@@ -468,6 +496,7 @@ nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
 
 nnoremap <silent> <leader>le :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> <leader>lr :<C-u>CocFzfListResume<CR>
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -478,6 +507,13 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+" nmap <silent> <C-c> <Plug>(coc-cursors-position)
+" nmap <silent> <C-d> <Plug>(coc-cursors-word)
+" xmap <silent> <C-d> <Plug>(coc-cursors-range)
+" " use normal command like `<leader>xi(`
+" nmap <leader>x  <Plug>(coc-cursors-operator)
 
 " Explorer
 let g:coc_explorer_global_presets = {
@@ -514,7 +550,9 @@ nmap <space>e :CocCommand explorer<CR>
 """"""""""""""""""""""""""""""
 " coc yank
 """""""""""""""""""""""""""""
-nnoremap <silent> <space>@  :<C-u>CocList -A --normal yank<cr>
+nnoremap <silent> <space>@  :<C-u>CocFzfList yank<cr>
+
+highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse 
 
 """"""""""""""""""""""""""""""
 " => fzf.vim
@@ -565,57 +603,30 @@ nmap <LEADER>j :Files<CR>
 nmap <LEADER>o :Buffers<CR>
 nnoremap \ :Rg<CR>
 nnoremap <c-f> :RG<CR>
+nnoremap <C-p> :GFiles<CR>
 
 " Terminal buffer options for fzf
 autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-
 """"""""""""""""""""""""""""""
-" => denite
+" => coc-git
 """"""""""""""""""""""""""""""
-" call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-" call denite#custom#option('default', 'prompt', 'λ')
-" call denite#custom#var('grep', 'command', ['ag'])
-" call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-" call denite#custom#var('grep', 'recursive_opts', [])
-" call denite#custom#var('grep', 'pattern_opt', [])
-" call denite#custom#var('grep', 'separator', ['--'])
-" call denite#custom#var('grep', 'final_opts', [])
-" call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-" call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-"       \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
-"       \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
+set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 
-" nmap <LEADER>j :Denite -start-filter file/rec<CR>
-" nmap <C-b>  :Denite buffer<CR>
-" nnoremap \ :Denite grep<CR>
-
-" call denite#custom#source(
-" \ 'grep', 'matchers', ['matcher_regexp'])
-
-" " use ag for content search
-" autocmd FileType denite call s:denite_my_settings()
-" function! s:denite_my_settings() abort
-"   nnoremap <silent><buffer><expr> <CR>
-"         \ denite#do_map('do_action')
-"   nnoremap <silent><buffer><expr> d
-"         \ denite#do_map('do_action', 'delete')
-"   nnoremap <silent><buffer><expr> p
-"         \ denite#do_map('do_action', 'preview')
-"   nnoremap <silent><buffer><expr> <C-v>
-"         \ denite#do_map('do_action', 'vsplit')
-"   nnoremap <silent><buffer><expr> <C-x>
-"         \ denite#do_map('do_action', 'split')
-"   nnoremap <silent><buffer><expr> <Esc>
-"         \ denite#do_map('quit')
-"   nnoremap <silent><buffer><expr> i
-"         \ denite#do_map('open_filter_buffer')
-"   nnoremap <silent><buffer><expr> <Space>
-"         \ denite#do_map('toggle_select').'j'
-"   map <silent><buffer> <Esc>: <Plug>(denite_filter_quit) <cr>
-" endfunction
+" navigate chunks of current buffer
+nmap [h <Plug>(coc-git-prevchunk)
+nmap ]h <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+" nmap gv <Plug>(coc-git-chunkinfo)
+" " show commit contains current position
+nmap gv <Plug>(coc-git-commit)
+" " create text object for git chunks
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
@@ -662,17 +673,17 @@ let NERDTreeNodeDelimiter = "\u263a" " smiley face
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-s>'
-let g:multi_cursor_select_all_word_key = '<A-s>'
-let g:multi_cursor_start_key           = 'g<C-s>'
-let g:multi_cursor_select_all_key      = 'g<A-s>'
-let g:multi_cursor_next_key            = '<C-s>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+"
+" " Default mapping
+" let g:multi_cursor_start_word_key      = '<C-s>'
+" let g:multi_cursor_select_all_word_key = '<A-s>'
+" let g:multi_cursor_start_key           = 'g<C-s>'
+" let g:multi_cursor_select_all_key      = 'g<A-s>'
+" let g:multi_cursor_next_key            = '<C-s>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -729,6 +740,9 @@ nnoremap <silent> <leader>z :Goyo<cr>
 let g:gitgutter_enabled=1
 
 " set updatetime=100
+let g:gitgutter_highlight_lines = 0
+" nmap ]h <Plug>(GitGutterNextHunk)
+" nmap [h <Plug>(GitGutterPrevHunk)
 
 let g:gitgutter_sign_added = '▎'
 let g:gitgutter_sign_modified = '▎'
@@ -777,31 +791,31 @@ highlight DiffChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 " expand_region
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:expand_region_text_objects = {
-      \ 'iw'  :0,
-      \ 'iW'  :0,
-      \ 'i"'  :0,
-      \ 'i''' :0,
-      \ 'i]'  :1,
-      \ 'ib'  :1,
-      \ 'iB'  :1,
-      \ 'it'  :1,
-      \ 'aw'  :0,
-      \ 'aW'  :0,
-      \ 'a"'  :0,
-      \ 'a''' :0,
-      \ 'a]'  :0,
-      \ 'ab'  :1,
-      \ 'aB'  :1,
-      \ 'at'  :1,
-      \ 'il'  :1,
-      \ 'ip'  :1
-      \ }
-
-call expand_region#custom_text_objects('python', {
-      \ 'ii' :1,
-      \ 'ai' :1,
-      \ })
+"c let g:expand_region_text_objects = {
+"       \ 'iw'  :0,
+"       \ 'iW'  :0,
+"       \ 'i"'  :0,
+"       \ 'i''' :0,
+"       \ 'i]'  :1,
+"       \ 'ib'  :1,
+"       \ 'iB'  :1,
+"       \ 'it'  :1,
+"       \ 'aw'  :0,
+"       \ 'aW'  :0,
+"       \ 'a"'  :0,
+"       \ 'a''' :0,
+"       \ 'a]'  :0,
+"       \ 'ab'  :1,
+"       \ 'aB'  :1,
+"       \ 'at'  :1,
+"       \ 'il'  :1,
+"       \ 'ip'  :1
+"       \ }
+"
+" call expand_region#custom_text_objects('python', {
+"       \ 'ii' :1,
+"       \ 'ai' :1,
+"       \ })
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
@@ -840,12 +854,6 @@ nmap <leader>st :Startify<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gitgutter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_highlight_lines = 0
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
@@ -873,7 +881,7 @@ nmap ga <Plug>(EasyAlign)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " undotree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>m :UndotreeToggle<cr>
+nnoremap <Leader>u :UndotreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gist
@@ -882,15 +890,6 @@ nnoremap <Leader>m :UndotreeToggle<cr>
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 let g:gist_post_private = 1 " private default
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" colorscheme
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark
-" color deus
-" hi NonText ctermfg=gray guifg=grey10
-colorscheme xcodedarkhc
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quick-scope
@@ -923,14 +922,14 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
-nmap <Leader><Leader>j <Plug>(easymotion-j)
-nmap <Leader><Leader>k <Plug>(easymotion-k)
-nmap <Leader><Leader>w <Plug>(easymotion-w)
-nmap <Leader><Leader>W <Plug>(easymotion-W)
-nmap <Leader><Leader>s <Plug>(easymotion-lineforward)
-nmap <Leader><Leader>S  <Plug>(easymotion-linebackward)
+" nmap <Leader><Leader>j <Plug>(easymotion-j)
+" nmap <Leader><Leader>k <Plug>(easymotion-k)
+" nmap <Leader><Leader>w <Plug>(easymotion-w)
+" nmap <Leader><Leader>W <Plug>(easymotion-W)
+" nmap <Leader><Leader>s <Plug>(easymotion-lineforward)
+" nmap <Leader><Leader>S  <Plug>(easymotion-linebackward)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -940,6 +939,21 @@ nmap <Leader><Leader>S  <Plug>(easymotion-linebackward)
 " Or, you could use neovim's virtual virtual text feature.
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'virtual'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/neoclide/coc-smartf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" nmap f <Plug>(coc-smartf-forward)
+" nmap F <Plug>(coc-smartf-backward)
+" nmap ; <Plug>(coc-smartf-repeat)
+" nmap , <Plug>(coc-smartf-repeat-opposite)
+"
+" augroup Smartf
+"   autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#00C7Df
+"   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
+" augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-sneak
@@ -1053,21 +1067,6 @@ let g:mkdp_port = ''
 " ${name} will be replace with the file name
 let g:mkdp_page_title = '「${name}」'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" far.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" set regexpengine=1        " use old regexp engine
-" set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
-
-" " shortcut for far.vim find
-" nnoremap <silent> <Find-Shortcut>  :Farf<cr>
-" vnoremap <silent> <Find-Shortcut>  :Farf<cr>
-
-" " shortcut for far.vim remplace
-" nnoremap <silent> <Replace-Shortcut>  :Farr<cr>
-" vnoremap <silent> <Replace-Shortcut>  :Farr<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim commentary
@@ -1105,15 +1104,6 @@ let g:table_mode_corner = '|'
 " lua require 'colorizer'.setup()
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" machakann/vim-highlightedyank
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:highlightedyank_highlight_duration = 250
-
-" can be use with Coc-yank
-
-highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse 
 
 
 
@@ -1190,14 +1180,12 @@ hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:far#enable_undo=1
 " shortcut for far.vim find
-nnoremap <silent> <leader><leader>;  :Farf<cr>
-vnoremap <silent> <leader><leader>;  :Farf<cr>
+" nnoremap <silent> <leader>;  :Farf<cr>
+" vnoremap <silent> <leader>;  :Farf<cr>
 
 " shortcut for far.vim replace
-nnoremap <silent> <leader><leader>'  :Farr<cr>
-vnoremap <silent> <leader><leader>'  :Farr<cr>
-
-
+nnoremap <silent> <leader>rr  :Farr<cr>
+vnoremap <silent> <leader>rr  :Farr<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1269,7 +1257,7 @@ let g:doge_doc_standard_python = 'numpy'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " polyglot
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['markdown', 'vue']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " arecarn/vim-fold-cycle
@@ -1305,10 +1293,22 @@ let g:closetag_shortcut = '>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AndrewRadev/switch.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:speeddating_no_mappings = 1
+
+" Avoid issues because of us remapping <c-a> and <c-x> below
+nnoremap <Plug>SpeedDatingFallbackUp <c-a>
+nnoremap <Plug>SpeedDatingFallbackDown <c-x>
+
+" Manually invoke speeddating in case switch didn't work
+nnoremap <c-a> :if !switch#Switch() <bar>
+      \ call speeddating#increment(v:count1) <bar> endif<cr>
+nnoremap <c-x> :if !switch#Switch({'reverse': 1}) <bar>
+      \ call speeddating#increment(-v:count1) <bar> endif<cr>
 
 let g:switch_mapping = '-'
 let g:switch_custom_definitions = [
-      \   ['MON', 'TUE', 'WED', 'THU', 'FRI']
+      \   ['MON', 'TUE', 'WED', 'THU', 'FRI'],
+      \   ['or', 'and']
       \ ]
 
 
@@ -1439,3 +1439,19 @@ let g:floaterm_width=0.8
 let g:floaterm_height=0.8
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'liuchengxu/vim-which-key'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>g3 :diffget //3<CR>
+nmap <leader>g2 :diffget //2<CR>
+nmap <leader>g1 :G<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/AndrewRadev/multichange.vim 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let g:multichange_mapping        = 'sm'
+let g:multichange_motion_mapping = 'm'

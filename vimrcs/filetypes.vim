@@ -3,7 +3,7 @@
 
 augroup extra_space
     autocmd!
-    au BufRead,BufNewFile  *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+    " au BufRead,BufNewFile  *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
     autocmd BufWritePre *.txt,*.js,*.ts,*.jsx,*.tsx,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 augroup end
 
@@ -66,21 +66,21 @@ let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_function             = "ƒ"
+" let g:javascript_conceal_null                 = "ø"
+" let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_return               = "⇚"
+" let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+" let g:javascript_conceal_prototype            = "¶"
+" let g:javascript_conceal_static               = "•"
+" let g:javascript_conceal_super                = "Ω"
+" let g:javascript_conceal_arrow_function       = "⇒"
 
 let g:vim_jsx_pretty_colorful_config = 1
 let g:vim_jsx_pretty_highlight_close_tag = 1
 
-set conceallevel=1
+" set conceallevel=1
 
 function! JavaScriptFold()
     setl foldmethod=syntax

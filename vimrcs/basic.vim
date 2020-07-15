@@ -272,9 +272,6 @@ noremap <Leader>P "+p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Quickly open a buffer for scribble
-map <leader>xn :e ~/buffer<cr>
-
 " Quickly open a markdown buffer for scribble
 map <leader>xm :e ~/buffer.md<cr>
 map <leader>xo :e ~/buffer.org<cr>
