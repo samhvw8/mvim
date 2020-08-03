@@ -9,26 +9,9 @@ Plug 'junegunn/vim-plug'
 Plug 'arielrossanigo/dir-configs-override.vim'
 
 " Colors
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arzg/vim-colors-xcode'
-" Plug 'AlessandroYorba/Despacio'
-" Plug 'ajmwagar/vim-deus'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'chriskempson/vim-tomorrow-theme'
-" Plug 'dracula/vim'
-" Plug 'jacoborus/tender.vim'
-" Plug 'jaredgorski/spacecamp'
-" Plug 'joshdick/onedark.vim'
-" Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'morhetz/gruvbox'
-" Plug 'nanotech/jellybeans.vim'
-" Plug 'nightsense/cosmic_latte'
-" Plug 'nightsense/snow'
-" Plug 'nightsense/stellarized'
-" Plug 'tomasr/molokai'
-" Plug 'tyrannicaltoucan/vim-deep-space'
-" Plug 'w0ng/vim-hybrid'
-" Plug 'yuttie/hydrangea-vim'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -46,21 +29,18 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-eunuch'
 
 Plug 'airblade/vim-gitgutter'
-Plug 'rhysd/git-messenger.vim'
+" Plug 'rhysd/git-messenger.vim'
 Plug 'idanarye/vim-merginal'           " help with merges and rebase
 " Plug 'junegunn/gv.vim'
 Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
 
-" Plug 'unblevable/quick-scope'
-" Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/vim-asterisk'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 Plug 'matze/vim-move'
 Plug 'mattn/webapi-vim'
 
 " Interface
-" Plug 'camspiers/animate.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -69,8 +49,6 @@ Plug 'jistr/vim-nerdtree-tabs'
 
 Plug 'Yggdroot/indentLine'
 Plug 'amix/vim-zenroom2'
-Plug 'blueyed/vim-diminactive'
-Plug 'camspiers/lens.vim'                 | " Window resizing plugin
 Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 
@@ -88,59 +66,39 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mzlogin/vim-markdown-toc'
-
-" Plug 'junegunn/vim-peekaboo'
 Plug 'kkoomen/vim-doge'  " doc genrernator <Leader>d
-" Plug 'machakann/vim-highlightedyank'
 Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 
 " text object visual, select ..
-" Plug 'michaeljsmith/vim-indent-object'
 Plug 'andymass/vim-matchup'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent' " for expand region
 Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user' " for expand region
-" Plug 'sgur/vim-textobj-parameter'
-" Plug 'terryma/vim-expand-region'
-" Plug 'terryma/vim-multiple-cursors'
+Plug 'coderifous/textobj-word-column.vim'
 Plug 'wellle/targets.vim'
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 
 " Lang & syntax
 " Auto complete & lint
-" Plug 'ap/vim-css-color'
-" Plug 'chr4/nginx.vim'
-" Plug 'digiRaltoad/vim-pug'
-" Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plug 'gko/vim-coloresque'
-" Plug 'herringtondarkholme/yats.vim'
-" Plug 'honza/vim-snippets'
-" Plug 'jceb/vim-orgmode'
-" Plug 'mattn/emmet-vim'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'norcalli/nvim-colorizer.lua'
-" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for': ['python']}
-" Plug 'nvie/vim-flake8'
-" Plug 'pangloss/vim-javascript'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'rust-lang/rust.vim'
-" Plug 'sbdchd/neoformat'
 Plug 'Chiel92/vim-autoformat'
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" Plug 'Vimjas/vim-python-pep8-indent'
-" Plug 'cespare/vim-toml'
 Plug 'leafgarland/typescript-vim'
 Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 Plug 'sheerun/vim-polyglot' " for all lang syntax
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'google/vim-jsonnet'
+Plug 'neoclide/jsonc.vim'
+Plug 'stephpy/vim-yaml'
+Plug 'tjdevries/coc-zsh'
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " for css lib
 
 Plug 'liuchengxu/vista.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'brooth/far.vim' " find and replace all project
+" Plug 'brooth/far.vim' " find and replace all project
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'arecarn/vim-fold-cycle'
 Plug 'alvan/vim-closetag'
@@ -151,55 +109,23 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
-Plug 'AndrewRadev/linediff.vim'
-
-
-Plug 'jaxbot/semantic-highlight.vim'
+" Plug 'AndrewRadev/linediff.vim'
 
 Plug 'vimgineers/vim-hugefile'
-
-Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-
 " Window chooser
 Plug 't9md/vim-choosewin'
-
-Plug 'metakirby5/codi.vim'
-
-Plug 'coderifous/textobj-word-column.vim'
-
 Plug 'vim-scripts/scratch.vim'
-
-Plug 'google/vim-jsonnet'
-
-Plug 'gilsondev/searchtasks.vim' " Plugin to search the labels often used as TODO, FIXME and XXX.
-
+" Plug 'gilsondev/searchtasks.vim' " Plugin to search the labels often used as TODO, FIXME and XXX.
 Plug 'roxma/nvim-yarp'
-
-" Plug 'itchyny/vim-cursorword'
-"
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
-
 Plug 'tomtom/tcomment_vim'
-
 Plug 'antoinemadec/coc-fzf'
-
 Plug 'voldikss/vim-floaterm'
-
-Plug 'tjdevries/coc-zsh'
-
-Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
-
-
-Plug 'neoclide/jsonc.vim'
 Plug 'dhruvasagar/vim-zoom'
-Plug 'stephpy/vim-yaml'
-
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
-
-Plug 'AndrewRadev/multichange.vim'
-
+" Plug 'AndrewRadev/multichange.vim'
+" Plug 'MattesGroeger/vim-bookmarks'
 
 call plug#end()
 call plug#helptags()
@@ -219,10 +145,21 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 " color deus
 " hi NonText ctermfg=gray guifg=grey10
-colorscheme xcodedarkhc
+" colorscheme xcodedarkhc
+colorscheme dracula
+hi Visual term=reverse cterm=reverse guibg=Grey
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-bookmark
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " neoformat
 
@@ -337,6 +274,7 @@ let g:coc_global_extensions = [
       \ 'coc-dictionary',
       \ 'coc-docker',
       \ 'coc-elixir',
+      \ 'coc-eslint',
       \ 'coc-emmet',
       \ 'coc-emoji',
       \ 'coc-explorer',
@@ -354,6 +292,7 @@ let g:coc_global_extensions = [
       \ 'coc-metals',
       \ 'coc-omni',
       \ 'coc-phpls',
+      \ 'coc-prettier',
       \ 'coc-project',
       \ 'coc-python',
       \ 'coc-rls',
@@ -961,16 +900,16 @@ let g:echodoc#type = 'virtual'
 
 
 " Vim-sneak {{{
-let g:sneak#use_ic_scs = 1
-let g:sneak#label = 1
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
-
-" Change the colors
-highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
-highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-
-let g:sneak#prompt = '🔎 '
+" let g:sneak#use_ic_scs = 1
+" let g:sneak#label = 1
+" map F <Plug>Sneak_s
+" " map F <Plug>Sneak_S
+"
+" " Change the colors
+" highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
+" highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+"
+" let g:sneak#prompt = '🔎 '
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

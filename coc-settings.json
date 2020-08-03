@@ -122,7 +122,7 @@
   "python.analysis.logLevel": "Trace",
   "python.formatting.provider": "black",
   "python.jediEnabled": true,
-  "python.jediPath": "/usr/local/lib/python3.7/site-packages",
+  "python.jediPath": "/usr/local/lib/python3.8/site-packages",
   "python.linting.mypyEnabled": true,
   "python.linting.pylintEnabled": true,
   "signature.enable": true,
@@ -190,5 +190,8 @@
   "git.changedSign.hlGroup": "",
   "git.removedSign.hlGroup": "",
   "git.topRemovedSign.hlGroup": "",
-  "git.changeRemovedSign.hlGroup": "",
+  "git.changeRemovedSign.htruelGroup": "",
+  "prettier.useTabs": true,
+  "prettier.semi": false,
+  "prettier.tabWidth": 4
 }
