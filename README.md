@@ -1,11 +1,11 @@
 # install
 
-git clone https://github.com/samhvw8/.mvim.git ~/.config/nvim
+git clone https://github.com/samhvw8/mvim.git ~/.config/nvim
 
 ## Install on MacOS
 
 ```bash
-brew install neovim 
+brew install neovim
 
 pip install  pynvim
 
@@ -16,7 +16,7 @@ pip install jedi
 
 ## file .bashrc or .zshrc
 
-``` bash
+```bash
 alias vim="nvim"
 ```
 
