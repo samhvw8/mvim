@@ -132,6 +132,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
@@ -163,6 +166,9 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
+
+
+
 
 " map <leader>l :bnext<cr>
 " map <leader>h :bprevious<cr>

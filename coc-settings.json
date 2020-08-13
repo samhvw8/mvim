@@ -126,7 +126,7 @@
   "python.linting.mypyEnabled": true,
   "python.linting.pylintEnabled": true,
   "signature.enable": true,
-  "signature.target": "echo",
+  "signature.target": "float",
   "suggest.echodocSupport": true,
   "tslint.autoFixOnSave": false,
   "tslint.jsEnable": true,
@@ -185,13 +185,15 @@
   "eslint.trace.server": "verbose",
   "eslint.autoFixOnSave": true,
   "eslint.autoFix": true,
+  "eslint.filetypes": [
+    "typescript",
+    "javascript",
+    "vue"
+  ],
   "git.enableGutters": false,
   "git.addedSign.hlGroup": "",
   "git.changedSign.hlGroup": "",
   "git.removedSign.hlGroup": "",
   "git.topRemovedSign.hlGroup": "",
   "git.changeRemovedSign.htruelGroup": "",
-  "prettier.useTabs": true,
-  "prettier.semi": false,
-  "prettier.tabWidth": 4
 }

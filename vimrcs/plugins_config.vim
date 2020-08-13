@@ -59,9 +59,9 @@ Plug 'junegunn/fzf', { 'do': g:fzf_install }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 Plug 'dhruvasagar/vim-table-mode'                                        | " Better handling for tables in markdown
-Plug 'fmoralesc/vim-pad' ,  { 'branch': 'devel' }
+" Plug 'fmoralesc/vim-pad' ,  { 'branch': 'devel' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -71,9 +71,9 @@ Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 
 " text object visual, select ..
 Plug 'andymass/vim-matchup'
-Plug 'kana/vim-textobj-function'
-Plug 'kana/vim-textobj-indent' " for expand region
-Plug 'kana/vim-textobj-syntax'
+" Plug 'kana/vim-textobj-function'
+" Plug 'kana/vim-textobj-indent' " for expand region
+" Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user' " for expand region
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'wellle/targets.vim'
@@ -113,7 +113,7 @@ Plug 'AndrewRadev/switch.vim'
 
 Plug 'vimgineers/vim-hugefile'
 " Window chooser
-Plug 't9md/vim-choosewin'
+" Plug 't9md/vim-choosewin'
 Plug 'vim-scripts/scratch.vim'
 " Plug 'gilsondev/searchtasks.vim' " Plugin to search the labels often used as TODO, FIXME and XXX.
 Plug 'roxma/nvim-yarp'
@@ -125,7 +125,11 @@ Plug 'voldikss/vim-floaterm'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Plug 'AndrewRadev/multichange.vim'
-" Plug 'MattesGroeger/vim-bookmarks'
+
+
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'leafOfTree/vim-vue-plugin'
+
 
 call plug#end()
 call plug#helptags()
@@ -148,46 +152,6 @@ set background=dark
 " colorscheme xcodedarkhc
 colorscheme dracula
 hi Visual term=reverse cterm=reverse guibg=Grey
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-bookmark
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight BookmarkSign ctermbg=NONE ctermfg=160
-highlight BookmarkLine ctermbg=194 ctermfg=NONE
-let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" neoformat
-
-" augroup fmt
-"     autocmd!
-"     autocmd BufWritePre * silent! undojoin | Neoformat
-" augroup END
-
-" let g:neoformat_enabled_python = ['black']
-
-" " Enable alignment
-" let g:neoformat_basic_format_align = 1
-
-" " Enable tab to spaces conversion
-" let g:neoformat_basic_format_retab = 1
-
-" " Enable trimmming of trailing whitespace
-" let g:neoformat_basic_format_trim = 1
-
-" let g:neoformat_run_all_formatters = 1
-
-" let g:neoformat_javascript_prettier = {
-"             \ 'exe': 'prettier',
-"             \ 'args': ['--stdin-filepath', '"%:p"'],
-"             \ 'stdin': 1,
-"             \ }
-
-" let g:neoformat_enabled_javascript = ['eslint_d']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 'AndrewRadev/splitjoin.vim'
@@ -197,14 +161,6 @@ let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
 nnoremap gss :SplitjoinSplit<cr>
 nnoremap gsj :SplitjoinJoin<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 'tpope/vim-commentary'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map  gc  <Plug>Commentary
-" nmap gcc <Plug>CommentaryLine
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-autoformat
@@ -225,7 +181,7 @@ augroup auto_format_config
 
   autocmd!
   " Python indentation
-  au BufNewFile,BufRead *.yml,*.yaml,*.xml 
+  au BufNewFile,BufRead *.yml,*.yaml,*.xml,*.jsonnet
         \ let g:autoformat_retab = 0 |
         \ let g:autoformat_autoindent = 0 |
         \ let g:autoformat_remove_trailing_spaces = 0
@@ -240,13 +196,6 @@ augroup disable_json_large
 
   let g:large_file = 10485760 " 10MB
 
-  " Set options:
-  "   eventignore+=FileType (no syntax highlighting etc
-  "   assumes FileType always on)
-  "   noswapfile (save copy of file)
-  "   bufhidden=unload (save memory when other file is viewed)
-  "   buftype=nowritefile (is read-only)
-  "   undolevels=-1 (no undo possible)
   autocmd!
   au BufReadPre *
         \ let f=expand("<afile>") |
@@ -271,19 +220,20 @@ let g:coc_global_extensions = [
       \ 'coc-clangd',
       \ 'coc-css',
       \ 'coc-cssmodules',
+      \ 'coc-diagnostic',
       \ 'coc-dictionary',
       \ 'coc-docker',
       \ 'coc-elixir',
-      \ 'coc-eslint',
       \ 'coc-emmet',
       \ 'coc-emoji',
-      \ 'coc-explorer',
+      \ 'coc-eslint',
       \ 'coc-flutter',
       \ 'coc-git',
       \ 'coc-go',
       \ 'coc-gocode',
       \ 'coc-highlight',
       \ 'coc-html',
+      \ 'coc-imselect',
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lua',
@@ -302,6 +252,7 @@ let g:coc_global_extensions = [
       \ 'coc-sourcekit',
       \ 'coc-spell-checker',
       \ 'coc-sql',
+      \ 'coc-styled-components',
       \ 'coc-svg',
       \ 'coc-syntax',
       \ 'coc-tag',
@@ -310,6 +261,7 @@ let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-vetur',
       \ 'coc-vimlsp',
+      \ 'coc-webpack',
       \ 'coc-word',
       \ 'coc-xml',
       \ 'coc-yaml',
@@ -351,7 +303,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -446,14 +397,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
-" nmap <silent> <C-c> <Plug>(coc-cursors-position)
-" nmap <silent> <C-d> <Plug>(coc-cursors-word)
-" xmap <silent> <C-d> <Plug>(coc-cursors-range)
-" " use normal command like `<leader>xi(`
-" nmap <leader>x  <Plug>(coc-cursors-operator)
-
 " Explorer
 let g:coc_explorer_global_presets = {
       \   'floating': {
@@ -540,9 +483,9 @@ let g:fzf_colors =
 
 nmap <LEADER>j :Files<CR>
 nmap <LEADER>o :Buffers<CR>
-nnoremap \ :Rg<CR>
-nnoremap <c-f> :RG<CR>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <m-\> :Rg<CR>
+nnoremap <m-f> :RG<CR>
+nnoremap <m-p> :GFiles<CR>
 
 " Terminal buffer options for fzf
 autocmd! FileType fzf
@@ -608,23 +551,6 @@ let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
 let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 let NERDTreeNodeDelimiter = "\u263a" " smiley face
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-multiple-cursors
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:multi_cursor_use_default_mapping=0
-"
-" " Default mapping
-" let g:multi_cursor_start_word_key      = '<C-s>'
-" let g:multi_cursor_select_all_word_key = '<A-s>'
-" let g:multi_cursor_start_key           = 'g<C-s>'
-" let g:multi_cursor_select_all_key      = 'g<A-s>'
-" let g:multi_cursor_next_key            = '<C-s>'
-" let g:multi_cursor_prev_key            = '<C-p>'
-" let g:multi_cursor_skip_key            = '<C-x>'
-" let g:multi_cursor_quit_key            = '<Esc>'
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config
 " Annotate strings with gettext
@@ -649,30 +575,6 @@ let g:goyo_margin_top = 2
 let g:goyo_margin_bottom = 2
 nnoremap <silent> <leader>z :Goyo<cr>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ale (syntax checker and linter)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:ale_echo_msg_format       = '[%linter%] %s [%severity%]'   " status line format
-" let g:ale_statusline_format     = ['⨉ %d', '⚠ %d', '⬥ ok']       " error status format
-" let g:ale_lint_delay            = 300                            " relint max once per [amount] milliseconds
-" let g:ale_linters = {}
-
-" let g:ale_fixers = {}
-" let g:ale_completion_enabled = 1
-
-" " let g:ale_fix_on_save = 1
-
-" " nmap <silent> <leader><leader>a <Plug>(ale_next_wrap)
-
-" " Disabling highlighting
-" let g:ale_set_highlights = 1
-
-" " Only run linting when saving the file
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_enter = 0
-
-" let g:ale_virtualtext_cursor = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -703,58 +605,6 @@ highlight DiffChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 " highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 " highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YcmCompleter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:ycm_autoclose_preview_window_after_completion=0
-" map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" " nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
-" " inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-
-" let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Emmet
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:user_emmet_settings = {
-"             \    'javascript': {'extends': 'jsx'},
-"             \    'javascript.jsx': {'extends': 'jsx'},
-"             \    'typescript': {'extends': 'jsx'},
-"             \    'typescript.tsx': {'extends': 'jsx'}
-"             \ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" expand_region
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"c let g:expand_region_text_objects = {
-"       \ 'iw'  :0,
-"       \ 'iW'  :0,
-"       \ 'i"'  :0,
-"       \ 'i''' :0,
-"       \ 'i]'  :1,
-"       \ 'ib'  :1,
-"       \ 'iB'  :1,
-"       \ 'it'  :1,
-"       \ 'aw'  :0,
-"       \ 'aW'  :0,
-"       \ 'a"'  :0,
-"       \ 'a''' :0,
-"       \ 'a]'  :0,
-"       \ 'ab'  :1,
-"       \ 'aB'  :1,
-"       \ 'at'  :1,
-"       \ 'il'  :1,
-"       \ 'ip'  :1
-"       \ }
-"
-" call expand_region#custom_text_objects('python', {
-"       \ 'ii' :1,
-"       \ 'ai' :1,
-"       \ })
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-startify
@@ -796,17 +646,6 @@ nmap <leader>st :Startify<cr>
 " rainbow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" org
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:org_todo_keywords = [['TODO(t)', '|', 'DONE(d)'],
-"             \ ['REPORT(r)', 'BUG(b)', 'KNOWNCAUSE(k)', '|', 'FIXED(f)'],
-"             \ ['CANCELED(c)']]
-
-" let g:org_agenda_files = ['~/org/index.org']
-
-" let g:org_export_emacs="/usr/local/bin/emacs"
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-easy-align
@@ -831,45 +670,9 @@ let g:gist_detect_filetype = 1
 let g:gist_post_private = 1 " private default
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" quick-scope
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" " Trigger a highlight in the appropriate direction when pressing these keys:
-" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" " Trigger a highlight only when pressing f and F
-" let g:qs_max_chars=80
-" let g:qs_lazy_highlight = 1
-" augroup qs_colors
-"   autocmd!
-"   autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-"   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-" augroup END
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " easymotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"
-" nmap <C-f> <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-" nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case-insensitive feature
-" let g:EasyMotion_smartcase = 1
-" JK motions: Line motions
-" nmap <Leader><Leader>j <Plug>(easymotion-j)
-" nmap <Leader><Leader>k <Plug>(easymotion-k)
-" nmap <Leader><Leader>w <Plug>(easymotion-w)
-" nmap <Leader><Leader>W <Plug>(easymotion-W)
-" nmap <Leader><Leader>s <Plug>(easymotion-lineforward)
-" nmap <Leader><Leader>S  <Plug>(easymotion-linebackward)
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " echodoc
@@ -880,37 +683,7 @@ let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'virtual'
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/neoclide/coc-smartf
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" nmap f <Plug>(coc-smartf-forward)
-" nmap F <Plug>(coc-smartf-backward)
-" nmap ; <Plug>(coc-smartf-repeat)
-" nmap , <Plug>(coc-smartf-repeat-opposite)
-"
-" augroup Smartf
-"   autocmd User SmartfEnter :hi Conceal ctermfg=220 guifg=#00C7Df
-"   autocmd User SmartfLeave :hi Conceal ctermfg=239 guifg=#504945
-" augroup end
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-sneak
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" Vim-sneak {{{
-" let g:sneak#use_ic_scs = 1
-" let g:sneak#label = 1
-" map F <Plug>Sneak_s
-" " map F <Plug>Sneak_S
-"
-" " Change the colors
-" highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
-" highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-"
-" let g:sneak#prompt = '🔎 '
-" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " move
@@ -1052,13 +825,13 @@ let g:table_mode_corner = '|'
 " andymass/vim-matchup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:loaded_matchit = 1
-"1 let g:matchup_enabled = 0
+" let g:matchup_enabled = 1
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
 augroup matchup_matchparen_highlight
   autocmd!
   autocmd ColorScheme * hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic 
-  autocmd ColorScheme * hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=underline gui=underline
+  autocmd ColorScheme * hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=bold gui=bold
   autocmd ColorScheme * hi MatchParenCur cterm=underline gui=underline
   autocmd ColorScheme * hi MatchWordCur cterm=underline gui=underline
 augroup END
@@ -1072,6 +845,10 @@ augroup END
 
 let g:matchup_matchparen_deferred = 1
 let g:matchup_matchparen_hi_surround_always = 1
+
+let g:matchup_matchpref = {}
+let g:matchup_matchpref.vue = {'tagnameonly': 1}
+let g:matchup_matchpref.html = {'tagnameonly': 1}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1214,7 +991,7 @@ nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
 " alvan/vim-closetag
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:closetag_filetypes = 'html,xhtml,phtml,tsx,jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,tsx,jsx,vue'
 
 let g:closetag_emptyTags_caseSensitive = 1
 
@@ -1294,25 +1071,12 @@ augroup ansible_vim_fthosts
   autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
 augroup END
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pearofducks/ansible-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nmap  <M-w>  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" junegunn/vim-peekaboo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:peekaboo_prefix = '<leader>'
-" let g:peekaboo_ins_prefix = '<c-x>'
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1325,11 +1089,6 @@ let g:jsonnet_fmt_on_save = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:searchtasks_list=["TODO", "FIXME", "XXX"]
-
-
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/mzlogin/vim-markdown-toc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1388,9 +1147,30 @@ nmap <leader>g2 :diffget //2<CR>
 nmap <leader>g1 :G<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/AndrewRadev/multichange.vim 
+" https://github.com/andrewradev/multichange.vim 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 let g:multichange_mapping        = 'sm'
 let g:multichange_motion_mapping = 'm'
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/jiangmiao/auto-pairs
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'vim-scripts/BufOnly.vim'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+map <leader>bo :Bonly<cr>

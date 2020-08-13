@@ -131,8 +131,12 @@ let g:yats_host_keyword = 1
 augroup typescript_setup
     autocmd!
     autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-
     autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+    autocmd BufNewFile,BufRead *.vue
+                \ set shiftwidth=4 |
+                \ set softtabstop=4 |
+                \ set tabstop=4 |
+                \ set expandtab |
 augroup end
 
 " dark red
