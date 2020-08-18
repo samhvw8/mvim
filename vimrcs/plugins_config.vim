@@ -36,7 +36,7 @@ Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
 
 Plug 'haya14busa/vim-asterisk'
-" Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-sneak'
 Plug 'matze/vim-move'
 Plug 'mattn/webapi-vim'
 
@@ -130,7 +130,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'leafOfTree/vim-vue-plugin'
 
-
+" Plug 'xavierchow/vim-swagger-preview'
 call plug#end()
 call plug#helptags()
 
@@ -417,18 +417,6 @@ let g:coc_explorer_global_presets = {
       \   }
       \ }
 
-" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-
-" Use preset argument to open it
-nmap <space>ed :CocCommand explorer --preset .vim<CR>
-nmap <space>ef :CocCommand explorer --preset floating<CR>
-
-" List all presets
-nmap <space>el :CocList explPresets
-
-nmap <space>e :CocCommand explorer<CR>
-
-
 """"""""""""""""""""""""""""""
 " coc yank
 """""""""""""""""""""""""""""
@@ -530,7 +518,7 @@ map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ "Modified"  : "●",
       \ "Staged"    : "✔",
       \ "Untracked" : "✭",
@@ -639,7 +627,7 @@ augroup startified_setup
   autocmd User Startified setlocal cursorline
 augroup end
 
-nmap <leader>st :Startify<cr>
+nmap <leader>ta :Startify<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -799,11 +787,6 @@ let g:indent_guides_color_change_percent = 1
 let g:indent_guides_exclude_filetypes = ['help', 'startify', 'fzf', 'openterm', 'neoterm', 'calendar']
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vcs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap <Leader>g <Plug>(VcsJump)
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " table mode
@@ -890,26 +873,6 @@ hi ReduxHooksKeywords ctermfg=204 guifg=#C176A7
 hi WebBrowser ctermfg=204 guifg=#56B6C2
 hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" brooth/far.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:far#enable_undo=1
-" shortcut for far.vim find
-" nnoremap <silent> <leader>;  :Farf<cr>
-" vnoremap <silent> <leader>;  :Farf<cr>
-
-" shortcut for far.vim replace
-nnoremap <silent> <leader>rr  :Farr<cr>
-vnoremap <silent> <leader>rr  :Farr<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/numirias/semshi
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -948,22 +911,6 @@ let g:vista#renderer#icons = {
       \   "function": "\uf794",
       \   "variable": "\uf71b",
       \  }
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/rhysd/git-messenger.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" nmap <Leader>gm <Plug>(git-messenger) default
-"
-
-
-hi gitmessengerPopupNormal term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
-hi gitmessengerHeader term=None guifg=#88b8f6 ctermfg=111
-hi gitmessengerHash term=None guifg=#f0eaaa ctermfg=229
-hi gitmessengerHistory term=None guifg=#fd8489 ctermfg=210
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-doge
@@ -1145,6 +1092,7 @@ let g:floaterm_autoclose=1
 nmap <leader>g3 :diffget //3<CR>
 nmap <leader>g2 :diffget //2<CR>
 nmap <leader>g1 :G<CR>
+nmap <leader>gg :GFiles?<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/andrewradev/multichange.vim 
@@ -1174,3 +1122,16 @@ let g:AutoPairsShortcutJump = ''
 
 
 map <leader>bo :Bonly<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/justinmk/vim-sneak
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:sneak#label = 1
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+
+map <leader>s <Plug>Sneak_s
+map <leader>S <Plug>Sneak_S
