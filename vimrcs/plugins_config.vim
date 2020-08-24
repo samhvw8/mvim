@@ -37,7 +37,7 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'haya14busa/vim-asterisk'
 Plug 'justinmk/vim-sneak'
-Plug 'matze/vim-move'
+" Plug 'matze/vim-move'
 Plug 'mattn/webapi-vim'
 
 " Interface
@@ -87,12 +87,10 @@ Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-Plug 'sheerun/vim-polyglot' " for all lang syntax
 Plug 'jaxbot/semantic-highlight.vim'
-Plug 'google/vim-jsonnet'
 Plug 'neoclide/jsonc.vim'
-Plug 'stephpy/vim-yaml'
 Plug 'tjdevries/coc-zsh'
+Plug 'sheerun/vim-polyglot' " for all lang syntax
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " for css lib
 
 Plug 'liuchengxu/vista.vim'
@@ -216,6 +214,12 @@ augroup end
 " coc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" \ 'coc-imselect',
+" \ 'coc-tag',
+" \ 'coc-syntax',
+" \ 'coc-spell-checker',
+" \ 'coc-emoji',
+" \ 'coc-omni',
 let g:coc_global_extensions = [
       \ 'coc-clangd',
       \ 'coc-css',
@@ -225,7 +229,6 @@ let g:coc_global_extensions = [
       \ 'coc-docker',
       \ 'coc-elixir',
       \ 'coc-emmet',
-      \ 'coc-emoji',
       \ 'coc-eslint',
       \ 'coc-flutter',
       \ 'coc-git',
@@ -233,14 +236,12 @@ let g:coc_global_extensions = [
       \ 'coc-gocode',
       \ 'coc-highlight',
       \ 'coc-html',
-      \ 'coc-imselect',
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lua',
       \ 'coc-markdownlint',
       \ 'coc-marketplace',
       \ 'coc-metals',
-      \ 'coc-omni',
       \ 'coc-phpls',
       \ 'coc-prettier',
       \ 'coc-project',
@@ -250,12 +251,9 @@ let g:coc_global_extensions = [
       \ 'coc-snippets',
       \ 'coc-solargraph',
       \ 'coc-sourcekit',
-      \ 'coc-spell-checker',
       \ 'coc-sql',
       \ 'coc-styled-components',
       \ 'coc-svg',
-      \ 'coc-syntax',
-      \ 'coc-tag',
       \ 'coc-tailwindcss',
       \ 'coc-tslint-plugin',
       \ 'coc-tsserver',
@@ -354,7 +352,7 @@ endfunction
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-" nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>qa  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
