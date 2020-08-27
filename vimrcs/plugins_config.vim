@@ -182,12 +182,14 @@ augroup auto_format_config
   au BufNewFile,BufRead *.yml,*.yaml,*.xml,*.jsonnet
         \ let g:autoformat_retab = 0 |
         \ let g:autoformat_autoindent = 0 |
-        \ let g:autoformat_remove_trailing_spaces = 0
+        \ let g:autoformat_remove_trailing_spaces = 0 |
   au BufNewFile,BufRead *.vue
         \ let g:autoformat_remove_trailing_spaces = 1 |
         \ let g:autoformat_autoindent = 1 |
         \ let g:autoformat_retab = 1
 
+  autocmd BufWritePre *.jsonnet call jsonnet#Format()
+  autocmd BufWritePre *.libsonnet call jsonnet#Format()
 augroup end
 
 augroup disable_json_large
@@ -377,6 +379,7 @@ nnoremap <silent> <leader>lo :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <leader>ls :<C-u>Vista finder<CR>
 " Get errors
 nnoremap <silent> <leader>ll :<C-u>CocFzfList locationlist<CR>
+nnoremap <silent> <leader>l1 :<C-u>CocFzfList<CR>
 " Get available commands
 nnoremap <silent> <leader>lc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <leader>ld :<C-u>CocFzfList diagnostics<CR>
@@ -395,25 +398,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" Explorer
-let g:coc_explorer_global_presets = {
-      \   'floating': {
-      \      'position': 'floating',
-      \   },
-      \   'floatingLeftside': {
-      \      'position': 'floating',
-      \      'floating-position': 'left-center',
-      \      'floating-width': 30,
-      \   },
-      \   'floatingRightside': {
-      \      'position': 'floating',
-      \      'floating-position': 'right-center',
-      \      'floating-width': 30,
-      \   },
-      \   'simplify': {
-      \     'file.child.template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-      \   }
-      \ }
 
 """"""""""""""""""""""""""""""
 " coc yank
@@ -577,10 +561,10 @@ let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▋'
 " ---------------------------------------------------------
-highlight DiffAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
-highlight DiffChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
-highlight DiffDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-highlight DiffChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
+highlight DiffAdd ctermfg=22 guifg=#009900 ctermbg=NONE guibg=NONE
+highlight DiffChange ctermfg=58 guifg=#bbbb00 ctermbg=NONE guibg=NONE
+highlight DiffDelete ctermfg=52 guifg=#ff2222 ctermbg=NONE guibg=NONE
+highlight DiffChangeDelete ctermfg=52 guifg=#ff2222 ctermbg=NONE guibg=NONE
 
 " highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
 " highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
