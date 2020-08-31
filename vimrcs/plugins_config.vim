@@ -241,7 +241,6 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-json',
       \ 'coc-lua',
-      \ 'coc-markdownlint',
       \ 'coc-marketplace',
       \ 'coc-metals',
       \ 'coc-phpls',
