@@ -1117,3 +1117,19 @@ map T <Plug>Sneak_T
 
 map <leader>s <Plug>Sneak_s
 map <leader>S <Plug>Sneak_S
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  https://github.com/tpope/vim-unimpaire
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" *[t*     |:tprevious|
+" *]t*     |:tnext|
+"
+
+
+" unmap [t
+" unmap ]t
+
+nmap [t :tabprevious<CR>
+nmap ]t :tabnext<CR>
