@@ -172,7 +172,7 @@ augroup mvimAutoFormatConfig
 augroup end
 let g:formatters_python = []
 
-let g:formatters_vue = ['eslint_local']
+let g:formatters_vue = []
 let g:formatters_javascript = []
 
 augroup auto_format_config
