@@ -54,6 +54,11 @@ augroup javascript_setup
     au FileType javascript call JavaScriptFold()
     au FileType javascript setl fen
     au FileType javascript setl nocindent
+    " autocmd BufNewFile,BufRead *.js
+    "             \ set shiftwidth=4 |
+    "             \ set softtabstop=4 |
+    "             \ set tabstop=4 |
+    "             \ set expandtab |
 
     " au FileType javascript imap <C-t> $log();<esc>hi
     " au FileType javascript imap <C-a> alert();<esc>hi
