@@ -134,9 +134,9 @@ call plug#helptags()
 
 
 if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
 endif
 
 
@@ -167,8 +167,8 @@ let g:autoformat_autoindent = 1
 let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces = 0
 augroup mvimAutoFormatConfig
-  autocmd!
-  au BufWrite * :Autoformat
+    autocmd!
+    au BufWrite * :Autoformat
 augroup end
 let g:formatters_python = []
 
@@ -177,38 +177,38 @@ let g:formatters_javascript = []
 
 augroup auto_format_config
 
-  autocmd!
-  " Python indentation
-  au BufNewFile,BufRead *.yml,*.yaml,*.xml,*.jsonnet
-        \ let g:autoformat_retab = 0 |
-        \ let g:autoformat_autoindent = 0 |
-        \ let g:autoformat_remove_trailing_spaces = 0 |
-  au BufNewFile,BufRead *.vue
-        \ let g:autoformat_remove_trailing_spaces = 1 |
-        \ let g:autoformat_autoindent = 1 |
-        \ let g:autoformat_retab = 1
+    autocmd!
+    " Python indentation
+    au BufNewFile,BufRead *.yml,*.yaml,*.xml,*.jsonnet
+                \ let g:autoformat_retab = 0 |
+                \ let g:autoformat_autoindent = 0 |
+                \ let g:autoformat_remove_trailing_spaces = 0 |
+    au BufNewFile,BufRead *.vue
+                \ let g:autoformat_remove_trailing_spaces = 1 |
+                \ let g:autoformat_autoindent = 1 |
+                \ let g:autoformat_retab = 1
 
-  autocmd BufWritePre *.jsonnet call jsonnet#Format()
-  autocmd BufWritePre *.libsonnet call jsonnet#Format()
+    autocmd BufWritePre *.jsonnet call jsonnet#Format()
+    autocmd BufWritePre *.libsonnet call jsonnet#Format()
 augroup end
 
 augroup disable_json_large
 
-  let g:large_file = 10485760 " 10MB
+    let g:large_file = 10485760 " 10MB
 
-  autocmd!
-  au BufReadPre *
-        \ let f=expand("<afile>") |
-        \ if getfsize(f) > g:large_file |
-        \ set eventignore+=FileType |
-        \ setlocal bufhidden=unload |
-        \ let g:formatters_json = [] |
-        \ let g:autoformat_autoindent = 0 |
-        \ let g:autoformat_retab = 0 |
-        \ let g:autoformat_remove_trailing_spaces = 0 |
-        \ else |
-        \ set eventignore-=FileType |
-        \ endif
+    autocmd!
+    au BufReadPre *
+                \ let f=expand("<afile>") |
+                \ if getfsize(f) > g:large_file |
+                \ set eventignore+=FileType |
+                \ setlocal bufhidden=unload |
+                \ let g:formatters_json = [] |
+                \ let g:autoformat_autoindent = 0 |
+                \ let g:autoformat_retab = 0 |
+                \ let g:autoformat_remove_trailing_spaces = 0 |
+                \ else |
+                \ set eventignore-=FileType |
+                \ endif
 
 augroup end
 
@@ -223,62 +223,63 @@ augroup end
 " \ 'coc-emoji',
 " \ 'coc-omni',
 let g:coc_global_extensions = [
-      \ 'coc-clangd',
-      \ 'coc-css',
-      \ 'coc-cssmodules',
-      \ 'coc-diagnostic',
-      \ 'coc-dictionary',
-      \ 'coc-docker',
-      \ 'coc-elixir',
-      \ 'coc-emmet',
-      \ 'coc-eslint',
-      \ 'coc-flutter',
-      \ 'coc-git',
-      \ 'coc-go',
-      \ 'coc-gocode',
-      \ 'coc-highlight',
-      \ 'coc-html',
-      \ 'coc-java',
-      \ 'coc-json',
-      \ 'coc-lua',
-      \ 'coc-marketplace',
-      \ 'coc-metals',
-      \ 'coc-phpls',
-      \ 'coc-prettier',
-      \ 'coc-project',
-      \ 'coc-python',
-      \ 'coc-rls',
-      \ 'coc-sh',
-      \ 'coc-snippets',
-      \ 'coc-solargraph',
-      \ 'coc-sourcekit',
-      \ 'coc-sql',
-      \ 'coc-styled-components',
-      \ 'coc-svg',
-      \ 'coc-tailwindcss',
-      \ 'coc-tslint-plugin',
-      \ 'coc-tsserver',
-      \ 'coc-vetur',
-      \ 'coc-vimlsp',
-      \ 'coc-webpack',
-      \ 'coc-word',
-      \ 'coc-xml',
-      \ 'coc-yaml',
-      \ 'coc-yank',
-      \ ]
+            \ 'coc-react-refactor',
+            \ 'coc-clangd',
+            \ 'coc-css',
+            \ 'coc-cssmodules',
+            \ 'coc-diagnostic',
+            \ 'coc-dictionary',
+            \ 'coc-docker',
+            \ 'coc-elixir',
+            \ 'coc-emmet',
+            \ 'coc-eslint',
+            \ 'coc-flutter',
+            \ 'coc-git',
+            \ 'coc-go',
+            \ 'coc-gocode',
+            \ 'coc-highlight',
+            \ 'coc-html',
+            \ 'coc-java',
+            \ 'coc-json',
+            \ 'coc-lua',
+            \ 'coc-marketplace',
+            \ 'coc-metals',
+            \ 'coc-phpls',
+            \ 'coc-prettier',
+            \ 'coc-project',
+            \ 'coc-python',
+            \ 'coc-rls',
+            \ 'coc-sh',
+            \ 'coc-snippets',
+            \ 'coc-solargraph',
+            \ 'coc-sourcekit',
+            \ 'coc-sql',
+            \ 'coc-styled-components',
+            \ 'coc-svg',
+            \ 'coc-tailwindcss',
+            \ 'coc-tslint-plugin',
+            \ 'coc-tsserver',
+            \ 'coc-vetur',
+            \ 'coc-vimlsp',
+            \ 'coc-webpack',
+            \ 'coc-word',
+            \ 'coc-xml',
+            \ 'coc-yaml',
+            \ 'coc-yank',
+            \ ]
 
 
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -287,10 +288,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+    " Use `complete_info` if your (Neo)Vim version supports it.
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -308,11 +309,11 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " autocmd CursorHold * silent call CocActionAsync('doHover')
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocActionAsync('doHover')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -328,22 +329,22 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 
 augroup coc_setup
-  autocmd!
-  autocmd ColorScheme * call s:Highlight()
-  " setup formatexpr specified filetype(s).
-  autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
-  autocmd User CocQuickfixChange :CocList --normal quickfix
-  " update signature help on jump placeholder.
-  autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
+    autocmd!
+    autocmd ColorScheme * call s:Highlight()
+    " setup formatexpr specified filetype(s).
+    autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
+    autocmd User CocQuickfixChange :CocList --normal quickfix
+    " update signature help on jump placeholder.
+    autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
 augroup end
 
 function! s:Highlight() abort
-  call matchadd('ColorColumn', '\%81v', 100)
-  hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
-  hi CocUnderline gui=underline term=underline
-  hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
-  hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
-  hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+    call matchadd('ColorColumn', '\%81v', 100)
+    hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
+    hi CocUnderline gui=underline term=underline
+    hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
+    hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
+    hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 endfunction
 
 
@@ -409,45 +410,45 @@ highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse
 " => fzf.vim
 """"""""""""""""""""""""""""""
 command! -bang -nargs=* GGrep
-      \ call fzf#vim#grep(
-      \   'git grep --line-number '.shellescape(<q-args>), 0,
-      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
+            \ call fzf#vim#grep(
+            \   'git grep --line-number '.shellescape(<q-args>), 0,
+            \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
 
 command! -bang -nargs=? -complete=dir Files
-      \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+            \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 command! -bang -nargs=* RG
-      \ call fzf#vim#grep(
-      \   'rg --ignore-vcs --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-      \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --ignore-vcs --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 " All files
 command! -nargs=? -complete=dir AF
-      \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-      \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
-      \ })))
+            \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+            \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+            \ })))
 
 let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 
 nmap <LEADER>j :Files<CR>
@@ -491,8 +492,8 @@ let g:user_zen_mode='a'
 " let g:NERDTreeWinPos = "right"
 let NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__','\.png$', '\.jpg$', '\.gif$', '\.mp3$', '\.ogg$', '\.mp4$',
-      \ '\.avi$','.webm$','.mkv$','\.pdf$', '\.zip$', '\.tar.gz$',
-      \ '\.rar$']
+            \ '\.avi$','.webm$','.mkv$','\.pdf$', '\.zip$', '\.tar.gz$',
+            \ '\.rar$']
 let NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
@@ -500,17 +501,17 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-      \ "Modified"  : "●",
-      \ "Staged"    : "✔",
-      \ "Untracked" : "✭",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "❗",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "~",
-      \ "Clean"     : "✔︎",
-      \ 'Ignored'   : '☒',
-      \ "Unknown"   : "❓"
-      \ }
+            \ "Modified"  : "●",
+            \ "Staged"    : "✔",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "❗",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "~",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : '☒',
+            \ "Unknown"   : "❓"
+            \ }
 
 let g:WebDevIconsOS = 'Darwin'
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -587,25 +588,25 @@ let g:startify_use_env = 1
 
 
 let g:startify_lists = [
-      \  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
-      \  { 'type': 'sessions',  'header': [ 'Sessions' ]       },
-      \  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
-      \  { 'type': 'commands',  'header': [ 'Commands' ]       },
-      \ ]
+            \  { 'type': 'dir',       'header': [ 'Files '. getcwd() ] },
+            \  { 'type': 'sessions',  'header': [ 'Sessions' ]       },
+            \  { 'type': 'bookmarks', 'header': [ 'Bookmarks' ]      },
+            \  { 'type': 'commands',  'header': [ 'Commands' ]       },
+            \ ]
 let g:startify_commands = [
-      \   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
-      \   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
-      \   { 'uc': [ 'Update coc nvim plugin', ':CocUpdate' ] },
-      \ ]
+            \   { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
+            \   { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
+            \   { 'uc': [ 'Update coc nvim plugin', ':CocUpdate' ] },
+            \ ]
 
 let g:startify_bookmarks = [
-      \ { 'c': '~/.config/nvim/init.vim' },
-      \ { 'g': '~/.gitconfig' },
-      \ ]
+            \ { 'c': '~/.config/nvim/init.vim' },
+            \ { 'g': '~/.gitconfig' },
+            \ ]
 
 augroup startified_setup
-  autocmd!
-  autocmd User Startified setlocal cursorline
+    autocmd!
+    autocmd User Startified setlocal cursorline
 augroup end
 
 nmap <leader>ta :Startify<cr>
@@ -722,16 +723,16 @@ let g:mkdp_browserfunc = ''
 " hide_yaml_meta: if hide yaml metadata, default is 1
 " sequence_diagrams: js-sequence-diagrams options
 let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'middle',
-      \ 'hide_yaml_meta': 1,
-      \ 'sequence_diagrams': {},
-      \ 'flowchart_diagrams': {}
-      \ }
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1,
+            \ 'sequence_diagrams': {},
+            \ 'flowchart_diagrams': {}
+            \ }
 
 " use a custom markdown style must be absolute path
 " like '/Users/username/markdown.css' or expand('~/markdown.css')
@@ -753,9 +754,9 @@ let g:mkdp_page_title = '「${name}」'
 " vim commentary
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup commmentary_setup
-  autocmd!
-  autocmd FileType scss setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
-  autocmd FileType vue setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+    autocmd!
+    autocmd FileType scss setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+    autocmd FileType vue setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -793,18 +794,18 @@ let g:table_mode_corner = '|'
 let g:matchup_surround_enabled = 1
 let g:matchup_transmute_enabled = 1
 augroup matchup_matchparen_highlight
-  autocmd!
-  autocmd ColorScheme * hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic 
-  autocmd ColorScheme * hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=bold gui=bold
-  autocmd ColorScheme * hi MatchParenCur cterm=underline gui=underline
-  autocmd ColorScheme * hi MatchWordCur cterm=underline gui=underline
+    autocmd!
+    autocmd ColorScheme * hi MatchParen ctermbg=lightblue guibg=lightblue cterm=italic gui=italic 
+    autocmd ColorScheme * hi MatchWord ctermfg=lightcyan guifg=lightcyan cterm=bold gui=bold
+    autocmd ColorScheme * hi MatchParenCur cterm=underline gui=underline
+    autocmd ColorScheme * hi MatchWordCur cterm=underline gui=underline
 augroup END
 
 
 augroup matchup_matchparen_disable_ft
-  autocmd!
-  autocmd FileType tex let [b:matchup_matchparen_fallback,
-        \ b:matchup_matchparen_enabled] = [0, 0]
+    autocmd!
+    autocmd FileType tex let [b:matchup_matchparen_fallback,
+                \ b:matchup_matchparen_enabled] = [0, 0]
 augroup END
 
 let g:matchup_matchparen_deferred = 1
@@ -859,7 +860,7 @@ hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
+    return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
 " By default vista.vim never run if you don't call it explicitly.
@@ -874,11 +875,11 @@ let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'coc'
 
 let g:vista_executive_for = {
-      \ }
+            \ }
 
 let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
+            \ 'haskell': 'hasktags -x -o - -c',
+            \ }
 
 
 let g:vista_fzf_preview = ['right:50%']
@@ -889,9 +890,9 @@ let g:vista#renderer#enable_icon = 1
 
 " The default icons can't be suitable for all the filetypes, you can extend it as you wish.
 let g:vista#renderer#icons = {
-      \   "function": "\uf794",
-      \   "variable": "\uf71b",
-      \  }
+            \   "function": "\uf794",
+            \   "variable": "\uf71b",
+            \  }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-doge
@@ -925,9 +926,9 @@ let g:closetag_emptyTags_caseSensitive = 1
 
 
 let g:closetag_regions = {
-      \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-      \ 'javascript.jsx': 'jsxRegion',
-      \ }
+            \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+            \ 'javascript.jsx': 'jsxRegion',
+            \ }
 
 " Shortcut for closing tags, default is '>'
 "
@@ -945,15 +946,15 @@ nnoremap <Plug>SpeedDatingFallbackDown <c-x>
 
 " Manually invoke speeddating in case switch didn't work
 nnoremap <c-a> :if !switch#Switch() <bar>
-      \ call speeddating#increment(v:count1) <bar> endif<cr>
+            \ call speeddating#increment(v:count1) <bar> endif<cr>
 nnoremap <c-x> :if !switch#Switch({'reverse': 1}) <bar>
-      \ call speeddating#increment(-v:count1) <bar> endif<cr>
+            \ call speeddating#increment(-v:count1) <bar> endif<cr>
 
 let g:switch_mapping = '-'
 let g:switch_custom_definitions = [
-      \   ['MON', 'TUE', 'WED', 'THU', 'FRI'],
-      \   ['or', 'and']
-      \ ]
+            \   ['MON', 'TUE', 'WED', 'THU', 'FRI'],
+            \   ['or', 'and']
+            \ ]
 
 
 
@@ -994,9 +995,9 @@ let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 " pearofducks/ansible-vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup ansible_vim_fthosts
-  autocmd!
-  au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
-  autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
+    autocmd!
+    au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+    autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

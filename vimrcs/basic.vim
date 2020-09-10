@@ -71,8 +71,8 @@ set foldcolumn=1
 
 set relativenumber
 augroup toggle_relative_number
-  autocmd InsertEnter * :setlocal norelativenumber
-  autocmd InsertLeave * :setlocal relativenumber
+    autocmd InsertEnter * :setlocal norelativenumber
+    autocmd InsertLeave * :setlocal relativenumber
 augroup end
 
 """"""""""""""""""""""""""""""
@@ -119,8 +119,8 @@ set noswapfile
 "    means that you can undo even when you close a buffer/VIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 try
-  set undodir=~/.config/nvim/temp_dirs
-  set undofile
+    set undodir=~/.config/nvim/temp_dirs
+    set undofile
 catch
 endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -184,8 +184,8 @@ map <leader>tt :tabnext <cr>
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 augroup tab_setup
-  autocmd!
-  au TabLeave * let g:lasttab = tabpagenr()
+    autocmd!
+    au TabLeave * let g:lasttab = tabpagenr()
 augroup end
 
 " Opens a new tab with the current buffer's path
@@ -197,17 +197,17 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Specify the behavior when switching between buffers
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
 
 augroup buffer_setup
-  autocmd!
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  au FocusGained,BufEnter * checktime
+    autocmd!
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au FocusGained,BufEnter * checktime
 augroup end
 
 
@@ -247,14 +247,14 @@ nnoremap <leader>w :update<cr>
 " <F8> | Color scheme selector
 " ----------------------------------------------------------------------------
 function! s:rotate_colors()
-  if !exists('s:colors')
-    let s:colors = s:colors()
-  endif
-  let name = remove(s:colors, 0)
-  call add(s:colors, name)
-  execute 'colorscheme' name
-  redraw
-  echo name
+    if !exists('s:colors')
+        let s:colors = s:colors()
+    endif
+    let name = remove(s:colors, 0)
+    call add(s:colors, name)
+    execute 'colorscheme' name
+    redraw
+    echo name
 endfunction
 nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
 
@@ -318,8 +318,8 @@ iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
 " Make sure that enter is never overriden in the quickfix window
 augroup quickfix_setup
-  autocmd!
-  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+    autocmd!
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 augroup end
 
 
@@ -328,75 +328,75 @@ augroup end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
-  let save_cursor = getpos(".")
-  let old_query = getreg('/')
-  silent! %s/\s\+$//e
-  call setpos('.', save_cursor)
-  call setreg('/', old_query)
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
 endfun
 
 " Returns true if paste mode is enabled
 function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  endif
-  return ''
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
 endfunction
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-  let l:currentBufNum = bufnr("%")
-  let l:alternateBufNum = bufnr("#")
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
 
-  if buflisted(l:alternateBufNum)
-    buffer #
-  else
-    bnext
-  endif
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
 
-  if bufnr("%") == l:currentBufNum
-    new
-  endif
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
 
-  if buflisted(l:currentBufNum)
-    execute("bdelete! ".l:currentBufNum)
-  endif
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
 endfunction
 
 function! CmdLine(str)
-  call feedkeys(":" . a:str)
+    call feedkeys(":" . a:str)
 endfunction
 
 func! DeleteTillSlash()
-  let g:cmd = getcmdline()
+    let g:cmd = getcmdline()
 
-  if has("win16") || has("win32")
-    let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
-  else
-    let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
-  endif
-
-  if g:cmd == g:cmd_edited
     if has("win16") || has("win32")
-      let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
+        let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
     else
-      let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
+        let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
     endif
-  endif
 
-  return g:cmd_edited
+    if g:cmd == g:cmd_edited
+        if has("win16") || has("win32")
+            let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
+        else
+            let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
+        endif
+    endif
+
+    return g:cmd_edited
 endfunc
 
 func! CurrentFileDir(cmd)
-  return a:cmd . " " . expand("%:p:h") . "/"
+    return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
 
 function! s:colors(...)
-  return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
-        \                  'v:val !~ "^/usr/"'),
-        \           'fnamemodify(v:val, ":t:r")'),
-        \       '!a:0 || stridx(v:val, a:1) >= 0')
+    return filter(map(filter(split(globpath(&rtp, 'colors/*.vim'), "\n"),
+                \                  'v:val !~ "^/usr/"'),
+                \           'fnamemodify(v:val, ":t:r")'),
+                \       '!a:0 || stridx(v:val, a:1) >= 0')
 
 endfunction
 
