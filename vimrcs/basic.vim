@@ -271,10 +271,16 @@ nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copy paste
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <Leader>y "*y
-noremap <Leader>p "*p
-noremap <Leader>Y "+y
-noremap <Leader>P "+p
+if has("mac")
+    noremap <Leader>y "*y
+    noremap <Leader>p "*p
+elseif has("unix")
+    noremap <Leader>Y "+y
+    noremap <Leader>P "+p
+elseif has("win32")
+    noremap <Leader>y "*y
+    noremap <Leader>p "*p
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
