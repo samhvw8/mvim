@@ -271,15 +271,18 @@ nnoremap <silent> <F8> :call <SID>rotate_colors()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Copy paste
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("mac")
+let uname = substitute(system('uname'), '\n', '', '')
+if uname == 'Darwin'
     noremap <Leader>y "*y
     noremap <Leader>p "*p
-elseif has("unix")
+elseif  uname == 'Linux'
+    " do linux/mac command
     noremap <Leader>Y "+y
     noremap <Leader>P "+p
-elseif has("win32")
+else " windows
     noremap <Leader>y "*y
     noremap <Leader>p "*p
+    " do windows command
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
