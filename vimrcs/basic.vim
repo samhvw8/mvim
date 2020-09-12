@@ -277,8 +277,8 @@ if uname == 'Darwin'
     noremap <Leader>p "*p
 elseif  uname == 'Linux'
     " do linux/mac command
-    noremap <Leader>Y "+y
-    noremap <Leader>P "+p
+    noremap <leader>y "+y
+    noremap <leader>p "+p
 else " windows
     noremap <Leader>y "*y
     noremap <Leader>p "*p
