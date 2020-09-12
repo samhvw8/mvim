@@ -192,6 +192,22 @@ augroup auto_format_config
     autocmd BufWritePre *.libsonnet call jsonnet#Format()
 augroup end
 
+augroup disable_when_file_too_long
+
+    let g:max_line = 500 " 500 line"
+
+    autocmd!
+    au BufReadPre *
+                \ let f=expand("<afile>") |
+                \ if trim(system("wc -l ".f."|  awk '{print $1}'")) > g:max_line |
+                \ setlocal bufhidden=unload |
+                \ let g:formatters_json = [] |
+                \ let g:autoformat_autoindent = 0 |
+                \ else |
+                \ endif
+
+augroup end
+
 augroup disable_json_large
 
     let g:large_file = 10485760 " 10MB
