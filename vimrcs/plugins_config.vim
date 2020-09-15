@@ -1084,13 +1084,6 @@ let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug 'liuchengxu/vim-which-key'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>g3 :diffget //3<CR>
-nmap <leader>g2 :diffget //2<CR>
-nmap <leader>g1 :G<CR>
-nmap <leader>gg :GFiles?<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/andrewradev/multichange.vim 
@@ -1149,3 +1142,21 @@ map <leader>S <Plug>Sneak_S
 
 nmap [t :tabprevious<CR>
 nmap ]t :tabnext<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  git-fugitive
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <leader>g3 :diffget //3<CR>
+nmap <leader>g2 :diffget //2<CR>
+nmap <leader>g1 :G<CR>
+nmap <leader>gg :GFiles?<CR>
+nmap <leader>gc :Gdiffsplit!<CR>
+set diffopt+=vertical
+
+
+
+
+
+
