@@ -188,6 +188,11 @@ augroup auto_format_config
                 \ let g:autoformat_autoindent = 1 |
                 \ let g:autoformat_retab = 1
 
+    au BufNewFile,BufRead *.py
+                \ let g:autoformat_remove_trailing_spaces = 1 |
+                \ let g:autoformat_autoindent = 0 |
+                \ let g:autoformat_retab = 1
+
     autocmd BufWritePre *.jsonnet call jsonnet#Format()
     autocmd BufWritePre *.libsonnet call jsonnet#Format()
 augroup end
