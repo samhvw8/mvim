@@ -87,7 +87,9 @@ Plug 'luochen1990/rainbow'
 Plug 'mechatroner/rainbow_csv'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
-Plug 'jaxbot/semantic-highlight.vim'
+" Plug 'jaxbot/semantic-highlight.vim'
+" Plug 'osyo-manga/vim-brightest'
+" Plug 'itchyny/vim-cursorword'
 Plug 'neoclide/jsonc.vim'
 Plug 'tjdevries/coc-zsh'
 Plug 'sheerun/vim-polyglot' " for all lang syntax
@@ -163,7 +165,7 @@ nnoremap gsj :SplitjoinJoin<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-autoformat
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:autoformat_autoindent = 1
+let g:autoformat_autoindent = 0
 let g:autoformat_retab = 1
 let g:autoformat_remove_trailing_spaces = 0
 augroup mvimAutoFormatConfig
@@ -221,14 +223,10 @@ augroup disable_json_large
     au BufReadPre *
                 \ let f=expand("<afile>") |
                 \ if getfsize(f) > g:large_file |
-                \ set eventignore+=FileType |
-                \ setlocal bufhidden=unload |
-                \ let g:formatters_json = [] |
                 \ let g:autoformat_autoindent = 0 |
                 \ let g:autoformat_retab = 0 |
                 \ let g:autoformat_remove_trailing_spaces = 0 |
                 \ else |
-                \ set eventignore-=FileType |
                 \ endif
 
 augroup end
@@ -244,7 +242,7 @@ augroup end
 " \ 'coc-emoji',
 " \ 'coc-omni',
 let g:coc_global_extensions = [
-            \ 'coc-react-refactor',
+            \ 'coc-actions',
             \ 'coc-clangd',
             \ 'coc-css',
             \ 'coc-cssmodules',
@@ -269,6 +267,7 @@ let g:coc_global_extensions = [
             \ 'coc-prettier',
             \ 'coc-project',
             \ 'coc-python',
+            \ 'coc-react-refactor',
             \ 'coc-rls',
             \ 'coc-sh',
             \ 'coc-snippets',
@@ -371,8 +370,8 @@ endfunction
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
 " nmap <leader>qa  <Plug>(coc-codeaction)
@@ -500,6 +499,16 @@ omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
+
+""""""""""""""""""""""""""""""
+" => https://github.com/iamcco/coc-actions
+""""""""""""""""""""""""""""""
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
 
 """"""""""""""""""""""""""""""
 " => ZenCoding
@@ -1161,6 +1170,55 @@ nmap <leader>gc :Gdiffsplit!<CR>
 set diffopt+=vertical
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" osyo-manga/vim-brightest
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" highlight HCW guifg=#373737 guibg=#00B0FF gui=bold
+"
+" let g:brightest#highlight = {
+" \   'group'    : 'HCW',
+" \ }
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" itchyny/vim-cursorword
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" highlight HCW guifg=#00B0FF guibg=None gui=None
+"
+" let g:cursorword_highlight = 0
+" highlight! link CursorWord0 HCW
+" highlight! link CursorWord1 HCW
+" let g:cursorword_delay = 150
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jaxbot/semantic-highlight.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" augroup vimrc_highlighting
+"   autocmd!
+
+  " junegunn/rainbow_parentheses.vim
+  " autocmd FileType coffee,java,javascript,typescript,json,php,sass,scss,vim :RainbowParentheses
+
+  " jaxbot/semantic-highlight.vim
+  " autocmd CursorHold *.jsx,*.js,*.tsx,*.ts,*.java,*.py,*.rb,*.c,*.cpp,*.rs,*.go,*.php,*.scala :SemanticHighlight
+" augroup end
+
+" let g:semanticTermColors = [1,2,3,4,5,6,7,25,9,10,12,13,14,15,16,17,19,20]
+" let s:semanticGUIColors = [ '#72d572', '#c5e1a5', '#e6ee9c', '#fff59d', '#ffe082', '#ffcc80', '#ffab91', '#bcaaa4', '#b0bec5', '#ffa726', '#ff8a65', '#f9bdbb', '#f9bdbb', '#f8bbd0', '#e1bee7', '#d1c4e9', '#ffe0b2', '#c5cae9', '#d0d9ff', '#b3e5fc', '#b2ebf2', '#b2dfdb', '#a3e9a4', '#dcedc8' , '#f0f4c3', '#ffb74d' ]
+" let g:semanticEnableFileTypes = {
+"       \ 'javascript': 'js',
+"       \ 'typescript': 'ts',
+"       \ 'coffee': 'coffee',
+"       \ 'vim': 'vim',
+"       \ 'java': 'java',
+"       \ 'php': 'php',
+"       \ }
+" let g:semanticUseCache = 1
+" let g:semanticPersistCache = 1
 
 
 
