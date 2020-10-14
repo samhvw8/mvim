@@ -1,5 +1,13 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" polyglot
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:polyglot_disabled = ['markdown', 'vue', 'csv']
+
+
 """"""""""""""""""""""""""""""
 let g:matchup_surround_enabled = 1
+
 " => Load junegunn/vim-plug
 """"""""""""""""""""""""""""""
 let s:mvim = stdpath('config')
@@ -70,13 +78,16 @@ Plug 'kkoomen/vim-doge'  " doc genrernator <Leader>d
 Plug 'romainl/vim-cool'                   | " Awesome search highlighting
 
 " text object visual, select ..
-Plug 'andymass/vim-matchup'
 " Plug 'kana/vim-textobj-function'
-" Plug 'kana/vim-textobj-indent' " for expand region
-" Plug 'kana/vim-textobj-syntax'
+
+Plug 'andymass/vim-matchup'
+Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-user' " for expand region
 Plug 'coderifous/textobj-word-column.vim'
+Plug 'saihoooooooo/vim-textobj-space'
+" Plug 'michaeljsmith/vim-indent-object' get bug ??
 Plug 'wellle/targets.vim'
+
 Plug 'editorconfig/editorconfig-vim'    " .editorconfig support
 
 " Lang & syntax
@@ -88,12 +99,11 @@ Plug 'mechatroner/rainbow_csv'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pearofducks/ansible-vim', { 'do': './UltiSnips/generate.sh' }
 " Plug 'jaxbot/semantic-highlight.vim'
-" Plug 'osyo-manga/vim-brightest'
-" Plug 'itchyny/vim-cursorword'
 Plug 'neoclide/jsonc.vim'
-Plug 'tjdevries/coc-zsh'
 Plug 'sheerun/vim-polyglot' " for all lang syntax
 " Plug 'styled-components/vim-styled-components', { 'branch': 'main' } " for css lib
+
+" Plug 'osyo-manga/vim-brightest'
 
 Plug 'liuchengxu/vista.vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -102,7 +112,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'arecarn/vim-fold-cycle'
 Plug 'alvan/vim-closetag'
-Plug 'dhruvasagar/vim-dotoo' " orgmode like
+" Plug 'dhruvasagar/vim-dotoo' " orgmode like
 Plug 'kenn7/vim-arsync' " rsync support
 Plug 'ryanoasis/vim-devicons'
 
@@ -111,21 +121,20 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
 " Plug 'AndrewRadev/linediff.vim'
 
-Plug 'vimgineers/vim-hugefile'
 " Window chooser
 " Plug 't9md/vim-choosewin'
 Plug 'vim-scripts/scratch.vim'
-" Plug 'gilsondev/searchtasks.vim' " Plugin to search the labels often used as TODO, FIXME and XXX.
 Plug 'roxma/nvim-yarp'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tomtom/tcomment_vim'
-Plug 'antoinemadec/coc-fzf'
 Plug 'voldikss/vim-floaterm'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Plug 'AndrewRadev/multichange.vim'
 
+Plug 'antoinemadec/coc-fzf'
+Plug 'tjdevries/coc-zsh'
 
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'leafOfTree/vim-vue-plugin'
@@ -159,8 +168,8 @@ hi Visual term=reverse cterm=reverse guibg=Grey
 
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
-nnoremap gss :SplitjoinSplit<cr>
-nnoremap gsj :SplitjoinJoin<cr>
+nnoremap gs :SplitjoinSplit<cr>
+nnoremap gS :SplitjoinJoin<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim-autoformat
@@ -374,7 +383,7 @@ endfunction
 " nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
-" nmap <leader>qa  <Plug>(coc-codeaction)
+nmap <leader>qa  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
@@ -403,11 +412,11 @@ nnoremap <silent> <leader>l1 :<C-u>CocFzfList<CR>
 " Get available commands
 nnoremap <silent> <leader>lc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <leader>ld :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
+" nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
 
 nnoremap <silent> <leader>le :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> <leader>lr :<C-u>CocFzfListResume<CR>
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>rs :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
@@ -430,52 +439,58 @@ highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse
 " => fzf.vim
 """"""""""""""""""""""""""""""
 command! -bang -nargs=* GGrep
-            \ call fzf#vim#grep(
-            \   'git grep --line-number '.shellescape(<q-args>), 0,
-            \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
+        \ call fzf#vim#grep(
+        \   'git grep --line-number '.shellescape(<q-args>), 0,
+        \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
 
 command! -bang -nargs=? -complete=dir Files
-            \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+        \ call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'cat {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
-            \ call fzf#vim#grep(
-            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-            \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+        \ call fzf#vim#grep(
+        \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+        \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 command! -bang -nargs=* RG
-            \ call fzf#vim#grep(
-            \   'rg --ignore-vcs --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-            \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+        \ call fzf#vim#grep(
+        \   'rg --ignore-vcs --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+        \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 
 " All files
 command! -nargs=? -complete=dir AF
-            \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-            \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
-            \ })))
+        \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+        \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+        \ })))
 
 let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
-            \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-            \ 'hl+':     ['fg', 'Statement'],
-            \ 'info':    ['fg', 'PreProc'],
-            \ 'border':  ['fg', 'Ignore'],
-            \ 'prompt':  ['fg', 'Conditional'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['fg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
+        \ { 'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'border':  ['fg', 'Ignore'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header':  ['fg', 'Comment'] }
 
 
-nmap <LEADER>j :Files<CR>
 nmap <LEADER>o :Buffers<CR>
 nnoremap <m-\> :Rg<CR>
 nnoremap <m-f> :RG<CR>
 nnoremap <m-p> :GFiles<CR>
+nmap <m-P> :Files<CR>
+
+let g:tasks_anotation_list = ['TODO', 'FIXME', 'XXX']
+
+command! -nargs=0 TODO execute "RG (" . join(g:tasks_anotation_list, "|") . ")"
+nnoremap <m-1> :TODO<CR>
+
 
 " Terminal buffer options for fzf
 autocmd! FileType fzf
@@ -565,7 +580,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='wombat'
+let g:airline_theme='dracula'
 let g:airline#extensions#vista#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
@@ -790,30 +805,9 @@ augroup commmentary_setup
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indent Guides
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_color_change_percent = 1
-let g:indent_guides_exclude_filetypes = ['help', 'startify', 'fzf', 'openterm', 'neoterm', 'calendar']
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " table mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:table_mode_corner = '|'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nvim-colorizer.lua
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" lua require 'colorizer'.setup()
-
-
-
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -849,8 +843,6 @@ let g:matchup_matchpref.html = {'tagnameonly': 1}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Yggdroot/indentLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 autocmd! User indentLine doautocmd indentLine Syntax
@@ -929,10 +921,6 @@ let g:vista#renderer#icons = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:doge_doc_standard_python = 'numpy'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" polyglot
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:polyglot_disabled = ['markdown', 'vue']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " arecarn/vim-fold-cycle
@@ -1043,11 +1031,6 @@ let g:choosewin_overlay_enable = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jsonnet_fmt_on_save = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gilsondev/searchtasks.vim 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:searchtasks_list=["TODO", "FIXME", "XXX"]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/mzlogin/vim-markdown-toc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1164,6 +1147,8 @@ nmap ]t :tabnext<CR>
 
 nmap <leader>g3 :diffget //3<CR>
 nmap <leader>g2 :diffget //2<CR>
+vmap <leader>g3 :'<,'>diffget //3<CR>
+vmap <leader>g2 :'<,'>diffget //2<CR>
 nmap <leader>g1 :G<CR>
 nmap <leader>gg :GFiles?<CR>
 nmap <leader>gc :Gdiffsplit!<CR>
@@ -1175,7 +1160,7 @@ set diffopt+=vertical
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " highlight HCW guifg=#373737 guibg=#00B0FF gui=bold
-"
+
 " let g:brightest#highlight = {
 " \   'group'    : 'HCW',
 " \ }

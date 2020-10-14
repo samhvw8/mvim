@@ -153,8 +153,7 @@ set cursorline
 " map <s-space> /
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
+" map <silent> <leader><cr> :noh<cr>
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -291,7 +290,7 @@ endif
 map <leader>xm :e ~/buffer.md<cr>
 map <leader>xo :e ~/buffer.org<cr>
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" map <leader>pp :setlocal paste!<cr>
 
 
 " :W sudo saves the file
@@ -409,28 +408,14 @@ function! s:colors(...)
 
 endfunction
 
+let g:python3_host_prog = "/usr/local/bin/python"
+let g:node_host_prog = "/usr/local/bin/neovim-node-host"
+let g:coc_node_path = '/usr/local/bin/node' 
 
 
-" ----------------------------------------------------------------------------
-" Todo
-" ----------------------------------------------------------------------------
-" function! s:todo() abort
-"   let entries = []
-"   for cmd in ['git grep -niI -e TODO -e FIXME -e XXX 2> /dev/null',
-"             \ 'grep -rniI -e TODO -e FIXME -e XXX * 2> /dev/null']
-"     let lines = split(system(cmd), '\n')
-"     if v:shell_error != 0 | continue | endif
-"     for line in lines
-"       let [fname, lno, text] = matchlist(line, '^\([^:]*\):\([^:]*\):\(.*\)')[1:3]
-"       call add(entries, { 'filename': fname, 'lnum': lno, 'text': text })
-"     endfor
-"     break
-"   endfor
+function! BreakHere()
+    s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
+    call histdel("/", -1)
+endfunction
 
-"   if !empty(entries)
-"     call setqflist(entries)
-"     copen
-"   endif
-" endfunction
-" command! Todo call s:todo()
-
+nnoremap <M-J> :<C-u>call BreakHere()<CR>
