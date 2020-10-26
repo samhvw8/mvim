@@ -102,7 +102,12 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-set signcolumn=yes
+if has("patch-8.1.1564")
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -419,3 +424,5 @@ function! BreakHere()
 endfunction
 
 nnoremap <M-J> :<C-u>call BreakHere()<CR>
+
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor

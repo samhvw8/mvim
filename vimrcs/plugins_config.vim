@@ -303,7 +303,6 @@ inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ coc#refresh()
-
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -312,16 +311,23 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-    " Use `complete_info` if your (Neo)Vim version supports it.
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+" if has('patch8.1.1068')
+"     " Use `complete_info` if your (Neo)Vim version supports it.
+"     inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"     imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -340,8 +346,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
-    else
+    elseif (coc#rpc#ready())
         call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
     endif
 endfunction
 
@@ -359,22 +367,12 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup coc_setup
     autocmd!
-    autocmd ColorScheme * call s:Highlight()
     " setup formatexpr specified filetype(s).
     autocmd filetype typescript,json setl formatexpr=CocAction('formatselected')
     autocmd User CocQuickfixChange :CocList --normal quickfix
     " update signature help on jump placeholder.
     autocmd user cocjumpplaceholder call CocActionAsync('showsignaturehelp')
 augroup end
-
-function! s:Highlight() abort
-    call matchadd('ColorColumn', '\%81v', 100)
-    hi ColorColumn ctermbg=magenta ctermfg=0 guibg=#333333
-    hi CocUnderline gui=underline term=underline
-    hi CocErrorHighlight ctermfg=red  guifg=#c4384b gui=underline term=underline
-    hi CocWarningHighlight ctermfg=yellow guifg=#c4ab39 gui=underline term=underline
-    hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
-endfunction
 
 
 " Applying codeAction to the selected region.
@@ -400,6 +398,13 @@ omap ac <Plug>(coc-classobj-a)
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
+
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 
@@ -407,12 +412,12 @@ nnoremap <silent> <leader>lo :<C-u>CocFzfList outline<CR>
 " Get symbols
 nnoremap <silent> <leader>ls :<C-u>Vista finder<CR>
 " Get errors
-nnoremap <silent> <leader>ll :<C-u>CocFzfList locationlist<CR>
+nnoremap <silent> <leader>ll :<C-u>CocFzfList location<CR>
 nnoremap <silent> <leader>l1 :<C-u>CocFzfList<CR>
 " Get available commands
 nnoremap <silent> <leader>lc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <leader>ld :<C-u>CocFzfList diagnostics<CR>
-" nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
+nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
 
 nnoremap <silent> <leader>le :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> <leader>lr :<C-u>CocFzfListResume<CR>
@@ -497,6 +502,11 @@ autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+
+" let g:fzf_preview_window = 'right:60%'
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
 """"""""""""""""""""""""""""""
 " => coc-git
 """"""""""""""""""""""""""""""
