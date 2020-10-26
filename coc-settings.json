@@ -1,5 +1,7 @@
 {
   "coc.preferences.colorSupport": true,
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.useQuickfixForLocations": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "python",
     "css",
@@ -12,6 +14,7 @@
     "json"
   ],
   "codeLens.enable": true,
+  /* "javascript.validate.enable": false, */
   "diagnostic.displayByAle": false,
   "diagnostic.enableSign": true,
   "diagnostic.messageTarget": "float",
@@ -20,84 +23,6 @@
   "diagnostic.virtualText": true,
   "json.enable": true,
   "json.format.enable": true,
-  "explorer.keyMappings": {
-    "i": false, // cancel default mapkey
-    "gk": "expandablePrev",
-    "gj": "expandableNext",
-    "*": "toggleSelection",
-    "<tab>": "actionMenu",
-    "h": "collapse",
-    "l": [
-      "expandable?",
-      "expand",
-      "open"
-    ],
-    "J": [
-      "toggleSelection",
-      "nodeNext"
-    ],
-    "K": [
-      "toggleSelection",
-      "nodePrev"
-    ],
-    "gl": "expandRecursive",
-    "gh": "collapseRecursive",
-    "<2-LeftMouse>": [
-      "expandable?",
-      [
-        "expanded?",
-        "collapse",
-        "expand"
-      ],
-      "open"
-    ],
-    "o": [
-      "expanded?",
-      "collapse",
-      "expand"
-    ],
-    "<cr>": [
-      "expandable?",
-      "cd",
-      "open"
-    ],
-    "e": "open",
-    "s": "open:split",
-    "S": "open:split:plain",
-    "E": "open:vsplit",
-    "t": "open:tab",
-    "<bs>": "gotoParent",
-    "gp": "preview:labeling",
-    "y": "copyFilepath",
-    "Y": "copyFilename",
-    "c": "copyFile",
-    "x": "cutFile",
-    "p": "pasteFile",
-    "d": "delete",
-    "D": "deleteForever",
-    "a": "addFile",
-    "A": "addDirectory",
-    "r": "rename",
-    ".": "toggleHidden",
-    "R": "refresh",
-    "?": "help",
-    "q": "quit",
-    "<esc>": "esc",
-    "X": "systemExecute",
-    "gd": "listDrive",
-    "f": "search",
-    "F": "searchRecursive",
-    "gf": "gotoSource:file",
-    "gb": "gotoSource:buffer",
-    "[[": "sourcePrev",
-      "]]": "sourceNext",
-      "[d": "diagnosticPrev",
-        "]d": "diagnosticNext",
-        "[c": "gitPrev",
-          "]c": "gitNext",
-          "<<": "gitStage",
-          ">>": "gitUnstage"
-  },
   "json.schemas": [
     {
       "fileMatch": [
@@ -127,7 +52,6 @@
   "python.linting.pylintEnabled": true,
   "signature.enable": true,
   "signature.target": "float",
-  "suggest.echodocSupport": true,
   "tslint.autoFixOnSave": false,
   "tslint.jsEnable": true,
   "tslint.suppressWhileTypeErrorsPresent": false,
@@ -196,4 +120,5 @@
   "git.removedSign.hlGroup": "",
   "git.topRemovedSign.hlGroup": "",
   "git.changeRemovedSign.htruelGroup": "",
+  "suggest.floatEnable": true
 }
