@@ -14,8 +14,7 @@ let s:mvim = stdpath('config')
 call plug#begin(s:mvim. '/plugged')
 
 Plug 'junegunn/vim-plug'
-Plug 'arielrossanigo/dir-configs-override.vim'
-
+Plug 'ryanoasis/vim-devicons'
 " Colors
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arzg/vim-colors-xcode'
@@ -51,9 +50,7 @@ Plug 'mattn/webapi-vim'
 " Interface
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'liuchengxu/nerdtree-dash'
-Plug 'jistr/vim-nerdtree-tabs'
 
 Plug 'Yggdroot/indentLine'
 Plug 'amix/vim-zenroom2'
@@ -114,7 +111,6 @@ Plug 'arecarn/vim-fold-cycle'
 Plug 'alvan/vim-closetag'
 " Plug 'dhruvasagar/vim-dotoo' " orgmode like
 Plug 'kenn7/vim-arsync' " rsync support
-Plug 'ryanoasis/vim-devicons'
 
 
 Plug 'AndrewRadev/splitjoin.vim'
@@ -575,6 +571,17 @@ let g:DevIconsEnableFolderExtensionPatternMatching = 1
 let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
 let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
 let NERDTreeNodeDelimiter = "\u263a" " smiley face
+
+let g:NERDTreeLimitedSyntax = 1
+
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
+let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'cpp', 'php', 'rb', 'js', 'css', 'html'] " enabled extensions with default colors
+let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
+
+
+let g:NERDTreeHighlightCursorline = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => surround.vim config
