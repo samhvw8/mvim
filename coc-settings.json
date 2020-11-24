@@ -120,5 +120,6 @@
   "git.removedSign.hlGroup": "",
   "git.topRemovedSign.hlGroup": "",
   "git.changeRemovedSign.htruelGroup": "",
-  "suggest.floatEnable": true
+  "suggest.floatEnable": true,
+  "typescript.preferences.importModuleSpecifier": "relative"
 }
