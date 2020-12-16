@@ -471,8 +471,9 @@ command! -bang -nargs=* RG
 " All files
 command! -nargs=? -complete=dir AF
         \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-        \   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
+        \   'source': 'fd --type f --hidden --follow --exclude .git .'.expand(<q-args>)
         \ })))
+
 
 let g:fzf_colors =
         \ { 'fg':      ['fg', 'Normal'],
@@ -493,7 +494,7 @@ let g:fzf_colors =
 nmap <LEADER>o :Buffers<CR>
 nnoremap <m-\> :Rg<CR>
 nnoremap <m-f> :RG<CR>
-nnoremap <m-p> :GFiles<CR>
+nnoremap <m-p> :AF <CR>
 nmap <m-P> :Files<CR>
 
 let g:tasks_anotation_list = ['TODO', 'FIXME', 'XXX']
@@ -501,6 +502,12 @@ let g:tasks_anotation_list = ['TODO', 'FIXME', 'XXX']
 command! -nargs=0 TODO execute "RG (" . join(g:tasks_anotation_list, "|") . ")"
 nnoremap <m-1> :TODO<CR>
 
+command! -nargs=? -complete=dir ProjectFiles
+        \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+        \   'source': 'fd --type f --hidden --follow --exclude .git . ~/workspace'.expand(<q-args>)
+        \ })))
+
+nnoremap <m-!> :ProjectFiles<CR>
 
 " Terminal buffer options for fzf
 autocmd! FileType fzf
@@ -1045,12 +1052,11 @@ augroup ansible_vim_fthosts
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pearofducks/ansible-vim
+" Plug 't9md/vim-choosewin'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap  <M-w>  <Plug>(choosewin)
-let g:choosewin_overlay_enable = 1
-
+" nmap  <M-w>  <Plug>(choosewin)
+" let g:choosewin_overlay_enable = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " google/vim-jsonnet
