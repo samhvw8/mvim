@@ -107,7 +107,7 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Plug 'brooth/far.vim' " find and replace all project
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'arecarn/vim-fold-cycle'
+" Plug 'arecarn/vim-fold-cycle'
 Plug 'alvan/vim-closetag'
 " Plug 'dhruvasagar/vim-dotoo' " orgmode like
 Plug 'kenn7/vim-arsync' " rsync support
@@ -959,9 +959,9 @@ let g:doge_doc_standard_python = 'numpy'
 " arecarn/vim-fold-cycle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:fold_cycle_default_mapping = 0 "disable default mappings
-nmap <Tab><Tab> <Plug>(fold-cycle-open)
-nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
+" let g:fold_cycle_default_mapping = 0 "disable default mappings
+" nmap <Tab><Tab> <Plug>(fold-cycle-open)
+" nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
 
 
 
