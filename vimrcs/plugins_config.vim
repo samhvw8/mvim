@@ -448,6 +448,13 @@ highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse
 """"""""""""""""""""""""""""""
 " => fzf.vim
 """"""""""""""""""""""""""""""
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
+
 command! -bang -nargs=* GGrep
         \ call fzf#vim#grep(
         \   'git grep --line-number '.shellescape(<q-args>), 0,
