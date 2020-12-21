@@ -410,8 +410,8 @@ endif
 
 
 
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
 nnoremap <silent> <leader>lo :<C-u>CocFzfList outline<CR>
 " Get symbols
