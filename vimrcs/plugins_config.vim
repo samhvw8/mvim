@@ -247,7 +247,6 @@ augroup end
 " \ 'coc-emoji',
 " \ 'coc-omni',
 let g:coc_global_extensions = [
-            \ 'coc-actions',
             \ 'coc-clangd',
             \ 'coc-css',
             \ 'coc-cssmodules',
@@ -393,19 +392,19 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " NeoVim-only mapping for visual mode scroll
 " Useful on signatureHelp after jump placeholder of snippet expansion
 if has('nvim')
-  vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
-  vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
+vnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#nvim_scroll(1, 1) : "\<C-f>"
+vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
 endif
 
 
@@ -436,7 +435,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 """"""""""""""""""""""""""""""
 " coc yank
@@ -449,11 +448,20 @@ highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse
 " => fzf.vim
 """"""""""""""""""""""""""""""
 
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
+
+function! s:build_quickfix_list(lines)
+call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+copen
+cc
+endfunction
+
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
+        \ 'ctrl-q': function('s:build_quickfix_list'),
+        \ 'ctrl-t': 'tab split',
+        \ 'ctrl-s': 'split',
+        \ 'ctrl-v': 'vsplit'
+        \}
 
 command! -bang -nargs=* GGrep
         \ call fzf#vim#grep(
@@ -461,7 +469,7 @@ command! -bang -nargs=* GGrep
         \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
 
 command! -bang -nargs=? -complete=dir Files
-        \ call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'cat {}']}, <bang>0)
+        \ call fzf#vim#files(<q-args>, {'options': [ '--info=inline',  '--bind', 'alt-a:select-all,alt-d:deselect-all', '--preview', 'bat {}']}, <bang>0)
 
 command! -bang -nargs=* Rg
         \ call fzf#vim#grep(
@@ -478,25 +486,28 @@ command! -bang -nargs=* RG
 " All files
 command! -nargs=? -complete=dir AF
         \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+        \ 'options': [ '--multi','--info=inline',  '--bind', 'alt-a:select-all,alt-d:deselect-all', ],
         \   'source': 'fd --type f --hidden --follow --exclude .git .'.expand(<q-args>)
         \ })))
 
 
 let g:fzf_colors =
-        \ { 'fg':      ['fg', 'Normal'],
-        \ 'bg':      ['bg', 'Normal'],
-        \ 'hl':      ['fg', 'Comment'],
-        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-        \ 'hl+':     ['fg', 'Statement'],
-        \ 'info':    ['fg', 'PreProc'],
-        \ 'border':  ['fg', 'Ignore'],
-        \ 'prompt':  ['fg', 'Conditional'],
-        \ 'pointer': ['fg', 'Exception'],
-        \ 'marker':  ['fg', 'Keyword'],
-        \ 'spinner': ['fg', 'Label'],
-        \ 'header':  ['fg', 'Comment'] }
+    \ { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
 
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 nmap <LEADER>o :Buffers<CR>
 nnoremap <m-\> :Rg<CR>
@@ -510,9 +521,9 @@ command! -nargs=0 TODO execute "RG (" . join(g:tasks_anotation_list, "|") . ")"
 nnoremap <m-1> :TODO<CR>
 
 command! -nargs=? -complete=dir ProjectFiles
-        \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-        \   'source': 'fd --type f --hidden --follow --exclude .git . ~/workspace'.expand(<q-args>)
-        \ })))
+    \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
+    \   'source': 'fd --type f --hidden --follow --exclude .git . ~/workspace'.expand(<q-args>)
+    \ })))
 
 nnoremap <m-!> :ProjectFiles<CR>
 
@@ -529,7 +540,7 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 """"""""""""""""""""""""""""""
 " => coc-git
 """"""""""""""""""""""""""""""
-set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
+" set statusline^=%{get(g:,'coc_git_status','')}%{get(b:,'coc_git_status','')}%{get(b:,'coc_git_blame','')}
 
 " navigate chunks of current buffer
 nmap [h <Plug>(coc-git-prevchunk)
@@ -548,10 +559,10 @@ xmap ag <Plug>(coc-git-chunk-outer)
 " => https://github.com/iamcco/coc-actions
 """"""""""""""""""""""""""""""
 function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
+execute 'CocCommand actions.open ' . a:type
 endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 
 """"""""""""""""""""""""""""""
@@ -921,15 +932,15 @@ hi ReactLifeCycleMethods ctermfg=204 guifg=#D19A66
 " liuchengxu/vista.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! NearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
+" function! NearestMethodOrFunction() abort
+"     return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
 
 " By default vista.vim never run if you don't call it explicitly.
 "
 " If you want to show the nearest function in your statusline automatically,
 " you can add the following line to your vimrc
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 
