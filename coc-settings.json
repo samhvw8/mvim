@@ -96,6 +96,7 @@
       ]
     }
   },
+  "project.enable": false,
   "docker.enable": true,
   "languageserver": {},
   "cSpell.userWords": [
@@ -121,5 +122,6 @@
   "git.topRemovedSign.hlGroup": "",
   "git.changeRemovedSign.htruelGroup": "",
   "suggest.floatEnable": true,
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "prettier.eslintIntegration": false
 }

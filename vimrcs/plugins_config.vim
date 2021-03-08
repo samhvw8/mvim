@@ -54,7 +54,7 @@ Plug 'liuchengxu/nerdtree-dash'
 
 Plug 'Yggdroot/indentLine'
 Plug 'amix/vim-zenroom2'
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 Plug 'mbbill/undotree'
 
 
@@ -126,7 +126,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tomtom/tcomment_vim'
 " Plug 'voldikss/vim-floaterm'
 Plug 'dhruvasagar/vim-zoom'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Plug 'AndrewRadev/multichange.vim'
 
 Plug 'antoinemadec/coc-fzf'
@@ -417,14 +417,16 @@ nnoremap <silent> <leader>lo :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <leader>ls :<C-u>Vista finder<CR>
 " Get errors
 nnoremap <silent> <leader>ll :<C-u>CocFzfList location<CR>
-nnoremap <silent> <leader>l1 :<C-u>CocFzfList<CR>
 " Get available commands
 nnoremap <silent> <leader>lc :<C-u>CocFzfList commands<CR>
 nnoremap <silent> <leader>ld :<C-u>CocFzfList diagnostics<CR>
 nnoremap <silent> <leader>la :<C-u>CocFzfList actions<CR>
 
+nnoremap <silent> <m-2> :<C-u>CocFzfList<CR>
+nnoremap <silent> <m-3> :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> <m-4> :<C-u>CocFzfListResume<CR>
+
 nnoremap <silent> <leader>le :<C-u>CocFzfList extensions<CR>
-nnoremap <silent> <leader>lr :<C-u>CocFzfListResume<CR>
 nnoremap <leader>rs :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -434,7 +436,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 """"""""""""""""""""""""""""""
@@ -451,9 +452,9 @@ highlight HighlightedyankRegion term=bold cterm=reverse gui=reverse
 let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
 
 function! s:build_quickfix_list(lines)
-call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-copen
-cc
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
 endfunction
 
 let g:fzf_action = {
@@ -532,6 +533,8 @@ autocmd! FileType fzf
 autocmd  FileType fzf set noshowmode noruler nonu
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+let g:fzf_list_type = 2
 
 
 " let g:fzf_preview_window = 'right:60%'
@@ -627,10 +630,10 @@ let g:airline#extensions#vista#enabled = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vimroom
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:goyo_width=100
-let g:goyo_margin_top = 2
-let g:goyo_margin_bottom = 2
-nnoremap <silent> <leader>z :Goyo<cr>
+" let g:goyo_width=100
+" let g:goyo_margin_top = 2
+" let g:goyo_margin_bottom = 2
+" nnoremap <silent> <leader>z :Goyo<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
