@@ -44,12 +44,12 @@
       "url": "http://json.schemastore.org/package"
     }
   ],
-  "python.analysis.logLevel": "Trace",
+  /* "python.analysis.logLevel": "Trace", */
   "python.formatting.provider": "black",
-  "python.jediEnabled": true,
-  "python.jediPath": "/usr/local/lib/python3.8/site-packages",
+  /* "python.jediEnabled": true, */
+  /* "python.jediPath": "/usr/local/lib/python3.8/site-packages", */
   /* "python.linting.mypyEnabled": true, */
-  "python.linting.pylintEnabled": true,
+  /* "python.linting.pylintEnabled": true, */
   "signature.enable": true,
   "signature.target": "float",
   "tslint.autoFixOnSave": false,
@@ -96,7 +96,6 @@
       ]
     }
   },
-  "project.enable": false,
   "docker.enable": true,
   "languageserver": {},
   "cSpell.userWords": [
@@ -123,5 +122,11 @@
   "git.changeRemovedSign.htruelGroup": "",
   "suggest.floatEnable": true,
   "typescript.preferences.importModuleSpecifier": "relative",
-  "prettier.eslintIntegration": false
+  "project.enable": true,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "prettier.bracketSpacing": true,
+  "list.insertMappings": {
+    "<C-d>": "action:delete"
+  }
 }

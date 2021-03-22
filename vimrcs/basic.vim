@@ -244,6 +244,7 @@ map 0 ^
 
 
 nnoremap <leader>w :update<cr>
+nnoremap <leader>W :noa update<cr>
 
 
 

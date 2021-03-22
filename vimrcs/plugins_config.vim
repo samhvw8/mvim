@@ -43,7 +43,7 @@ Plug 'mattn/gist-vim'
 Plug 'tpope/vim-fugitive'
 
 Plug 'haya14busa/vim-asterisk'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 " Plug 'matze/vim-move'
 Plug 'mattn/webapi-vim'
 
@@ -134,6 +134,9 @@ Plug 'tjdevries/coc-zsh'
 
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'leafOfTree/vim-vue-plugin'
+" Plug 'prettier/vim-prettier', {
+  " \ 'do': 'yarn install',
+  " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 " Plug 'xavierchow/vim-swagger-preview'
 call plug#end()
@@ -178,9 +181,12 @@ augroup mvimAutoFormatConfig
     au BufWrite * :Autoformat
 augroup end
 let g:formatters_python = []
-
 let g:formatters_vue = []
 let g:formatters_javascript = []
+let g:formatters_typescript = []
+let g:formatters_json = []
+let g:formatters_css = []
+let g:formatters_html = []
 
 augroup auto_format_config
 
@@ -270,7 +276,7 @@ let g:coc_global_extensions = [
             \ 'coc-phpls',
             \ 'coc-prettier',
             \ 'coc-project',
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-react-refactor',
             \ 'coc-rls',
             \ 'coc-sh',
@@ -465,9 +471,9 @@ let g:fzf_action = {
         \}
 
 command! -bang -nargs=* GGrep
-        \ call fzf#vim#grep(
-        \   'git grep --line-number '.shellescape(<q-args>), 0,
-        \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0):
+      \ call fzf#vim#grep(
+      \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+      \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0], 'options': '--delimiter : --nth 3..'}), <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
         \ call fzf#vim#files(<q-args>, {'options': [ '--info=inline',  '--bind', 'alt-a:select-all,alt-d:deselect-all', '--preview', 'bat {}']}, <bang>0)
@@ -511,6 +517,7 @@ let g:fzf_colors =
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 nmap <LEADER>o :Buffers<CR>
+nnoremap <silent> <leader>/     :BLines<CR>
 nnoremap <m-\> :Rg<CR>
 nnoremap <m-f> :RG<CR>
 nnoremap <m-p> :AF <CR>
@@ -520,13 +527,6 @@ let g:tasks_anotation_list = ['TODO', 'FIXME', 'XXX']
 
 command! -nargs=0 TODO execute "RG (" . join(g:tasks_anotation_list, "|") . ")"
 nnoremap <m-1> :TODO<CR>
-
-command! -nargs=? -complete=dir ProjectFiles
-    \ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-    \   'source': 'fd --type f --hidden --follow --exclude .git . ~/workspace'.expand(<q-args>)
-    \ })))
-
-nnoremap <m-!> :ProjectFiles<CR>
 
 " Terminal buffer options for fzf
 autocmd! FileType fzf
@@ -1016,7 +1016,8 @@ nnoremap <c-x> :if !switch#Switch({'reverse': 1}) <bar>
 let g:switch_mapping = '-'
 let g:switch_custom_definitions = [
             \   ['MON', 'TUE', 'WED', 'THU', 'FRI'],
-            \   ['or', 'and']
+            \   ['or', 'and'],
+            \   ["public", "private", "protected"]
             \ ]
 
 
@@ -1064,13 +1065,6 @@ augroup ansible_vim_fthosts
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug 't9md/vim-choosewin'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" nmap  <M-w>  <Plug>(choosewin)
-" let g:choosewin_overlay_enable = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " google/vim-jsonnet
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jsonnet_fmt_on_save = 1
@@ -1107,23 +1101,6 @@ set timeoutlen=1000
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug 'voldikss/vim-floaterm'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let g:floaterm_keymap_toggle = '<F1>'
-" let g:floaterm_keymap_next   = '<F2>'
-" let g:floaterm_keymap_prev   = '<F3>'
-" let g:floaterm_keymap_new    = '<F4>'
-"
-" " Floaterm
-" let g:floaterm_gitcommit='floaterm'
-" let g:floaterm_autoinsert=1
-" let g:floaterm_width=0.8
-" let g:floaterm_height=0.8
-" let g:floaterm_wintitle=0
-" let g:floaterm_autoclose=1
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1159,14 +1136,14 @@ map <leader>bo :Bonly<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " https://github.com/justinmk/vim-sneak
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:sneak#label = 1
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-
-map <leader>s <Plug>Sneak_s
-map <leader>S <Plug>Sneak_S
+" let g:sneak#label = 1
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T
+"
+" map <leader>s <Plug>Sneak_s
+" map <leader>S <Plug>Sneak_S
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1198,57 +1175,9 @@ nmap <leader>gg :GFiles?<CR>
 nmap <leader>gc :Gdiffsplit!<CR>
 set diffopt+=vertical
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" osyo-manga/vim-brightest
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" highlight HCW guifg=#373737 guibg=#00B0FF gui=bold
-
-" let g:brightest#highlight = {
-" \   'group'    : 'HCW',
-" \ }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" itchyny/vim-cursorword
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" highlight HCW guifg=#00B0FF guibg=None gui=None
+" Plug 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 "
-" let g:cursorword_highlight = 0
-" highlight! link CursorWord0 HCW
-" highlight! link CursorWord1 HCW
-" let g:cursorword_delay = 150
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" jaxbot/semantic-highlight.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" augroup vimrc_highlighting
-"   autocmd!
-
-  " junegunn/rainbow_parentheses.vim
-  " autocmd FileType coffee,java,javascript,typescript,json,php,sass,scss,vim :RainbowParentheses
-
-  " jaxbot/semantic-highlight.vim
-  " autocmd CursorHold *.jsx,*.js,*.tsx,*.ts,*.java,*.py,*.rb,*.c,*.cpp,*.rs,*.go,*.php,*.scala :SemanticHighlight
-" augroup end
-
-" let g:semanticTermColors = [1,2,3,4,5,6,7,25,9,10,12,13,14,15,16,17,19,20]
-" let s:semanticGUIColors = [ '#72d572', '#c5e1a5', '#e6ee9c', '#fff59d', '#ffe082', '#ffcc80', '#ffab91', '#bcaaa4', '#b0bec5', '#ffa726', '#ff8a65', '#f9bdbb', '#f9bdbb', '#f8bbd0', '#e1bee7', '#d1c4e9', '#ffe0b2', '#c5cae9', '#d0d9ff', '#b3e5fc', '#b2ebf2', '#b2dfdb', '#a3e9a4', '#dcedc8' , '#f0f4c3', '#ffb74d' ]
-" let g:semanticEnableFileTypes = {
-"       \ 'javascript': 'js',
-"       \ 'typescript': 'ts',
-"       \ 'coffee': 'coffee',
-"       \ 'vim': 'vim',
-"       \ 'java': 'java',
-"       \ 'php': 'php',
-"       \ }
-" let g:semanticUseCache = 1
-" let g:semanticPersistCache = 1
-
-
-
-
+" let g:prettier#autoformat_require_pragma = 0
