@@ -11,7 +11,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-    "json"
+    "json",
+    "typescript.tsx"
   ],
   "codeLens.enable": true,
   /* "javascript.validate.enable": false, */
@@ -126,6 +127,7 @@
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": true,
   "prettier.bracketSpacing": true,
+  "prettier.singleQuote": true,
   "list.insertMappings": {
     "<C-d>": "action:delete"
   }

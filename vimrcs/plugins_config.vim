@@ -48,7 +48,7 @@ Plug 'haya14busa/vim-asterisk'
 Plug 'mattn/webapi-vim'
 
 " Interface
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/nerdtree-dash'
 
@@ -296,6 +296,7 @@ let g:coc_global_extensions = [
             \ 'coc-xml',
             \ 'coc-yaml',
             \ 'coc-yank',
+            \ 'coc-lists',
             \ ]
 
 

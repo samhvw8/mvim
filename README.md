@@ -10,10 +10,15 @@ brew install neovim
 pip install  pynvim
 
 brew install ripgrep
-brew install fzf bat
+brew install fzf bat fd
 
 pip install jedi
 ```
+
+fd: https://github.com/sharkdp/fd  
+fzf: https://github.com/junegunn/fzf  
+bat: https://github.com/sharkdp/bat
+ripgrep: https://github.com/BurntSushi/ripgrep
 
 Note: fzf preview need check bat theme
 
