@@ -11,7 +11,7 @@ require("which-key").setup {
             windows = true, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
-            g = true -- bindings for prefixed with g
+            g = false -- bindings for prefixed with g
         }
     },
     icons = {
@@ -72,7 +72,7 @@ local mappings = {
     a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
     u = {"<cmd>UndotreeToggle<cr>", "Undo tree"},
     ["/"] = "Comment",
-    ["c"] = "Close Buffer",
+    ["c"] = {"<cmd>Telescope commands<cr>", "Command"},
     ["e"] = "Explorer",
     ["f"] = "Find File",
     ["o"] = "List buffer",
@@ -126,7 +126,8 @@ local mappings = {
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
-        t = {"<cmd>Telescope live_grep<cr>", "Text"}
+        t = {"<cmd>Telescope live_grep<cr>", "Text"},
+        n = {"<cmd>Telescope node_modules list<cr>", "Node modules"}
     }
 }
 

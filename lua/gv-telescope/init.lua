@@ -97,7 +97,7 @@ vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>Telescope live_grep<CR>]], opt)
 vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
                         {noremap = true, silent = true})
 
-local cmd = vim.cmd
+-- local cmd = vim.cmd
 
 -- cmd "hi TelescopeBorder   guifg=#2a2e36"
 -- cmd "hi TelescopePromptBorder   guifg=#2a2e36"

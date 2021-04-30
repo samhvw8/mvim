@@ -69,6 +69,10 @@ return require("packer").startup(function(use)
 
     -- Treesitter
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'nvim-treesitter/nvim-treesitter-refactor'
+    use {'nvim-treesitter/playground'} -- playground
+
     use {"windwp/nvim-ts-autotag"}
 
     -- Explorer
@@ -77,6 +81,7 @@ return require("packer").startup(function(use)
     use "kevinhwang91/rnvimr"
 
     use {"lewis6991/gitsigns.nvim"}
+    use {'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
 
     -- use {"liuchengxu/vim-which-key"} -- replace https://github.com/folke/which-key.nvim
     use {"folke/which-key.nvim"}
@@ -118,7 +123,7 @@ return require("packer").startup(function(use)
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- for note taking
-    use "oberblastmeister/neuron.nvim"
+    -- use "oberblastmeister/neuron.nvim"
 
     use {'zegervdv/nrpattern.nvim'} -- like switch.vim
 
@@ -127,6 +132,10 @@ return require("packer").startup(function(use)
     use 'editorconfig/editorconfig-vim'
 
     use 'kenn7/vim-arsync'
+
+    use {'lukas-reineke/indent-blankline.nvim', branch = "lua"}
+
+    use 'davidgranstrom/nvim-markdown-preview'
 
     -- theme
     use {'dracula/vim', as = 'dracula'}

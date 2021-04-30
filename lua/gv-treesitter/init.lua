@@ -8,5 +8,31 @@ require'nvim-treesitter.configs'.setup {
     -- TODO seems to be broken
     indent = {enable = {"javascriptreact"}},
     autotag = {enable = true},
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+
+                -- Or you can define your own textobjects like this
+                ["iF"] = {
+                    python = "(function_definition) @function",
+                    cpp = "(function_definition) @function",
+                    c = "(function_definition) @function",
+                    java = "(method_declaration) @function"
+                }
+            }
+        },
+        lsp_interop = {enable = true, peek_definition_code = {["df"] = "@function.outer", ["dF"] = "@class.outer"}}
+    }
+    -- refactor = {
+    --     highlight_definitions = {enable = true},
+    --     highlight_current_scope = {enable = true}
+    --     -- smart_rename = {enable = true, keymaps = {smart_rename = "<leader>R"}}
+    -- }
 }
 

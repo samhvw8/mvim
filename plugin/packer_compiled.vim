@@ -107,6 +107,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
+  },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
@@ -119,9 +123,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
-  ["neuron.nvim"] = {
+  neogit = {
     loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/neuron.nvim"
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nrpattern.nvim"] = {
     loaded = true,
@@ -163,6 +167,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
+  ["nvim-markdown-preview"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-markdown-preview"
+  },
   ["nvim-spectre"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-spectre"
@@ -174,6 +182,14 @@ _G.packer_plugins = {
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-treesitter-refactor"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["nvim-ts-autotag"] = {
     loaded = true,
@@ -190,6 +206,10 @@ _G.packer_plugins = {
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  playground = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/playground"
   },
   ["plenary.nvim"] = {
     loaded = true,
