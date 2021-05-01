@@ -96,13 +96,14 @@ local mappings = {
         r = {"<cmd>ResetHunk<cr>", "Reset Hunk"},
         R = {"<cmd>ResetBuffer<cr>", "Reset Buffer"},
         s = {"<cmd>StageHunk<cr>", "Stage Hunk"},
-        u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"},
-        b = {"<cmd>Telescope git_branches<cr>", "File"}
+        u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"}
     },
     g = {
         name = "+Git",
-        b = {"<cmd>Telescope git_branches<cr>", "File"},
-        d = {"<cmd>Telescope git_status<cr>", "Git Status"}
+        b = {"<cmd>Telescope git_branches<cr>", "Git Branch"},
+        g = {"<cmd>Neogit<cr>", "Neogit"},
+        d = {"<cmd>Telescope git_status<cr>", "Git Status"},
+        ['1'] = {"<cmd>GitBlameToggle<cr>", "Git blame"}
     },
     l = {
         name = "+LSP",
@@ -121,6 +122,7 @@ local mappings = {
 
     s = {
         name = "+Search",
+        s = {"<cmd>lua require('spectre').open()<cr>", "Search spectre"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},

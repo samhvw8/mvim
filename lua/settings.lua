@@ -15,7 +15,7 @@ cmd('let &titleold="' .. TERMINAL .. '"')
 o.titlestring = "%<%F%=%l/%L - nvim"
 wo.wrap = O.wrap_lines -- Display long lines as just one line
 cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
-cmd('syntax on') -- syntax highlighting
+cmd('syntax enable') -- syntax highlighting
 -- o.pumheight = 10 -- Makes popup menu smaller
 o.fileencoding = "utf-8" -- The encoding written to file
 o.cmdheight = 2 -- More space for displaying messages
@@ -46,6 +46,10 @@ o.lazyredraw = true
 -- o.guifont = "Hack\\ Nerd\\ Font\\ Mono"
 -- o.guifont = "SauceCodePro Nerd Font:h17"
 o.guifont = "FiraCode Nerd Font:h17"
+
+o.incsearch = true
+o.ignorecase = true
+o.smartcase = true
 
 -- undo
 bo.undofile = true

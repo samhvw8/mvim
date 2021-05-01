@@ -87,6 +87,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
+  ["dial.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/dial.nvim"
+  },
   dracula = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/dracula"
@@ -102,6 +106,10 @@ _G.packer_plugins = {
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/git-blame.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -126,10 +134,6 @@ _G.packer_plugins = {
   neogit = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/neogit"
-  },
-  ["nrpattern.nvim"] = {
-    loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nrpattern.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -286,10 +290,6 @@ _G.packer_plugins = {
   ["vim-repeat"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-repeat"
-  },
-  ["vim-speeddating"] = {
-    loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-speeddating"
   },
   ["vim-unimpaired"] = {
     loaded = true,

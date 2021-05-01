@@ -24,3 +24,6 @@ require('gitsigns').setup {
 local neogit = require('neogit')
 
 neogit.setup {}
+
+vim.g.gitblame_enabled = 0
+vim.g.gitblame_message_template = '<summary> • <date> • <author>'

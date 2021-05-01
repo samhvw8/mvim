@@ -82,6 +82,7 @@ return require("packer").startup(function(use)
 
     use {"lewis6991/gitsigns.nvim"}
     use {'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
+    use 'f-person/git-blame.nvim'
 
     -- use {"liuchengxu/vim-which-key"} -- replace https://github.com/folke/which-key.nvim
     use {"folke/which-key.nvim"}
@@ -109,7 +110,6 @@ return require("packer").startup(function(use)
     -- tpope -- TODO: replace with lua
     use 'tpope/vim-abolish'
     use 'tpope/vim-repeat'
-    use 'tpope/vim-speeddating'
     use 'tpope/vim-unimpaired'
     use 'junegunn/vim-easy-align'
     -- " use 'tpope/vim-sleuth'
@@ -125,7 +125,7 @@ return require("packer").startup(function(use)
     -- for note taking
     -- use "oberblastmeister/neuron.nvim"
 
-    use {'zegervdv/nrpattern.nvim'} -- like switch.vim
+    use 'monaqa/dial.nvim'
 
     use "mbbill/undotree"
 

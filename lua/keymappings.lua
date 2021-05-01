@@ -2,14 +2,16 @@ local map = require('remap').map
 
 vim.g.mapleader = ' '
 
+vim.api.nvim_set_keymap('n', '0', '^', {noremap = true, silent = true})
+
 -- no hl
 -- vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true, silent = true})
 
 -- better window movement
--- vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
--- vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
--- vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
--- vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-w><Left>', '<C-w>h', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-w><Down>', '<C-w>j', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-w><Up>', '<C-w>k', {silent = true})
+vim.api.nvim_set_keymap('n', '<C-w><Right>', '<C-w>l', {silent = true})
 
 -- TODO fix this
 -- -- Terminal window navigation

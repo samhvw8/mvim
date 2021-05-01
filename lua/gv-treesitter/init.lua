@@ -27,7 +27,7 @@ require'nvim-treesitter.configs'.setup {
                 }
             }
         },
-        lsp_interop = {enable = true, peek_definition_code = {["df"] = "@function.outer", ["dF"] = "@class.outer"}}
+        lsp_interop = {enable = true}
     }
     -- refactor = {
     --     highlight_definitions = {enable = true},
