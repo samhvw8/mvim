@@ -295,6 +295,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-repeat"
   },
+  ["vim-solidity"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-solidity"
+  },
   ["vim-unimpaired"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-unimpaired"

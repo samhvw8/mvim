@@ -36,13 +36,10 @@ return require("packer").startup(function(use)
 
     -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler )
 
+    -- lsp
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
-
-    -- use {"junegunn/fzf", run = "./install --all"}
-    -- use {'junegunn/fzf.vim'}
-    -- use {'gfanto/fzf-lsp.nvim'}
 
     use {'skywind3000/asynctasks.vim'}
     use {'skywind3000/asyncrun.vim'}
@@ -81,14 +78,18 @@ return require("packer").startup(function(use)
     -- TODO: remove when open on dir is supported by nvimtree
     use "kevinhwang91/rnvimr"
 
+    -- Git
     use {"lewis6991/gitsigns.nvim"}
     use {'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'}
     use 'f-person/git-blame.nvim'
 
-    -- use {"liuchengxu/vim-which-key"} -- replace https://github.com/folke/which-key.nvim
+    -- git diff view
+    use 'sindrets/diffview.nvim'
+
     use {"folke/which-key.nvim"}
 
     use {"glepnir/dashboard-nvim"}
+
     use {"windwp/nvim-autopairs"}
     use {"terrortylor/nvim-comment"}
     use {"kevinhwang91/nvim-bqf"}
@@ -116,7 +117,6 @@ return require("packer").startup(function(use)
     -- " use 'tpope/vim-sleuth'
 
     use {'blackCauldron7/surround.nvim'}
-
     -- color
     use "norcalli/nvim-colorizer.lua"
 
@@ -138,7 +138,8 @@ return require("packer").startup(function(use)
 
     use 'davidgranstrom/nvim-markdown-preview'
 
-    use 'sindrets/diffview.nvim'
+    -- solidity
+    use 'tomlion/vim-solidity'
 
     -- theme
     use {'dracula/vim', as = 'dracula'}
