@@ -71,18 +71,20 @@ vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, si
 local mappings = {
     a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
     u = {"<cmd>UndotreeToggle<cr>", "Undo tree"},
+
     ["/"] = "Comment",
     ["c"] = {"<cmd>Telescope commands<cr>", "Command"},
     ["e"] = "Explorer",
-    ["f"] = "Find File",
     ["o"] = "List buffer",
     ["p"] = "List all projects",
     ["w"] = "Update buffer",
     ["W"] = "Update buffer with no autogroup",
+
     t = {
         a = {"<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "tasks"},
         c = {"<cmd>tabclose<cr>", "Tab close"}
     },
+
     d = {
         b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
         c = {"<cmd>DebugContinue<cr>", "Continue"},
@@ -92,7 +94,9 @@ local mappings = {
         s = {"<cmd>DebugStart<cr>", "Start"},
         v = {"<cmd>DiffviewOpen", "DiffviewOpen"}
     },
+
     b = {p = {"<cmd>BufferPick<cr>", "Buffer Pick"}, o = {"<cmd>BufferCloseAllButCurrent<cr>", "Buffer Only"}},
+
     h = {
         name = "+GitHunk",
         p = {"<cmd>PreviewHunk<cr>", "Preview Hunk"},
@@ -101,6 +105,7 @@ local mappings = {
         s = {"<cmd>StageHunk<cr>", "Stage Hunk"},
         u = {"<cmd>UndoStageHunk<cr>", "Undo Stage Hunk"}
     },
+
     g = {
         name = "+Git",
         b = {"<cmd>Telescope git_branches<cr>", "Git Branch"},
@@ -108,6 +113,7 @@ local mappings = {
         d = {"<cmd>Telescope git_status<cr>", "Git Status"},
         ['1'] = {"<cmd>GitBlameToggle<cr>", "Git blame"}
     },
+
     l = {
         name = "+LSP",
         A = {"<cmd>Lspsaga range_code_action<cr>", "Selected Action"},
@@ -125,7 +131,7 @@ local mappings = {
 
     s = {
         name = "+Search",
-        s = {"<cmd>lua require('spectre').open()<cr>", "Search spectre"},
+        s = {"<plug>(esearch)", "Search essearch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},

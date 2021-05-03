@@ -105,8 +105,8 @@ return require("packer").startup(function(use)
 
     -- search related
     use {'kevinhwang91/nvim-hlslens'}
-    use {"windwp/nvim-spectre"}
     use {'haya14busa/vim-asterisk'}
+    use 'eugen0329/vim-esearch' -- replace CocSearch
 
     -- tpope -- TODO: replace with lua
     use 'tpope/vim-abolish'

@@ -179,10 +179,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-markdown-preview"
   },
-  ["nvim-spectre"] = {
-    loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-spectre"
-  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
@@ -286,6 +282,10 @@ _G.packer_plugins = {
   ["vim-easy-align"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+  },
+  ["vim-esearch"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-esearch"
   },
   ["vim-matchup"] = {
     loaded = true,

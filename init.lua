@@ -24,6 +24,7 @@ require('gv-surround')
 require('gv-indent-blankline')
 require('gv-dial')
 require('gv-diffview')
+require('gv-esearch')
 require('gv-which-key')
 
 -- Which Key (Hope to replace with Lua plugin someday)

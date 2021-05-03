@@ -55,6 +55,10 @@ local lsp_config = {}
 
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
+    require"lsp_signature".on_attach({
+        bind = true, -- This is mandatory, otherwise border config won't get registered.
+        handler_opts = {border = "single"}
+    })
 end
 
 function lsp_config.tsserver_on_attach(client, bufnr)
