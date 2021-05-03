@@ -12,5 +12,14 @@ require'lspconfig'.jsonls.setup {
                 vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), 0})
             end
         }
+    },
+    settings = {
+        ["json.enable"] = true,
+        ["json.format.enable"] = true,
+        ["json.schemas"] = {
+            {fileMatch = {"bower.json", ".bower.json"}, url = "http://schemastore.org/schemas/json/bower"},
+            {fileMatch = {"tsconfig.json"}, url = "http://json.schemastore.org/tsconfig"},
+            {fileMatch = {"package.json"}, url = "http://json.schemastore.org/package"}
+        }
     }
 }
