@@ -79,15 +79,18 @@ local mappings = {
     ["p"] = "List all projects",
     ["w"] = "Update buffer",
     ["W"] = "Update buffer with no autogroup",
-    t = {"<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "tasks"},
+    t = {
+        a = {"<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "tasks"},
+        c = {"<cmd>tabclose<cr>", "Tab close"}
+    },
     d = {
-        name = "+Debug",
         b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
         c = {"<cmd>DebugContinue<cr>", "Continue"},
         i = {"<cmd>DebugStepInto<cr>", "Step Into"},
         o = {"<cmd>DebugStepOver<cr>", "Step Over"},
         r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
-        s = {"<cmd>DebugStart<cr>", "Start"}
+        s = {"<cmd>DebugStart<cr>", "Start"},
+        v = {"<cmd>DiffviewOpen", "DiffviewOpen"}
     },
     b = {p = {"<cmd>BufferPick<cr>", "Buffer Pick"}, o = {"<cmd>BufferCloseAllButCurrent<cr>", "Buffer Only"}},
     h = {

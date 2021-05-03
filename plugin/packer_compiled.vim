@@ -91,6 +91,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/dial.nvim"
   },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/diffview.nvim"
+  },
   dracula = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/dracula"

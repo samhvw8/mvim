@@ -2,7 +2,7 @@ local lspconfig = require 'lspconfig'
 local configs = require 'lspconfig/configs'
 
 -- Check if tailwindls server already defined.
-if not lspconfig.tailwindls then configs['tailwindls'] = {default_config = {}} end
+if not configs.tailwindls then configs['tailwindls'] = {default_config = {}} end
 
 lspconfig.tailwindls.setup {
     cmd = {
@@ -10,7 +10,8 @@ lspconfig.tailwindls.setup {
         "--stdio"
     },
     filetypes = O.tailwindls.filetypes,
-    root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+    root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git",
+                                                      "tailwind.config.js"),
     handlers = {
         ["tailwindcss/getConfiguration"] = function(_, _, params, _, bufnr, _)
             -- tailwindcss lang server waits for this repsonse before providing hover

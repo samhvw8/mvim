@@ -34,7 +34,8 @@ return require("packer").startup(function(use)
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
 
-    -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
+    -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler )
+
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
@@ -136,6 +137,8 @@ return require("packer").startup(function(use)
     use {'lukas-reineke/indent-blankline.nvim', branch = "lua"}
 
     use 'davidgranstrom/nvim-markdown-preview'
+
+    use 'sindrets/diffview.nvim'
 
     -- theme
     use {'dracula/vim', as = 'dracula'}

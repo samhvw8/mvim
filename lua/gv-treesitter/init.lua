@@ -28,6 +28,10 @@ require'nvim-treesitter.configs'.setup {
             }
         },
         lsp_interop = {enable = true}
+    },
+    matchup = {
+        enable = true -- mandatory, false will disable the whole extension
+        -- disable = {"c", "ruby"} -- optional, list of language that will be disabled
     }
     -- refactor = {
     --     highlight_definitions = {enable = true},
