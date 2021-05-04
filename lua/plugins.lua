@@ -60,8 +60,8 @@ return require("packer").startup(function(use)
 
     -- Autocomplete
     use {"hrsh7th/nvim-compe"}
-    use {"hrsh7th/vim-vsnip"}
     use {"rafamadriz/friendly-snippets"}
+    use {"hrsh7th/vim-vsnip"}
     use {'onsails/lspkind-nvim'}
     use {"ray-x/lsp_signature.nvim"}
 
@@ -71,6 +71,12 @@ return require("packer").startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use {'nvim-treesitter/playground'} -- playground
 
+
+    -- solidity
+    use 'tomlion/vim-solidity'
+    -- for react comment
+    use 'JoosepAlviste/nvim-ts-context-commentstring'
+	-- typescript & html & vue
     use {"windwp/nvim-ts-autotag"}
 
     -- Explorer
@@ -93,6 +99,7 @@ return require("packer").startup(function(use)
     use {"windwp/nvim-autopairs"}
     use {"terrortylor/nvim-comment"}
     use {"kevinhwang91/nvim-bqf"}
+
     -- Icons
     use {"kyazdani42/nvim-web-devicons"}
 
@@ -117,11 +124,9 @@ return require("packer").startup(function(use)
     -- " use 'tpope/vim-sleuth'
 
     use {'blackCauldron7/surround.nvim'}
+
     -- color
     use "norcalli/nvim-colorizer.lua"
-
-    -- for react comment
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- for note taking
     -- use "oberblastmeister/neuron.nvim"
@@ -132,14 +137,13 @@ return require("packer").startup(function(use)
 
     use 'editorconfig/editorconfig-vim'
 
+	-- rsync
     use 'kenn7/vim-arsync'
 
     use {'lukas-reineke/indent-blankline.nvim', branch = "lua"}
 
     use 'davidgranstrom/nvim-markdown-preview'
 
-    -- solidity
-    use 'tomlion/vim-solidity'
 
     -- theme
     use {'dracula/vim', as = 'dracula'}

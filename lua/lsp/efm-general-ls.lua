@@ -75,6 +75,15 @@ if O.tsserver.formatter == 'prettier' then table.insert(tsserver_args, prettier)
 
 if O.tsserver.linter == 'eslint' then table.insert(tsserver_args, eslint) end
 
+local solidity = {
+    lintCommand = "solhint -f unix",
+    lintIgnoreExitCode = true,
+    lintStdin = false,
+    lintFormats = {"%f:%l:%c: %m"}
+    -- formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+    -- formatStdin = true
+}
+
 -- local markdownlint = {
 --     -- TODO default to global lintrc
 --     -- lintcommand = 'markdownlint -s -c ./markdownlintrc',
@@ -88,10 +97,10 @@ local markdownPandocFormat = {formatCommand = 'pandoc -f markdown -t gfm -sp --t
 require"lspconfig".efm.setup {
     -- init_options = {initializationOptions},
     cmd = {DATA_PATH .. "/lspinstall/efm/efm-langserver"},
-    init_options = {documentFormatting = true, codeAction = true, completion = true},
+    init_options = {documentFormatting = true, codeAction = false},
     filetypes = {
         "lua", "python", "javascriptreact", "javascript", "typescript", "typescriptreact", "sh", "html", "css", "json",
-        "yaml", "markdown", "vue"
+        "yaml", "markdown", "vue", "solidity"
     },
     settings = {
         rootMarkers = {".git/"},
@@ -107,7 +116,8 @@ require"lspconfig".efm.setup {
             css = {prettier},
             json = {prettier},
             yaml = {prettier},
-            markdown = {markdownPandocFormat}
+            markdown = {markdownPandocFormat},
+            solidity = {solidity}
             -- javascriptreact = {prettier, eslint},
             -- javascript = {prettier, eslint},
             -- markdown = {markdownPandocFormat, markdownlint},

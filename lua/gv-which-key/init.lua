@@ -111,7 +111,9 @@ local mappings = {
         b = {"<cmd>Telescope git_branches<cr>", "Git Branch"},
         g = {"<cmd>Neogit<cr>", "Neogit"},
         d = {"<cmd>Telescope git_status<cr>", "Git Status"},
-        ['1'] = {"<cmd>GitBlameToggle<cr>", "Git blame"}
+        ['1'] = {"<cmd>GitBlameToggle<cr>", "Git blame"},
+		c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+        C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
     },
 
     l = {
