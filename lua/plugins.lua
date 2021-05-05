@@ -40,7 +40,6 @@ return require("packer").startup(function(use)
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
-
     use {'skywind3000/asynctasks.vim'}
     use {'skywind3000/asyncrun.vim'}
 
@@ -71,12 +70,11 @@ return require("packer").startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-refactor'
     use {'nvim-treesitter/playground'} -- playground
 
-
     -- solidity
     use 'tomlion/vim-solidity'
     -- for react comment
     use 'JoosepAlviste/nvim-ts-context-commentstring'
-	-- typescript & html & vue
+    -- typescript & html & vue
     use {"windwp/nvim-ts-autotag"}
 
     -- Explorer
@@ -137,13 +135,12 @@ return require("packer").startup(function(use)
 
     use 'editorconfig/editorconfig-vim'
 
-	-- rsync
+    -- rsync
     use 'kenn7/vim-arsync'
 
     use {'lukas-reineke/indent-blankline.nvim', branch = "lua"}
 
     use 'davidgranstrom/nvim-markdown-preview'
-
 
     -- theme
     use {'dracula/vim', as = 'dracula'}

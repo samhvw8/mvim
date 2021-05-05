@@ -112,8 +112,8 @@ local mappings = {
         g = {"<cmd>Neogit<cr>", "Neogit"},
         d = {"<cmd>Telescope git_status<cr>", "Git Status"},
         ['1'] = {"<cmd>GitBlameToggle<cr>", "Git blame"},
-		c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
-        C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"},
+        c = {"<cmd>Telescope git_commits<cr>", "Checkout commit"},
+        C = {"<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)"}
     },
 
     l = {
@@ -136,6 +136,7 @@ local mappings = {
         s = {"<plug>(esearch)", "Search essearch"},
         c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
+        w = {"<cmd>Telescope grep_string<cr>", "Search current word"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
