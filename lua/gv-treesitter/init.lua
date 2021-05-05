@@ -4,8 +4,6 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = O.treesitter.highlight.enabled -- false will disable the whole extension
     },
-    -- indent = {enable = true, disable = {"python", "html", "javascript"}},
-    -- TODO seems to be broken
     indent = {enable = {"javascriptreact"}},
     autotag = {enable = true},
     textobjects = {
@@ -32,7 +30,26 @@ require'nvim-treesitter.configs'.setup {
     matchup = {
         enable = true -- mandatory, false will disable the whole extension
         -- disable = {"c", "ruby"} -- optional, list of language that will be disabled
-    }
+    },
+    playground = {
+        enable = true,
+        disable = {},
+        updatetime = 25,
+        persist_queries = false,
+        keybindings = {
+            toggle_query_editor = "o",
+            toggle_hl_groups = "i",
+            toggle_injected_languages = "t",
+            toggle_anonymous_nodes = "a",
+            toggle_language_display = "I",
+            focus_language = "f",
+            unfocus_language = "F",
+            update = "R",
+            goto_node = "<cr>",
+            show_help = "?"
+        }
+    },
+    context_commentstring = {enable = true}
     -- refactor = {
     --     highlight_definitions = {enable = true},
     --     highlight_current_scope = {enable = true}
