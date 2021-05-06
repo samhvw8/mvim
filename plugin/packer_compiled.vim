@@ -107,6 +107,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/friendly-snippets"
   },
+  fzf = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/fzf"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/fzf.vim"
+  },
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
@@ -140,8 +148,9 @@ _G.packer_plugins = {
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/neogit"
   },
   ["nvim-autopairs"] = {
-    loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/opt/nvim-autopairs"
   },
   ["nvim-bqf"] = {
     loaded = true,
@@ -180,8 +189,9 @@ _G.packer_plugins = {
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-markdown-preview"
   },
   ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -298,6 +308,10 @@ _G.packer_plugins = {
   ["vim-solidity"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-solidity"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-startuptime"
   },
   ["vim-unimpaired"] = {
     loaded = true,

@@ -9,24 +9,22 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 --- Check if a file or directory exists in this path
--- local function require_plugin(plugin)
---     local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
--- 
---     local plugin_path = plugin_prefix .. plugin .. "/"
---     --	print('test '..plugin_path)
---     local ok, err, code = os.rename(plugin_path, plugin_path)
---     if not ok then
---         if code == 13 then
---             -- Permission denied, but it exists
---             return true
---         end
---     end
---     --	print(ok, err, code)
---     if ok then
---         vim.cmd("packadd " .. plugin)
---     end
---     return ok, err, code
--- end
+local function require_plugin(plugin)
+    local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
+
+    local plugin_path = plugin_prefix .. plugin .. "/"
+    --	print('test '..plugin_path)
+    local ok, err, code = os.rename(plugin_path, plugin_path)
+    if not ok then
+        if code == 13 then
+            -- Permission denied, but it exists
+            return true
+        end
+    end
+    --	print(ok, err, code)
+    if ok then vim.cmd("packadd " .. plugin) end
+    return ok, err, code
+end
 
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
@@ -64,7 +62,7 @@ return require("packer").startup(function(use)
     use {'onsails/lspkind-nvim'}
     use {"ray-x/lsp_signature.nvim"}
 
-    -- Treesitter
+    -- Treesitte 
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'nvim-treesitter/nvim-treesitter-refactor'
@@ -78,7 +76,8 @@ return require("packer").startup(function(use)
     use {"windwp/nvim-ts-autotag"}
 
     -- Explorer
-    use "kyazdani42/nvim-tree.lua"
+    use {"kyazdani42/nvim-tree.lua", opt = true}
+
     -- TODO: remove when open on dir is supported by nvimtree
     use "kevinhwang91/rnvimr"
 
@@ -94,7 +93,7 @@ return require("packer").startup(function(use)
 
     use {"glepnir/dashboard-nvim"}
 
-    use {"windwp/nvim-autopairs"}
+    use {"windwp/nvim-autopairs", opt = true}
     use {"terrortylor/nvim-comment"}
     use {"kevinhwang91/nvim-bqf"}
 
@@ -142,6 +141,15 @@ return require("packer").startup(function(use)
 
     use 'davidgranstrom/nvim-markdown-preview'
 
+    use 'dstein64/vim-startuptime'
+
+    use '/usr/local/opt/fzf'
+    use 'junegunn/fzf.vim'
+
     -- theme
     use {'dracula/vim', as = 'dracula'}
+
+    require_plugin("nvim-tree.lua")
+    require_plugin("nvim-autopairs")
+
 end)

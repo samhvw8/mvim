@@ -49,6 +49,7 @@ require'nvim-treesitter.configs'.setup {
             show_help = "?"
         }
     },
+    autopairs = {enable = true},
     context_commentstring = {enable = true}
     -- refactor = {
     --     highlight_definitions = {enable = true},
