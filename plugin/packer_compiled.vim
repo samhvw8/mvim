@@ -147,6 +147,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/neogit"
   },
+  ["numb.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/numb.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = false,
     needs_bufread = false,

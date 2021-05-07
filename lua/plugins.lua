@@ -146,6 +146,8 @@ return require("packer").startup(function(use)
     use '/usr/local/opt/fzf'
     use 'junegunn/fzf.vim'
 
+    use 'nacro90/numb.nvim'
+
     -- theme
     use {'dracula/vim', as = 'dracula'}
 

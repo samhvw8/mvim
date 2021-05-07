@@ -28,6 +28,7 @@ require('gv-diffview')
 require('gv-esearch')
 require('gv-bqf')
 -- require('gv-lir')
+require('gv-numb')
 require('gv-which-key')
 
 -- Which Key (Hope to replace with Lua plugin someday)
