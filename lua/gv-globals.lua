@@ -27,7 +27,9 @@ O = {
         diagnostics = {virtual_text = true, signs = true, underline = true},
         analysis = {type_checking = "basic", auto_search_paths = true, use_library_code_types = true}
     },
-    dart = {sdk_path = '/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot'},
+    dart = {
+        sdk_path = '/usr/local/Caskroom/flutter/2.0.6/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot'
+    },
     lua = {
         -- @usage can be 'lua-format'
         formatter = '',

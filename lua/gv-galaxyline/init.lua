@@ -21,9 +21,24 @@ local colors = {
     error_red = '#F44747',
     info_yellow = '#FFCC66'
 }
+
+local space = function()
+    return '  '
+end
+
+-- local inner_separator = function()
+--     return '|'
+-- end
+
+-- local fileinfo = require('galaxyline.provider_fileinfo')
+local lsp_messages = require('lsp-status/messaging').messages
+
 local condition = require('galaxyline.condition')
+
 local gls = gl.section
 gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
+
+local spinner_frames = {'⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷'}
 
 gls.left[1] = {
     ViMode = {
@@ -76,8 +91,8 @@ gls.left[1] = {
         highlight = {colors.red, colors.bg, 'bold'}
     }
 }
-print(vim.fn.getbufvar(0, 'ts'))
-vim.fn.getbufvar(0, 'ts')
+-- print(vim.fn.getbufvar(0, 'ts'))
+-- vim.fn.getbufvar(0, 'ts')
 
 gls.left[2] = {
     GitIcon = {
@@ -127,19 +142,58 @@ gls.left[6] = {
 }
 
 gls.right[1] = {
-    DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.error_red, colors.bg}}
+    LspStatus = {
+        provider = function()
+            local lsp_function = vim.b.lsp_current_function
+
+            if lsp_function ~= nil then return lsp_function end
+
+            return ""
+        end,
+        icon = ' ƒ ',
+        condition = condition.hide_in_width,
+        highlight = {colors.vivid_blue}
+    }
 }
-gls.right[2] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}}}
+
+gls.right[2] = {Void = {provider = {space}, highlight = {colors.bg, colors.bg}}}
 
 gls.right[3] = {
+    LspProgress = {
+        provider = {
+            function()
+                local msgs = lsp_messages()
+                local spinner
+
+                if #msgs > 0 and msgs[1].spinner then
+                    local index = (msgs[1].spinner % #spinner_frames) + 1
+                    spinner = spinner_frames[index]
+                else
+                    spinner = ""
+                end
+
+                return spinner
+            end
+        },
+        highlight = {colors.light_blue, colors.bg}
+    }
+}
+gls.right[4] = {Void = {provider = {space}, highlight = {colors.bg, colors.bg}}}
+
+gls.right[5] = {
+    DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.error_red, colors.bg}}
+}
+gls.right[6] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}}}
+
+gls.right[7] = {
     DiagnosticHint = {provider = 'DiagnosticHint', icon = '  ', highlight = {colors.vivid_blue, colors.bg}}
 }
 
-gls.right[4] = {
+gls.right[8] = {
     DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '  ', highlight = {colors.info_yellow, colors.bg}}
 }
 
-gls.right[5] = {
+gls.right[9] = {
     ShowLspClient = {
         provider = 'GetLspClient',
         condition = function()
@@ -152,7 +206,7 @@ gls.right[5] = {
     }
 }
 
-gls.right[6] = {
+gls.right[10] = {
     LineInfo = {
         provider = 'LineColumn',
         separator = '  ',
@@ -161,7 +215,7 @@ gls.right[6] = {
     }
 }
 
-gls.right[7] = {
+gls.right[11] = {
     PerCent = {
         provider = 'LinePercent',
         separator = ' ',
@@ -170,7 +224,7 @@ gls.right[7] = {
     }
 }
 
-gls.right[8] = {
+gls.right[12] = {
     Tabstop = {
         provider = function()
             return "Spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. " "
@@ -182,7 +236,7 @@ gls.right[8] = {
     }
 }
 
-gls.right[9] = {
+gls.right[13] = {
     BufferType = {
         provider = 'FileTypeName',
         condition = condition.hide_in_width,
@@ -192,7 +246,7 @@ gls.right[9] = {
     }
 }
 
-gls.right[10] = {
+gls.right[14] = {
     FileEncode = {
         provider = 'FileEncode',
         condition = condition.hide_in_width,
@@ -202,7 +256,7 @@ gls.right[10] = {
     }
 }
 
-gls.right[11] = {
+gls.right[15] = {
     Space = {
         provider = function()
             return ' '

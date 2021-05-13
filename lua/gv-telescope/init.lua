@@ -65,34 +65,53 @@ require('telescope').setup {
                 filetypes = {"png", "webp", "jpg", "jpeg"},
                 find_cmd = "rg" -- find command (defaults to `fd`)
             },
-            fzy_native = {override_generic_sorter = false, override_file_sorter = true},
+            -- fzy_native = {override_generic_sorter = true, override_file_sorter = true},
             lsp_handlers = {
                 location = {telescope = {}, no_results_message = 'No references found'},
                 symbol = {telescope = {}, no_results_message = 'No symbols found'},
                 call_hierarchy = {telescope = {}, no_results_message = 'No calls found'},
                 disable = {['textDocument/codeAction'] = true}
             },
-            project = {}
+            project = {},
+            fzf_writer = {
+                minimum_grep_characters = 1,
+                minimum_files_characters = 1,
+
+                -- Disabled by default.
+                -- Will probably slow down some aspects of the sorter, but can make color highlights.
+                -- I will work on this more later.
+                use_highlighter = true
+            },
+            fzf = {
+                override_generic_sorter = true, -- override the generic sorter
+                override_file_sorter = true, -- override the file sorter
+                case_mode = "smart_case" -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            }
         }
     }
 }
 
-require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('fzy_native')
 require("telescope").load_extension("media_files")
 require'telescope'.load_extension('project')
 require'telescope'.load_extension 'node_modules'
 require'telescope'.load_extension('lsp_handlers')
+require('telescope').load_extension('fzf')
 
 local opt = {noremap = true, silent = true}
 
-vim.api.nvim_set_keymap("n", "<M-p>", [[<Cmd>Telescope find_files<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<M-p>", [[<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<M-1>",
                         ':lua require("telescope.builtin").grep_string { search = "' ..
                             table.concat(O.telescope.todo.keywords, "|") .. '" }<CR>', opt)
 vim.api.nvim_set_keymap("n", "<M-2>", [[<Cmd>Telescope<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>Telescope lsp_workspace_symbols<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<M-4>", [[<Cmd>Telescope file_browser<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>Telescope live_grep<CR>]], opt)
+-- vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>Telescope live_grep<CR>]], opt)
+-- vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>lua require('telescope').extensions.fzf_writer.staged_grep()<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>]], opt)
+-- vim.api.nvim_set_keymap("n", "<leader>\\", [[<Cmd>lua require('telescope').extensions.fzf_writer.grep()<CR>]], opt)
 
 vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
                         {noremap = true, silent = true})

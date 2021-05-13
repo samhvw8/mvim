@@ -1,8 +1,15 @@
+local custom_captures = {
+    ['function.call'] = 'LuaFunctionCall',
+    ['function.bracket'] = 'Type',
+    ['namespace.type'] = 'TSNamespaceType'
+}
+
 require'nvim-treesitter.configs'.setup {
     ensure_installed = O.treesitter.ensure_installed, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = O.treesitter.ignore_install,
     highlight = {
-        enable = O.treesitter.highlight.enabled -- false will disable the whole extension
+        enable = O.treesitter.highlight.enabled, -- false will disable the whole extension
+        custom_captures = custom_captures
     },
     indent = {enable = {"javascriptreact"}},
     autotag = {enable = true},
@@ -50,11 +57,11 @@ require'nvim-treesitter.configs'.setup {
         }
     },
     autopairs = {enable = true},
-    context_commentstring = {enable = true}
-    -- refactor = {
-    --     highlight_definitions = {enable = true},
-    --     highlight_current_scope = {enable = true}
-    --     -- smart_rename = {enable = true, keymaps = {smart_rename = "<leader>R"}}
-    -- }
+    context_commentstring = {enable = true},
+    refactor = {
+        highlight_definitions = {enable = true},
+        highlight_current_scope = {enable = false}
+        -- smart_rename = {enable = true, keymaps = {smart_rename = "<leader>R"}}
+    }
 }
 

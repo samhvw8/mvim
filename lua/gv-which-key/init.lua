@@ -12,6 +12,10 @@ require("which-key").setup {
             nav = true, -- misc bindings to work with windows
             z = true, -- bindings for folds, spelling and others prefixed with z
             g = false -- bindings for prefixed with g
+        },
+        spelling = {
+            enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+            suggestions = 20 -- how many suggestions should be shown in the list?
         }
     },
     icons = {
@@ -62,7 +66,7 @@ vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, sil
 -- vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
 -- close buffer
-vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>w", ":update<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, silent = true})
 
@@ -92,7 +96,8 @@ local mappings = {
         o = {"<cmd>DebugStepOver<cr>", "Step Over"},
         r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
         s = {"<cmd>DebugStart<cr>", "Start"},
-        v = {"<cmd>DiffviewOpen", "DiffviewOpen"}
+        v = {"<cmd>DiffviewOpen", "DiffviewOpen"},
+        g = "Document generate"
     },
 
     b = {p = {"<cmd>BufferPick<cr>", "Buffer Pick"}, o = {"<cmd>BufferCloseAllButCurrent<cr>", "Buffer Only"}},

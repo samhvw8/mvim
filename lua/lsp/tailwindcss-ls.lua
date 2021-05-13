@@ -18,5 +18,6 @@ lspconfig.tailwindls.setup {
             vim.lsp.buf_notify(bufnr, "tailwindcss/getConfigurationResponse", {_id = params._id})
         end
     },
-    on_attach = require'lsp'.common_on_attach
+    on_attach = require'lsp'.common_on_attach,
+    capabilities = require'lsp'.common_capabilities
 }

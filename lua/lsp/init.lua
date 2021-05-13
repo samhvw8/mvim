@@ -59,13 +59,20 @@ local function documentHighlight(client, bufnr)
 end
 local lsp_config = {}
 
+local lsp_status = require('lsp-status')
+
+lsp_status.register_progress()
+
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
     require"lsp_signature".on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = {border = "single"}
     })
+    lsp_status.on_attach(client, bufnr)
 end
+
+lsp_config.common_capabilities = lsp_status.capabilities;
 
 function lsp_config.tsserver_on_attach(client, bufnr)
     lsp_config.common_on_attach(client, bufnr)

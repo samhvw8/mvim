@@ -38,6 +38,8 @@ return require("packer").startup(function(use)
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
     use {"kabouzeid/nvim-lspinstall"}
+    use {"nvim-lua/lsp-status.nvim"}
+
     use {'skywind3000/asynctasks.vim'}
     use {'skywind3000/asyncrun.vim'}
 
@@ -48,12 +50,16 @@ return require("packer").startup(function(use)
     use "nvim-telescope/telescope-media-files.nvim"
     use "nvim-telescope/telescope-project.nvim"
     use {"nvim-telescope/telescope-node-modules.nvim"}
-    use {"nvim-telescope/telescope-fzy-native.nvim"}
+    -- use {"nvim-telescope/telescope-fzy-native.nvim"}
     use {'gbrlsnchs/telescope-lsp-handlers.nvim'}
     use "GustavoKatel/telescope-asynctasks.nvim"
+    use "nvim-telescope/telescope-fzf-writer.nvim"
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = "make"}
 
     -- Debugging
     use {"mfussenegger/nvim-dap"}
+    use 'theHamsta/nvim-dap-virtual-text'
+    -- use 'nvim-telescope/telescope-dap.nvim'
 
     -- Autocomplete
     use {"hrsh7th/nvim-compe"}
@@ -62,7 +68,7 @@ return require("packer").startup(function(use)
     use {'onsails/lspkind-nvim'}
     use {"ray-x/lsp_signature.nvim"}
 
-    -- Treesitte 
+    -- Treesitte
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'nvim-treesitter/nvim-treesitter-refactor'
@@ -146,7 +152,15 @@ return require("packer").startup(function(use)
     use '/usr/local/opt/fzf'
     use 'junegunn/fzf.vim'
 
+    -- Fast move when :<bumber>
     use 'nacro90/numb.nvim'
+
+    -- SQL
+    use {"tpope/vim-dadbod", requires = {"kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui"}}
+
+    -- docs
+
+    use {'kkoomen/vim-doge', run = ":call doge#install()"}
 
     -- theme
     use {'dracula/vim', as = 'dracula'}

@@ -131,6 +131,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
+  },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim"
@@ -175,6 +179,10 @@ _G.packer_plugins = {
   ["nvim-dap"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-dap"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
   },
   ["nvim-hlslens"] = {
     loaded = true,
@@ -253,9 +261,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/telescope-asynctasks.nvim"
   },
-  ["telescope-fzy-native.nvim"] = {
+  ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+  },
+  ["telescope-fzf-writer.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/telescope-fzf-writer.nvim"
   },
   ["telescope-lsp-handlers.nvim"] = {
     loaded = true,
@@ -292,6 +304,22 @@ _G.packer_plugins = {
   ["vim-asterisk"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-asterisk"
+  },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-dadbod"
+  },
+  ["vim-dadbod-completion"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-dadbod-completion"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui"
+  },
+  ["vim-doge"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/vim-doge"
   },
   ["vim-easy-align"] = {
     loaded = true,
