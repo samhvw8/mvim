@@ -289,6 +289,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/todo-comments.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/undotree"

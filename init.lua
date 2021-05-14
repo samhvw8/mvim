@@ -30,6 +30,7 @@ require('gv-bqf')
 -- require('gv-lir')
 require('gv-numb')
 require('gv-doge')
+require('gv-todo')
 require('gv-which-key')
 
 -- Which Key (Hope to replace with Lua plugin someday)

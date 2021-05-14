@@ -102,9 +102,10 @@ require('telescope').load_extension('fzf')
 local opt = {noremap = true, silent = true}
 
 vim.api.nvim_set_keymap("n", "<M-p>", [[<Cmd>lua require('telescope').extensions.fzf_writer.files()<CR>]], opt)
-vim.api.nvim_set_keymap("n", "<M-1>",
-                        ':lua require("telescope.builtin").grep_string { search = "' ..
-                            table.concat(O.telescope.todo.keywords, "|") .. '" }<CR>', opt)
+vim.api.nvim_set_keymap("n", "<M-1>", [[<Cmd>TodoTelescope<CR>]], opt)
+-- vim.api.nvim_set_keymap("n", "<M-1>",
+--                         ':lua require("telescope.builtin").grep_string { search = "' ..
+--                             table.concat(O.telescope.todo.keywords, "|") .. '" }<CR>', opt)
 vim.api.nvim_set_keymap("n", "<M-2>", [[<Cmd>Telescope<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>Telescope lsp_workspace_symbols<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<M-4>", [[<Cmd>Telescope file_browser<CR>]], opt)

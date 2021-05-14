@@ -165,6 +165,8 @@ return require("packer").startup(function(use)
     -- theme
     use {'dracula/vim', as = 'dracula'}
 
+    use {"folke/todo-comments.nvim"}
+
     require_plugin("nvim-tree.lua")
     require_plugin("nvim-autopairs")
 
