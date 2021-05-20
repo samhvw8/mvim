@@ -75,7 +75,7 @@ return require("packer").startup(function(use)
     use {'nvim-treesitter/playground'} -- playground
 
     -- solidity
-    use 'tomlion/vim-solidity'
+    use 'TovarishFin/vim-solidity'
     -- for react comment
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     -- typescript & html & vue
@@ -153,7 +153,7 @@ return require("packer").startup(function(use)
     use 'junegunn/fzf.vim'
 
     -- Fast move when :<bumber>
-    use 'nacro90/numb.nvim'
+    -- use 'nacro90/numb.nvim'   -- lag ??
 
     -- SQL
     use {"tpope/vim-dadbod", requires = {"kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui"}}
@@ -165,7 +165,7 @@ return require("packer").startup(function(use)
     -- theme
     use {'dracula/vim', as = 'dracula'}
 
-    use {"folke/todo-comments.nvim"}
+    -- use {"folke/todo-comments.nvim"} -- this lag too
 
     require_plugin("nvim-tree.lua")
     require_plugin("nvim-autopairs")
