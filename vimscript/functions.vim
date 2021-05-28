@@ -44,3 +44,10 @@ command! DebugGetSession lua require'dap'.session()
 " Debug Adapter protocol:
 "   https://microsoft.github.io/debug-adapter-protocol/
 
+function! QuickFixToggle()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
