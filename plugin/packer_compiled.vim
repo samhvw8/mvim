@@ -46,7 +46,7 @@ local function save_profiles(threshold)
   _G._packer.profile_output = results
 end
 
-time("Luarocks path setup", true)
+time([[Luarocks path setup]], true)
 local package_path_str = "/Users/samhv/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/samhv/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/samhv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/samhv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
 local install_cpath_pattern = "/Users/samhv/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
@@ -57,20 +57,25 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
   package.cpath = package.cpath .. ';' .. install_cpath_pattern
 end
 
-time("Luarocks path setup", false)
-time("try_loadstring definition", true)
+time([[Luarocks path setup]], false)
+time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
   local success, result = pcall(loadstring(s))
   if not success then
-    print('Error running ' .. component .. ' for ' .. name)
-    error(result)
+    vim.schedule(function()
+      vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
+    end)
   end
   return result
 end
 
-time("try_loadstring definition", false)
-time("Defining packer_plugins", true)
+time([[try_loadstring definition]], false)
+time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["DAPInstall.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/DAPInstall.nvim"
+  },
   ["asyncrun.vim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/asyncrun.vim"
@@ -102,6 +107,10 @@ _G.packer_plugins = {
   ["editorconfig-vim"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/editorconfig-vim"
+  },
+  ["flutter-tools.nvim"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -176,13 +185,25 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-dap"
   },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-dap-ui"
+  },
   ["nvim-dap-virtual-text"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text"
   },
+  ["nvim-fzf"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-fzf"
+  },
   ["nvim-hlslens"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-hlslens"
+  },
+  ["nvim-jqx"] = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-jqx"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -224,6 +245,10 @@ _G.packer_plugins = {
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  nvim_context_vt = {
+    loaded = true,
+    path = "/Users/samhv/.local/share/nvim/site/pack/packer/start/nvim_context_vt"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -355,7 +380,7 @@ _G.packer_plugins = {
   }
 }
 
-time("Defining packer_plugins", false)
+time([[Defining packer_plugins]], false)
 if should_profile then save_profiles() end
 
 END

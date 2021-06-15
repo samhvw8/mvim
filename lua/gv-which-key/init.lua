@@ -75,6 +75,7 @@ vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, si
 local mappings = {
     a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
     u = {"<cmd>UndotreeToggle<cr>", "Undo tree"},
+    f = {"<cmd>lua require('telescope').extensions.flutter.commands()<cr>", "Flutter Tools"},
 
     ["/"] = "Comment",
     ["c"] = {"<cmd>Telescope commands<cr>", "Command"},

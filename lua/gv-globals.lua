@@ -11,12 +11,11 @@ O = {
     -- @usage pass a table with your desired languages
     treesitter = {
         ensure_installed = "all",
-        ignore_install = {"haskell"},
+        -- ignore_install = {"haskell"},
         highlight = {enabled = true},
         playground = {enabled = true},
         rainbow = {enabled = false}
     },
-
     database = {save_location = '~/.config/nvcode_db', auto_execute = 1},
     python = {
         linter = '',
@@ -58,7 +57,6 @@ O = {
         autoformat = false,
         diagnostics = {virtual_text = true, signs = true, underline = true}
     },
-    tailwindls = {filetypes = {'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'}},
     clang = {diagnostics = {virtual_text = true, signs = true, underline = true}},
     ruby = {diagnostics = {virtualtext = true, signs = true, underline = true}, filetypes = {'rb', 'erb', 'rakefile'}}
     -- css = {formatter = '', autoformat = false, virtual_text = true},
