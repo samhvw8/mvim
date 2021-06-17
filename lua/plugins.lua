@@ -176,6 +176,8 @@ return require("packer").startup({
 
         use {"haringsrob/nvim_context_vt"}
 
+        use {'gabrielpoca/replacer.nvim'}
+
         -- use {"folke/todo-comments.nvim"} -- this lag too
 
         require_plugin("nvim-tree.lua")

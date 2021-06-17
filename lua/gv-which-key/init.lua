@@ -69,6 +69,8 @@ vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, sil
 -- vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>w", ":update<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>4", ":lua require('replacer').run()<cr>", {silent = true})
 
 -- TODO create entire treesitter section
 
