@@ -5,17 +5,17 @@ set -e
 # REF https://github.com/neovim/nvim-lsp/blob/master/lua/nvim_lsp/pyls_ms.lua
 
 
-# os=$(uname -s | tr "[:upper:]" "[:lower:]")
-# case $os in
-#     linux)
-#         curl -L https://dot.net/v1/dotnet-install.sh | bash -s --  --verbose --install-dir "$HOME/.local/.dotnet"
-#         ;;
-#     darwin)
-#         brew install --cask dotnet
-#         ;;
-#     *) ;;
-# esac
-# ln -s "$HOME/.local/.dotnet/dotnet" "$HOME/.local/bin"
+os=$(uname -s | tr "[:upper:]" "[:lower:]")
+case $os in
+    linux)
+        curl -L https://dot.net/v1/dotnet-install.sh | bash -s --  --verbose --install-dir "$HOME/.local/.dotnet"
+        ;;
+    darwin)
+        brew install --cask dotnet
+        ;;
+    *) ;;
+esac
+ln -s "$HOME/.local/.dotnet/dotnet" "$HOME/.local/bin"
 
 os=$(uname -s | tr "[:upper:]" "[:lower:]")
 case $os in
