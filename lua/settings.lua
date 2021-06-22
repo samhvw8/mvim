@@ -65,5 +65,4 @@ vim.g.python3_host_prog = "/usr/local/bin/python"
 vim.g.node_host_prog = "/usr/local/bin/neovim-node-host"
 
 -- o.guifont = "JetBrains\\ Mono\\ Regular\\ Nerd\\ Font\\ Complete"
--- vim.g.loaded_netrwPlugin = 1 -- needed for netrw gx command to open remote links in browser
 vim.cmd('filetype plugin on') -- filetype detection

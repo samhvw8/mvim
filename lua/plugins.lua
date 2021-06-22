@@ -66,7 +66,7 @@ return require("packer").startup({
 
         -- Autocomplete
         use {"hrsh7th/nvim-compe"}
-        -- use 'Gavinok/compe-look'
+        use 'Gavinok/compe-look'
         use {"rafamadriz/friendly-snippets"}
         use {"hrsh7th/vim-vsnip"}
         use {'onsails/lspkind-nvim'}
@@ -179,6 +179,9 @@ return require("packer").startup({
         use {'gabrielpoca/replacer.nvim'}
 
         -- use {"folke/todo-comments.nvim"} -- this lag too
+
+        -- fix gx open command in vim
+        use {"felipec/vim-sanegx"}
 
         require_plugin("nvim-tree.lua")
         require_plugin("nvim-autopairs")
