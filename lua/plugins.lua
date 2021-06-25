@@ -26,6 +26,14 @@ local function require_plugin(plugin)
     return ok, err, code
 end
 
+local function isMac()
+    os_name = fn.system('uname')
+    if os_name == 'Darwin' then
+        return true
+    end
+    return false
+end
+
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require("packer").startup({
@@ -153,7 +161,11 @@ return require("packer").startup({
 
         use 'dstein64/vim-startuptime'
 
-        use '/usr/local/opt/fzf'
+        if isMac() then
+            use '/usr/local/opt/fzf'
+        else
+            use {'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
+        end
         use 'junegunn/fzf.vim'
         use 'vijaymarupudi/nvim-fzf'
 
