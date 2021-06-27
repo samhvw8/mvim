@@ -191,7 +191,7 @@ return require("packer").startup({
         -- use {"folke/todo-comments.nvim"} -- this lag too
 
         -- fix gx open command in vim
-        use {"felipec/vim-sanegx"}
+        -- use {"felipec/vim-sanegx"}
 
         require_plugin("nvim-tree.lua")
         require_plugin("nvim-autopairs")

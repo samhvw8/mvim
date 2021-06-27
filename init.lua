@@ -41,6 +41,7 @@ vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
 
 -- LSP
 require('lsp')
+require('lsp.java-ls')
 require('lsp.clangd')
 -- require('lsp.php-ls')
 -- require('lsp.dart-ls')

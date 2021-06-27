@@ -52,7 +52,8 @@ local opts = {
 vim.g.mapleader = ' '
 
 -- explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api
+    .nvim_set_keymap('n', '<Leader>e', ':lua require"gv-nvimtree".toggle_tree()<CR>', {noremap = true, silent = true})
 
 -- telescope
 -- vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
@@ -103,7 +104,13 @@ local mappings = {
         g = "Document generate"
     },
 
-    b = {p = {"<cmd>BufferPick<cr>", "Buffer Pick"}, o = {"<cmd>BufferCloseAllButCurrent<cr>", "Buffer Only"}},
+    b = {
+        name = "+Buffers",
+        p = {"<cmd>BufferPick<cr>", "Buffer Pick"},
+        o = {"<cmd>BufferCloseAllButCurrent<cr>", "Buffer Only"},
+        D = {"<cmd>BufferOrderByDirectory<cr>", "sort BufferLines automatically by directory"},
+        L = {"<cmd>BufferOrderByLanguage<cr>", "sort BufferLines automatically by language"}
+    },
 
     h = {
         name = "+GitHunk",
