@@ -27,10 +27,8 @@ local function require_plugin(plugin)
 end
 
 local function isMac()
-    os_name = fn.system('uname')
-    if os_name == 'Darwin' then
-        return true
-    end
+    local os_name = fn.system('uname'):gsub("\n", "")
+    if os_name == 'Darwin' then return true end
     return false
 end
 
@@ -164,7 +162,7 @@ return require("packer").startup({
         if isMac() then
             use '/usr/local/opt/fzf'
         else
-            use {'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
+            use {'junegunn/fzf', dir = '~/.fzf', run = './install --all'}
         end
         use 'junegunn/fzf.vim'
         use 'vijaymarupudi/nvim-fzf'
