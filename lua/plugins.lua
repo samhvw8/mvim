@@ -188,6 +188,8 @@ return require("packer").startup({
 
         use {'gabrielpoca/replacer.nvim'}
 
+        use {'neo4j-contrib/cypher-vim-syntax'}
+
         -- use {"folke/todo-comments.nvim"} -- this lag too
 
         -- fix gx open command in vim
