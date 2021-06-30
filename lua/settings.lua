@@ -52,6 +52,7 @@ o.ignorecase = true
 o.smartcase = true
 
 -- undo
+vim.o.undodir = CACHE_PATH .. '/undo'
 bo.undofile = true
 o.undofile = vim.bo.undofile
 o.undolevels = 1000
