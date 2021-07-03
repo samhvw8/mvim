@@ -153,7 +153,7 @@ return require("packer").startup({
         -- rsync
         use 'kenn7/vim-arsync'
 
-        use {'lukas-reineke/indent-blankline.nvim', branch = "lua"}
+        use {'lukas-reineke/indent-blankline.nvim'}
 
         use 'davidgranstrom/nvim-markdown-preview'
 
