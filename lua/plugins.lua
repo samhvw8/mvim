@@ -46,6 +46,7 @@ return require("packer").startup({
         use {"glepnir/lspsaga.nvim"}
         use {"kabouzeid/nvim-lspinstall"}
         use {"nvim-lua/lsp-status.nvim"}
+        use {"jose-elias-alvarez/nvim-lsp-ts-utils"}
 
         use {'skywind3000/asynctasks.vim'}
         use {'skywind3000/asyncrun.vim'}
@@ -83,17 +84,14 @@ return require("packer").startup({
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'nvim-treesitter/nvim-treesitter-refactor'
         use {'nvim-treesitter/playground'} -- playground
+        use {"windwp/nvim-ts-autotag"} -- ts auto tag
+        use 'JoosepAlviste/nvim-ts-context-commentstring' -- ts comment string
 
         -- solidity
         use 'TovarishFin/vim-solidity'
-        -- for react comment
-        use 'JoosepAlviste/nvim-ts-context-commentstring'
-        -- typescript & html & vue
-        use {"windwp/nvim-ts-autotag"}
 
         -- Explorer
         use {"kyazdani42/nvim-tree.lua", opt = true}
-
         -- TODO: remove when open on dir is supported by nvimtree
         use "kevinhwang91/rnvimr"
 

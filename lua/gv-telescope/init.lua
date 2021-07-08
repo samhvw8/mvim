@@ -90,7 +90,28 @@ require('telescope').setup {
                 -- the default case_mode is "smart_case"
             }
         }
-    }
+    },
+	pickers = {
+		-- Your special builtin config goes in here
+		buffers = {
+			sort_lastused = true,
+			theme = "dropdown",
+			previewer = false,
+			mappings = {
+				i = {
+					["<c-d>"] = require("telescope.actions").delete_buffer,
+					-- or right hand side can also be a the name of the action as string
+					["<c-d>"] = "delete_buffer",
+				},
+				n = {
+					["<c-d>"] = require("telescope.actions").delete_buffer,
+				}
+			}
+		},
+		find_files = {
+			theme = "dropdown"
+		}
+	},
 }
 
 -- require('telescope').load_extension('fzy_native')

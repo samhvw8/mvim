@@ -57,6 +57,10 @@ if O.sh.linter == 'shellcheck' then table.insert(sh_arguments, shellcheck) end
 
 -- tsserver/web javascript react, vue, json, html, css, yaml
 local prettier = {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
+
+if vim.fn.glob("node_modules/.bin/prettier") ~= "" then
+    prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
+end
 -- You can look for project scope Prettier and Eslint with e.g. vim.fn.glob("node_modules/.bin/prettier") etc. If it is not found revert to global Prettier where needed.
 -- local prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
