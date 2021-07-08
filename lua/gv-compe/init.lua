@@ -1,4 +1,5 @@
 vim.o.completeopt = "menuone,noselect"
+vim.o.dictionary = "/usr/share/dict/words"
 
 require'compe'.setup {
     enabled = O.auto_complete,
@@ -12,7 +13,15 @@ require'compe'.setup {
     max_abbr_width = 100,
     max_kind_width = 100,
     max_menu_width = 100,
-    documentation = true,
+
+	documentation = {
+		border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+		winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+		max_width = 120,
+		min_width = 60,
+		max_height = math.floor(vim.o.lines * 0.3),
+		min_height = 1,
+	};
 
     source = {
         path = {kind = "   (Path)"},
@@ -146,7 +155,7 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- nvim-compe key map
 vim.cmd('inoremap <silent><expr> <C-Space> compe#complete()')
-vim.cmd("inoremap <silent><expr> <CR>      compe#confirm('<CR>')")
+vim.cmd("inoremap <silent><expr> <CR>      compe#confirm(luaeval('require \"nvim-autopairs\".autopairs_cr()))'")
 vim.cmd("inoremap <silent><expr> <C-e>     compe#close('<C-e>')")
 vim.cmd("inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })")
 vim.cmd("inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })")
