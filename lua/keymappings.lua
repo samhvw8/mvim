@@ -8,6 +8,12 @@ vim.api.nvim_set_keymap('n', '0', '^', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>h', ':set hlsearch!<CR>', {noremap = true, silent = true})
 
 -- better window movement
+
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", {silent = true})
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", {silent = true})
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", {silent = true})
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", {silent = true})
+
 vim.api.nvim_set_keymap('n', '<C-w><Left>', '<C-w>h', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-w><Down>', '<C-w>j', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-w><Up>', '<C-w>k', {silent = true})
@@ -53,11 +59,11 @@ vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('n', ']h', '<cmd>NextHunk<cr>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '[h', '<cmd>PrevHunk<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', ']h', '<cmd>lua require "gitsigns".next_hunk()<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '[h', '<cmd>lua require "gitsigns".prev_hunk()<cr>', {noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('v', ']h', '<cmd>NextHunk<cr>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '[h', '<cmd>PrevHunk<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', ']h', '<cmd>lua require "gitsigns".next_hunk()<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '[h', '<cmd>lua require "gitsigns".prev_hunk()<cr>', {noremap = true, silent = true})
 
 -- Better nav for omnicomplete
 vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')

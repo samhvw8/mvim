@@ -4,66 +4,57 @@ local api = vim.api
 
 local g = vim.g
 local o, wo, bo = vim.o, vim.wo, vim.bo
+local opt = vim.opt
+
+cmd "filetype plugin on"
+cmd('syntax enable') -- syntax highlighting
 
 cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
-cmd('set shortmess+=c') -- Don't pass messages to |ins-completion-menu|.
 cmd('set inccommand=split') -- Make substitution work in realtime
-o.hidden = O.hidden_files -- Required to keep multiple buffers open multiple buffers
-o.title = true
-TERMINAL = fn.expand('$TERMINAL')
-cmd('let &titleold="' .. TERMINAL .. '"')
-o.titlestring = "%<%F%=%l/%L - nvim"
-wo.wrap = O.wrap_lines -- Display long lines as just one line
-cmd('set whichwrap+=<,>,[,],h,l') -- move to next line with theses keys
-cmd('syntax enable') -- syntax highlighting
--- o.pumheight = 10 -- Makes popup menu smaller
-o.fileencoding = "utf-8" -- The encoding written to file
-o.cmdheight = 2 -- More space for displaying messages
-cmd('set colorcolumn=99999') -- fix indentline for now
-o.mouse = "a" -- Enable your mouse
-o.splitbelow = true -- Horizontal splits will automatically be below
-o.termguicolors = true -- set term gui colors most terminals support this
-o.splitright = true -- Vertical splits will automatically be to the right
--- o.t_Co = "256" -- Support 256 colors
-o.conceallevel = 0 -- So that I can see `` in markdown files
-cmd('set ts=4') -- Insert 2 spaces for a tab
-cmd('set sw=4') -- Change the number of space characters inserted for indentation
-bo.expandtab = true -- Converts tabs to spaces
-bo.smartindent = true -- Makes indenting smart
-wo.number = O.number -- set numbered lines
-wo.relativenumber = O.relative_number -- set relative number
-wo.cursorline = true -- Enable highlighting of the current line
-o.showtabline = 2 -- Always show tabs
-o.showmode = false -- We don't need to see things like -- INSERT -- anymore
-o.writebackup = false -- This is recommended by coc
-wo.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-o.updatetime = 250 -- Faster completion
-o.timeoutlen = 500 -- By default timeoutlen is 1000 ms
-o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
-o.showbreak = '╰─➤'
-o.lazyredraw = true
--- o.guifont = "JetBrainsMono\\ Nerd\\ Font\\ Mono:h18"
--- o.guifont = "Hack\\ Nerd\\ Font\\ Mono"
--- o.guifont = "SauceCodePro Nerd Font:h17"
+cmd "set iskeyword+=-"
+cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd('colorscheme ' .. O.colorscheme)
+
+opt.backup = false -- creates a backup file
+opt.clipboard = O.clipboard -- allows neovim to access the system clipboard
+opt.cmdheight = O.cmdheight -- more space in the neovim command line for displaying messages
+opt.colorcolumn = "99999" -- fix indentline for now
+opt.completeopt = {"menuone", "noselect"}
+opt.conceallevel = 0 -- so that `` is visible in markdown files
+opt.fileencoding = "utf-8" -- the encoding written to a file
+opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+opt.hidden = O.hidden_files -- required to keep multiple buffers and open multiple buffers
+opt.hlsearch = O.hl_search -- highlight all matches on previous search pattern
+opt.ignorecase = O.ignore_case -- ignore case in search patterns
+opt.mouse = "a" -- allow the mouse to be used in neovim
+opt.pumheight = 10 -- pop up menu height
+opt.scrolloff = O.scrolloff -- minimal number of screen lines to keep above and below the cursor
+opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+opt.showtabline = 2 -- always show tabs
+opt.smartcase = O.smart_case -- smart case
+opt.smartindent = true -- make indenting smarter again
+opt.splitbelow = true -- force all horizontal splits to go below current window
+opt.splitright = true -- force all vertical splits to go to the right of current window
+opt.swapfile = false -- creates a swapfile
+opt.termguicolors = true -- set term gui colors (most terminals support this)
+opt.timeoutlen = O.timeoutlen -- time to wait for a mapped sequence to complete (in milliseconds)
+opt.title = true -- set the title of window to the value of the titlestring
+opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+opt.undodir = CACHE_PATH .. "/undo" -- set an undo directory
+opt.undofile = true -- enable persisten undo
+opt.updatetime = 300 -- faster completion
+opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+opt.expandtab = true -- convert tabs to spaces
+opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+opt.shortmess:append "c"
+opt.tabstop = 4 -- insert 4 spaces for a tab
+opt.cursorline = O.cursorline -- highlight the current line
+opt.number = O.number -- set numbered lines
+opt.relativenumber = O.relative_number -- set relative numbered lines
+opt.numberwidth = O.number_width -- set number column width to 2 {default 4}
+opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
+opt.wrap = O.wrap_lines -- display lines as one long line
 o.guifont = "FiraCode Nerd Font:h17"
-
 o.incsearch = true
-o.ignorecase = true
-o.smartcase = true
-
--- undo
-vim.o.undodir = CACHE_PATH .. '/undo'
-bo.undofile = true
-o.undofile = vim.bo.undofile
-o.undolevels = 1000
-
--- no backup
-o.backup = false
-bo.swapfile = false
-o.swapfile = bo.swapfile
-
 vim.g.python3_host_prog = "/usr/local/bin/python"
 vim.g.node_host_prog = "/usr/local/bin/neovim-node-host"
-
--- o.guifont = "JetBrains\\ Mono\\ Regular\\ Nerd\\ Font\\ Complete"
-vim.cmd('filetype plugin on') -- filetype detection

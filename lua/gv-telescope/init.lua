@@ -30,7 +30,7 @@ require('telescope').setup {
         borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
         color_devicons = true,
         use_less = true,
-		path_display = {},
+        path_display = {},
         set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
         file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -91,27 +91,19 @@ require('telescope').setup {
             }
         }
     },
-	pickers = {
-		-- Your special builtin config goes in here
-		buffers = {
-			sort_lastused = true,
-			theme = "dropdown",
-			previewer = false,
-			mappings = {
-				i = {
-					["<c-d>"] = require("telescope.actions").delete_buffer,
-					-- or right hand side can also be a the name of the action as string
-					["<c-d>"] = "delete_buffer",
-				},
-				n = {
-					["<c-d>"] = require("telescope.actions").delete_buffer,
-				}
-			}
-		},
-		find_files = {
-			theme = "dropdown"
-		}
-	},
+    pickers = {
+        -- Your special builtin config goes in here
+        buffers = {
+            sort_lastused = true,
+            theme = "dropdown",
+            previewer = false,
+            mappings = {
+                i = {["<c-d>"] = require("telescope.actions").delete_buffer},
+                n = {["<c-d>"] = require("telescope.actions").delete_buffer}
+            }
+        },
+        find_files = {theme = "dropdown"}
+    }
 }
 
 -- require('telescope').load_extension('fzy_native')
