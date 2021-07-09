@@ -34,7 +34,6 @@ M.define_augroups {
         {"BufWinEnter", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
         {"BufRead", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
         {"BufNewFile", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
-        {"BufWritePost", "lv-config.lua", "lua require('lv-utils').reload_lv_config()"},
         {"VimLeavePre", "*", "set title set titleold="}
     },
     -- _solidity = {

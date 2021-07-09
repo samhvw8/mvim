@@ -66,7 +66,7 @@ O = {
     user_which_key = {},
 
     user_plugins = {
-        -- use lv-config.lua for this not put here
+        -- use gv-config.lua for this not put here
     },
 
     user_autocommands = {{"FileType", "qf", "set nobuflisted"}},
@@ -120,7 +120,7 @@ O = {
         },
         sh = {
             -- @usage can be 'shellcheck'
-            linter = "",
+            linter = "shellcheck",
             -- @usage can be 'shfmt'
             diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
         },

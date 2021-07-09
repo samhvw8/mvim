@@ -11,6 +11,7 @@ cmd('syntax enable') -- syntax highlighting
 
 cmd('set iskeyword+=-') -- treat dash separated words as a word text object"
 cmd('set inccommand=split') -- Make substitution work in realtime
+cmd('set hlsearch')
 cmd "set iskeyword+=-"
 cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd('colorscheme ' .. O.colorscheme)

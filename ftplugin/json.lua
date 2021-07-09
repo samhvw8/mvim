@@ -1,3 +1,7 @@
+if require("gv-utils").check_lsp_client_active "jsonls" then
+  return
+end
+
 -- npm install -g vscode-json-languageserver
 require'lspconfig'.jsonls.setup {
     cmd = {

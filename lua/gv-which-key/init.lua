@@ -51,6 +51,7 @@ local opts = {
 -- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
+
 -- explorer
 vim.api
     .nvim_set_keymap('n', '<Leader>e', ':lua require"gv-nvimtree".toggle_tree()<CR>', {noremap = true, silent = true})
@@ -72,6 +73,9 @@ vim.api.nvim_set_keymap("n", "<leader>w", ":update<CR>", {noremap = true, silent
 vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>W", ":noa update<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>4", ":lua require('replacer').run()<cr>", {silent = true})
+
+vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {silent = true})
+vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {silent = true})
 
 -- TODO create entire treesitter section
 

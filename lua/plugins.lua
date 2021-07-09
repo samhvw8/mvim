@@ -32,8 +32,6 @@ return require("packer").startup({
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
 
-        -- TODO: refactor all of this (for now it works, but yes I know it could be wrapped in a simpler )
-
         -- lsp
         use {"neovim/nvim-lspconfig"}
         use {"glepnir/lspsaga.nvim"}
@@ -205,12 +203,15 @@ return require("packer").startup({
         }
 
         -- search related
+        use {'haya14busa/vim-asterisk', requires={"nvim-hlslens"}}
+
         use {
             'kevinhwang91/nvim-hlslens',
             config = function()
                 require('gv-nvim-hlslens')
             end
         }
+
         use {
             'eugen0329/vim-esearch',
             event = "BufRead",
@@ -219,7 +220,6 @@ return require("packer").startup({
             end
         } -- replace CocSearch
 
-        use {'haya14busa/vim-asterisk'}
 
         -- tpope -- TODO: replace with lua
         use 'tpope/vim-abolish'

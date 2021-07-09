@@ -1,15 +1,35 @@
 --[[
 O is the global options object
-
-Formatters and linters should be
+Linters should be
 filled in as strings with either
 a global executable or a path to
 an executable
-]] -- general
+]]
+-- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+-- general
+O.format_on_save = true
 O.auto_complete = true
 O.colorscheme = "dracula"
 O.auto_close_tree = 0
 O.wrap_lines = false
+O.timeoutlen = 100
+O.leader_key = " "
+O.ignore_case = true
+O.smart_case = true
+
+-- if you don't want all the parsers change this to a table of the ones you want
+O.treesitter.ensure_installed = "maintained"
+O.treesitter.ignore_install = { "haskell" }
+O.treesitter.highlight.enabled = true
+
+-- python
+-- O.python.linter = 'flake8'
+O.lang.python.isort = true
+O.lang.python.diagnostics.virtual_text = true
+O.lang.python.analysis.use_library_code_types = true
+
+-- javascript
+O.lang.tsserver.linter = nil
 
 -- if you don't want all the parsers change this to a table of the ones you want
 O.treesitter.ensure_installed = "all"
