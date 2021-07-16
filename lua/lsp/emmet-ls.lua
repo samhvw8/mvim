@@ -1,8 +1,5 @@
 local nvim_lsp = require 'lspconfig'
 local configs = require 'lspconfig/configs'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = vim.tbl_extend('keep', capabilities, require'lsp'.common_capabilities);
 
 configs.emmet_ls = {
     default_config = {
@@ -15,4 +12,4 @@ configs.emmet_ls = {
     }
 }
 
-nvim_lsp.emmet_ls.setup {capabilities = capabilities, on_attach = require'lsp'.common_on_attach}
+nvim_lsp.emmet_ls.setup {capabilities = require'lsp'.common_capabilities, on_attach = require'lsp'.common_on_attach}

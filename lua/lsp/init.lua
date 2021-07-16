@@ -72,7 +72,16 @@ function lsp_config.common_on_attach(client, bufnr)
     lsp_status.on_attach(client, bufnr)
 end
 
-lsp_config.common_capabilities = lsp_status.capabilities;
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {'documentation', 'detail', 'additionalTextEdits'}
+}
+
+-- Set default client capabilities plus window/workDoneProgress
+capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities);
+
+lsp_config.common_capabilities = capabilities;
 
 function lsp_config.tsserver_on_attach(client, bufnr)
     lsp_config.common_on_attach(client, bufnr)
@@ -89,14 +98,9 @@ function lsp_config.tsserver_on_attach(client, bufnr)
         -- eslint
         eslint_enable_code_actions = true,
         eslint_enable_disable_comments = true,
-        eslint_bin = O.lang.tsserver.linter,
+        eslint_bin = "eslint",
         eslint_config_fallback = nil,
         eslint_enable_diagnostics = true,
-
-        -- formatting
-        enable_formatting = O.lang.tsserver.autoformat,
-        formatter = O.lang.tsserver.formatter,
-        formatter_config_fallback = nil,
 
         -- parentheses completion
         complete_parens = false,
