@@ -34,27 +34,32 @@ return require("packer").startup({
 
         -- lsp
         use {"neovim/nvim-lspconfig"}
-        use {"glepnir/lspsaga.nvim"}
-        use {"kabouzeid/nvim-lspinstall", cmd = "LspInstall"}
+        use {
+            "kabouzeid/nvim-lspinstall",
+            event = "VimEnter",
+            config = function()
+                require("lspinstall").setup()
+            end
+        }
 
         use {'skywind3000/asynctasks.vim'}
         use {'skywind3000/asyncrun.vim'}
 
-        -- Telescope
         use {"nvim-lua/popup.nvim"}
         use {"nvim-lua/plenary.nvim"}
         use {"tjdevries/astronauta.nvim"}
+
+        -- Telescope
         use {
             "nvim-telescope/telescope.nvim",
+            after = {
+                "nvim-telescope/telescope-media-files.nvim", "nvim-telescope/telescope-project.nvim",
+                "nvim-telescope/telescope-node-modules.nvim", 'gbrlsnchs/telescope-lsp-handlers.nvim',
+                "GustavoKatel/telescope-asynctasks.nvim", "nvim-telescope/telescope-fzf-writer.nvim",
+                'nvim-telescope/telescope-fzf-native.nvim'
+            },
+            config = [[require('core.telescope').setup()]]
         }
-        use "nvim-telescope/telescope-media-files.nvim"
-        use {"nvim-telescope/telescope-project.nvim"}
-        use {"nvim-telescope/telescope-node-modules.nvim"}
-        -- use {"nvim-telescope/telescope-fzy-native.nvim", event = "BufRead", after = "telescope.nvim"}
-        use {'gbrlsnchs/telescope-lsp-handlers.nvim'}
-        use {"GustavoKatel/telescope-asynctasks.nvim"}
-        use {"nvim-telescope/telescope-fzf-writer.nvim"}
-        use {'nvim-telescope/telescope-fzf-native.nvim'}
 
         -- Debugging
         use {"mfussenegger/nvim-dap", event = "BufRead"}
@@ -68,9 +73,10 @@ return require("packer").startup({
             "hrsh7th/nvim-compe",
             event = "InsertEnter",
             config = function()
-                require("gv-compe")
+                require('core.compe').setup()
             end
         }
+        use {"glepnir/lspsaga.nvim"}
         use {'Gavinok/compe-look', after = "nvim-compe"}
 
         use {"rafamadriz/friendly-snippets"}
@@ -174,7 +180,7 @@ return require("packer").startup({
         use {
             "kyazdani42/nvim-web-devicons",
             config = function()
-                require'nvim-web-devicons'
+                require 'nvim-web-devicons'
             end
         }
 
@@ -203,7 +209,7 @@ return require("packer").startup({
         }
 
         -- search related
-        use {'haya14busa/vim-asterisk', requires={"nvim-hlslens"}}
+        use {'haya14busa/vim-asterisk', requires = {"nvim-hlslens"}}
 
         use {
             'kevinhwang91/nvim-hlslens',
@@ -219,7 +225,6 @@ return require("packer").startup({
                 require('gv-esearch')
             end
         } -- replace CocSearch
-
 
         -- tpope -- TODO: replace with lua
         use 'tpope/vim-abolish'
