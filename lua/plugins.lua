@@ -1,11 +1,10 @@
-local execute = vim.api.nvim_command
 local fn = vim.fn
 
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    execute "packadd packer.nvim"
+    vim.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    vim.execute "packadd packer.nvim"
 end
 
 local packer_ok, packer = pcall(require, "packer")
@@ -38,7 +37,7 @@ return require("packer").startup({
             "kabouzeid/nvim-lspinstall",
             event = "VimEnter",
             config = function()
-                require("lspinstall").setup()
+                require'lspinstall'.setup()
             end
         }
 
@@ -50,16 +49,15 @@ return require("packer").startup({
         use {"tjdevries/astronauta.nvim"}
 
         -- Telescope
-        use {
-            "nvim-telescope/telescope.nvim",
-            after = {
-                "nvim-telescope/telescope-media-files.nvim", "nvim-telescope/telescope-project.nvim",
-                "nvim-telescope/telescope-node-modules.nvim", 'gbrlsnchs/telescope-lsp-handlers.nvim',
-                "GustavoKatel/telescope-asynctasks.nvim", "nvim-telescope/telescope-fzf-writer.nvim",
-                'nvim-telescope/telescope-fzf-native.nvim'
-            },
-            config = [[require('core.telescope').setup()]]
-        }
+        use {"nvim-telescope/telescope.nvim"}
+        use "nvim-telescope/telescope-media-files.nvim"
+        use "nvim-telescope/telescope-project.nvim"
+        use {"nvim-telescope/telescope-node-modules.nvim"}
+        -- use {"nvim-telescope/telescope-fzy-native.nvim"}
+        use {'gbrlsnchs/telescope-lsp-handlers.nvim'}
+        use "GustavoKatel/telescope-asynctasks.nvim"
+        use "nvim-telescope/telescope-fzf-writer.nvim"
+        use {'nvim-telescope/telescope-fzf-native.nvim', run = "make"}
 
         -- Debugging
         use {"mfussenegger/nvim-dap", event = "BufRead"}
@@ -87,13 +85,29 @@ return require("packer").startup({
         use {"nvim-lua/lsp-status.nvim"}
         use {"jose-elias-alvarez/nvim-lsp-ts-utils"}
 
-        -- Treesitte
+        -- Treesitter
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'nvim-treesitter/nvim-treesitter-refactor'
         use {"nvim-treesitter/playground", event = "BufRead"}
         use {"windwp/nvim-ts-autotag"} -- ts auto tag
         use {"JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead"}
+
+        -- Formatter.nvim
+        use {
+            "mhartington/formatter.nvim",
+            config = function()
+                require "core.formatter"
+            end
+        }
+
+        -- Linter
+        use {
+            "mfussenegger/nvim-lint",
+            config = function()
+                require("core.linter").setup()
+            end
+        }
 
         -- solidity
         use 'TovarishFin/vim-solidity'
@@ -103,24 +117,20 @@ return require("packer").startup({
             "kyazdani42/nvim-tree.lua",
             -- cmd = "NvimTreeToggle",
             config = function()
-                require("gv-nvimtree")
+                require("core.nvimtree")
             end
         }
 
         use {
-            "kevinhwang91/rnvimr",
-            config = function()
-                require("gv-rnvimr")
-            end
+            "kevinhwang91/rnvimr"
         }
 
         -- Git
         use {
             "lewis6991/gitsigns.nvim",
             config = function()
-                require("gv-git")
-            end,
-            event = "BufRead"
+                require("core.gitsign").setup()
+            end
         }
         use {
             'TimUntersberger/neogit',
@@ -143,7 +153,7 @@ return require("packer").startup({
             'sindrets/diffview.nvim',
             event = "BufRead",
             config = function()
-                require('gv-diffview')
+                require('core.diffview')
             end
         }
 
@@ -156,7 +166,7 @@ return require("packer").startup({
             event = "InsertEnter",
             after = {"telescope.nvim", "nvim-compe"},
             config = function()
-                require "gv-autopairs"
+                require "core.autopairs"
             end
         }
 
@@ -165,14 +175,14 @@ return require("packer").startup({
             "terrortylor/nvim-comment",
             cmd = "CommentToggle",
             config = function()
-                require("gv-comment")
+                require("nvim_comment").setup()
             end
         }
         use {
             "kevinhwang91/nvim-bqf",
             event = "BufRead",
             config = function()
-                require('gv-bqf')
+                require('core.bqf')
             end
         }
 
@@ -188,13 +198,13 @@ return require("packer").startup({
         use {
             "glepnir/galaxyline.nvim",
             config = function()
-                require "gv-galaxyline"
+                require "core.galaxyline"
             end
         }
         use {
             "romgrk/barbar.nvim",
             config = function()
-                require('gv-barbar')
+                require('core.barbar')
             end
         }
 
@@ -204,7 +214,7 @@ return require("packer").startup({
             "andymass/vim-matchup",
             event = "CursorMoved",
             config = function()
-                require("gv-matchup")
+                vim.g.matchup_matchparen_offscreen = {method = 'popup'}
             end
         }
 
@@ -214,7 +224,7 @@ return require("packer").startup({
         use {
             'kevinhwang91/nvim-hlslens',
             config = function()
-                require('gv-nvim-hlslens')
+                require('hlslens').setup({calm_down = true, nearest_only = true, nearest_float_when = 'always'})
             end
         }
 
@@ -222,7 +232,19 @@ return require("packer").startup({
             'eugen0329/vim-esearch',
             event = "BufRead",
             config = function()
-                require('gv-esearch')
+                -- vim.api.nvim_set_keymap('n', '<m-s>', '<plug>(esearch)', {silent = true})
+                vim.api.nvim_set_keymap('', '<m-s>', '<plug>(operator-esearch-prefill)', {silent = true})
+
+                vim.g.esearch = {
+                    regex = 1,
+                    textobj = 0,
+                    case = 'smart',
+                    prefill = {'hlsearch', 'last', 'clipboard'},
+                    root_markers = {'.git', 'Makefile', 'node_modules'},
+                    default_mappings = 1,
+                    live_update = 0,
+                    name = '[esearch]'
+                }
             end
         } -- replace CocSearch
 
@@ -230,10 +252,13 @@ return require("packer").startup({
         use 'tpope/vim-abolish'
         use 'tpope/vim-repeat'
         use 'tpope/vim-unimpaired'
+
         use {
             'junegunn/vim-easy-align',
             config = function()
-                require('gv-easy-align')
+                -- Make Ranger replace netrw and be the file explorer
+                vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {noremap = true, silent = true})
+                vim.api.nvim_set_keymap('v', 'ga', '<Plug>(EasyAlign)', {silent = true})
             end,
             event = "BufRead"
         }
@@ -242,7 +267,7 @@ return require("packer").startup({
         use {
             'blackCauldron7/surround.nvim',
             config = function()
-                require('gv-surround')
+                require"surround".setup {mappings_style = "surround"}
             end,
             event = "BufRead"
         }
@@ -264,7 +289,7 @@ return require("packer").startup({
             "monaqa/dial.nvim",
             event = "BufRead",
             config = function()
-                require("gv-dial")
+                require("core.dial")
             end
         }
 
@@ -279,7 +304,17 @@ return require("packer").startup({
             "lukas-reineke/indent-blankline.nvim",
             event = "BufRead",
             config = function()
-                require('gv-indent-blankline')
+                vim.g.indent_blankline_char_list = {'|', '¦', '┆', '┊'}
+                -- vim.g.indent_blankline_char = '┃'
+                vim.g.indent_blankline_strict_tabs = true
+
+                vim.g.indent_blankline_show_trailing_blankline_indent = false
+                vim.g.indent_blankline_use_treesitter = true
+                vim.g.indent_blankline_buftype_exclude = {'terminal'}
+                vim.g.indent_blankline_filetype_exclude = {
+                    'help', 'startify', 'dashboard', 'packer', 'neogitstatus', 'NvimTree'
+                }
+                vim.g.indent_blankline_show_current_context = true
             end
         }
 
@@ -295,9 +330,6 @@ return require("packer").startup({
         use 'junegunn/fzf.vim'
         use 'vijaymarupudi/nvim-fzf'
 
-        -- Fast move when :<bumber>
-        -- use 'nacro90/numb.nvim'   -- lag ??
-
         -- SQL
         use {"tpope/vim-dadbod", requires = {"kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui"}}
 
@@ -307,7 +339,9 @@ return require("packer").startup({
             'kkoomen/vim-doge',
             run = ":call doge#install()",
             config = function()
-                require('gv-doge')
+                -- Make Ranger replace netrw and be the file explorer
+                vim.g.doge_enable_mappings = true
+                vim.g.doge_mapping = "<leader>dg"
             end
         }
 
@@ -323,8 +357,6 @@ return require("packer").startup({
         use {'gabrielpoca/replacer.nvim'}
 
         use {'neo4j-contrib/cypher-vim-syntax'}
-
-        -- use {"folke/todo-comments.nvim"} -- this lag too
 
         -- fix gx open command in vim
         use {"felipec/vim-sanegx", event = "BufRead"}

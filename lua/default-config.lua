@@ -67,6 +67,27 @@ O = {
             popup_border = "single"
         }
     },
+    
+    disabled_built_ins = {
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "gzip",
+        "zip",
+        "zipPlugin",
+        "tar",
+        "tarPlugin", -- 'man',
+        "getscript",
+        "getscriptPlugin",
+        "vimball",
+        "vimballPlugin",
+        "2html_plugin",
+        "logipat",
+        "rrhelper",
+        "spellfile_plugin",
+        -- 'matchit', 'matchparen', 'shada_plugin',
+      },
 
     plugin = {},
 
@@ -188,38 +209,36 @@ O = {
     }
 }
 
--- require "core.status_colors"
--- require("core.gitsigns").config()
+require "core.status_colors"
+require("core.gitsign").config()
 require("core.compe").config()
--- require("core.dashboard").config()
--- require("core.dap").config()
--- require("core.terminal").config()
--- require("core.zen").config()
--- require("core.telescope").config()
--- require("core.treesitter").config()
--- require("core.which-key").config()
+require("core.dashboard").config()
+require("core.dap").config()
+require("core.telescope").config()
+require("core.treesitter").config()
+require("core.which-key").config()
 
--- require("lang.clang").config()
--- require("lang.cmake").config()
--- require("lang.css").config()
--- require("lang.dart").config()
--- require("lang.dockerfile").config()
--- require("lang.elixir").config()
--- require("lang.elm").config()
--- require("lang.go").config()
--- require("lang.graphql").config()
--- require("lang.html").config()
--- require("lang.java").config()
--- require("lang.json").config()
--- require("lang.kotlin").config()
--- require("lang.lua").config()
--- require("lang.php").config()
--- require("lang.python").config()
--- require("lang.ruby").config()
--- require("lang.rust").config()
--- require("lang.sh").config()
--- require("lang.terraform").config()
--- require("lang.tex").config()
--- require("lang.vim").config()
--- require("lang.yaml").config()
+require("lang.clang").config()
+require("lang.cmake").config()
+require("lang.css").config()
+require("lang.dart").config()
+require("lang.dockerfile").config()
+require("lang.elixir").config()
+require("lang.elm").config()
+require("lang.go").config()
+require("lang.graphql").config()
+require("lang.html").config()
+require("lang.java").config()
+require("lang.json").config()
+require("lang.kotlin").config()
+require("lang.lua").config()
+require("lang.php").config()
+require("lang.python").config()
+require("lang.ruby").config()
+require("lang.rust").config()
+require("lang.sh").config()
+require("lang.terraform").config()
+require("lang.tex").config()
+require("lang.vim").config()
+require("lang.yaml").config()
 

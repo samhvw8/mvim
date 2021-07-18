@@ -1,4 +1,4 @@
--- TODO figure out why this don't work
+-- TODO: figure out why this don't work
 vim.fn.sign_define("LspDiagnosticsSignError",
                    {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"})
 vim.fn.sign_define("LspDiagnosticsSignWarning",
@@ -26,12 +26,17 @@ vim.cmd("nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
 -- Set Default Prefix.
--- Note: You can set a prefix per lsp server in the gv-globals.lua file
+-- Note: You can set a prefix per lsp server in the lv-globals.lua file
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {prefix = "", spacing = 0},
-    signs = true,
-    underline = true
+    virtual_text = O.lsp.diagnostics.virtual_text,
+    signs = O.lsp.diagnostics.signs,
+    underline = O.lsp.document_highlight
 })
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = O.lsp.popup_border})
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,
+                                                              {border = O.lsp.popup_border})
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
@@ -74,9 +79,8 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {'documentation', 'detail', 'additionalTextEdits'}
-}
+capabilities.textDocument.completion.completionItem.resolveSupport =
+    {properties = {'documentation', 'detail', 'additionalTextEdits'}}
 
 -- Set default client capabilities plus window/workDoneProgress
 capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities);
@@ -84,9 +88,10 @@ capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities);
 lsp_config.common_capabilities = capabilities;
 
 function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
+    -- lsp_config.common_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
-    local ts_utils = require("nvim-lsp-ts-utils")
+
+    local ts_utils = require "nvim-lsp-ts-utils"
 
     -- defaults
     ts_utils.setup {
@@ -98,9 +103,14 @@ function lsp_config.tsserver_on_attach(client, bufnr)
         -- eslint
         eslint_enable_code_actions = true,
         eslint_enable_disable_comments = true,
-        eslint_bin = "eslint",
+        eslint_bin = O.lang.tsserver.linter,
         eslint_config_fallback = nil,
         eslint_enable_diagnostics = true,
+
+        -- formatting
+        enable_formatting = O.lang.tsserver.autoformat,
+        formatter = O.lang.tsserver.formatter.exe,
+        formatter_config_fallback = nil,
 
         -- parentheses completion
         complete_parens = false,
@@ -114,13 +124,18 @@ function lsp_config.tsserver_on_attach(client, bufnr)
 
     -- required to fix code action ranges
     ts_utils.setup_client(client)
+
+    -- TODO: keymap these?
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", {silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", {silent = true})
 end
 
-require('gv-utils').define_augroups({_general_lsp = {{'FileType', 'lspinfo', 'nnoremap <silent> <buffer> q :q<CR>'}}})
+require("gv-utils").define_augroups {_general_lsp = {{"FileType", "lspinfo", "nnoremap <silent> <buffer> q :q<CR>"}}}
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 -- local servers = {"pyright", "tsserver"}
 -- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 return lsp_config
-

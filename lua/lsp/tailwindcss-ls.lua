@@ -1,14 +1,13 @@
-local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig/configs'
-
--- Check if tailwindcss server already defined.
-if not lspconfig.tailwindcss then configs['tailwindcss'] = {default_config = {}} end
+-- TODO: what is a tailwindcss filetype
+local lspconfig = require "lspconfig"
 
 lspconfig.tailwindcss.setup {
     cmd = {
         "node", DATA_PATH .. "/lspinstall/tailwindcss/tailwindcss-intellisense/extension/dist/server/tailwindServer.js",
         "--stdio"
     },
-    on_attach = require'lsp'.common_on_attach,
+    filetypes = O.lang.tailwindcss.filetypes,
+    root_dir = require("lspconfig/util").root_pattern("tailwind.config.js", "postcss.config.ts", ".postcssrc"),
+    on_attach = require("lsp").common_on_attach,
     capabilities = require'lsp'.common_capabilities
 }

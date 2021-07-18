@@ -5,14 +5,13 @@ require('plugins')
 vim.g.colors_name = O.colorscheme
 require('settings')
 require('gv-utils')
-require('gv-treesitter')
-require('gv-telescope')
-require('gv-which-key')
-require('gv-dashboard')
+require("core.treesitter").setup()
+require("core.telescope").setup()
+require('core.which-key').setup()
+require('core.rnvimr')
+require("core.dashboard").setup()
 
--- Which Key (Hope to replace with Lua plugin someday)
--- vim.cmd('source ~/.config/nvim/vimscript/gv-whichkey/init.vim')
-vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
+
 
 -- LSP
 -- require('lsp')

@@ -19,9 +19,6 @@ O.smart_case = true
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 O.plugin.dashboard.active = true
-O.plugin.terminal.active = true
-O.plugin.zen.active = false
-O.plugin.zen.window.height = 0.90
 O.plugin.telescope = {todo = {keywords = {"TODO", "FIXME", "XXX"}}}
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -43,23 +40,23 @@ O.treesitter.ensure_installed = "all"
 O.treesitter.ignore_install = {"haskell"}
 O.treesitter.highlight.enabled = true
 
-O.clang.diagnostics.virtual_text = false
-O.clang.diagnostics.signs = false
-O.clang.diagnostics.underline = false
+O.lang.clang.diagnostics.virtual_text = false
+O.lang.clang.diagnostics.signs = false
+O.lang.clang.diagnostics.underline = false
 
 -- python
 -- add things like O.python.formatter.yapf.exec_path
 -- add things like O.python.linter.flake8.exec_path
 -- add things like O.python.formatter.isort.exec_path
-O.python.formatter = "yapf"
+O.lang.python.formatter = "yapf"
 -- O.python.linter = 'flake8'
-O.python.isort = true
-O.python.autoformat = true
-O.python.diagnostics.virtual_text = true
-O.python.diagnostics.signs = true
-O.python.diagnostics.underline = true
-O.python.analysis.type_checking = "off"
-O.python.analysis.auto_search_paths = true
-O.python.analysis.use_library_code_types = true
+O.lang.python.isort = true
+O.lang.python.autoformat = true
+O.lang.python.diagnostics.virtual_text = true
+O.lang.python.diagnostics.signs = true
+O.lang.python.diagnostics.underline = true
+O.lang.python.analysis.type_checking = "off"
+O.lang.python.analysis.auto_search_paths = true
+O.lang.python.analysis.use_library_code_types = true
 
 -- create custom autocommand field (This would be easy with lua)
