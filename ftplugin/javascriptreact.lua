@@ -1,3 +1,3 @@
-require "lsp.tsserver-ls"
+require("lsp.tsserver-ls")
 
-vim.cmd "setl ts=2 sw=2"
+vim.cmd("setl ts=2 sw=2")

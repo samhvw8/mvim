@@ -1,1 +1,1 @@
-require('bqf').setup({})
+require("bqf").setup({})

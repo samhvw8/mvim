@@ -1,41 +1,43 @@
 local M = {}
 
 M.config = function()
-    O.lang.elixir = {formatter = {exe = "mix", args = {"format"}, stdin = true}}
+	O.lang.elixir = { formatter = { exe = "mix", args = { "format" }, stdin = true } }
 end
 
 M.format = function()
-    O.formatters.filetype["elixir"] = {
-        function()
-            return {
-                exe = O.lang.elixir.formatter.exe,
-                args = O.lang.elixir.formatter.args,
-                stdin = not (O.lang.elixir.formatter.stdin ~= nil)
-            }
-        end
-    }
+	O.formatters.filetype["elixir"] = {
+		function()
+			return {
+				exe = O.lang.elixir.formatter.exe,
+				args = O.lang.elixir.formatter.args,
+				stdin = not (O.lang.elixir.formatter.stdin ~= nil),
+			}
+		end,
+	}
 
-    require("formatter.config").set_defaults {logging = false, filetype = O.formatters.filetype}
+	require("formatter.config").set_defaults({ logging = false, filetype = O.formatters.filetype })
 end
 
 M.lint = function()
-    -- TODO: implement linters (if applicable)
-    return "No linters configured!"
+	-- TODO: implement linters (if applicable)
+	return "No linters configured!"
 end
 
 M.lsp = function()
-    if require("gv-utils").check_lsp_client_active "elixirls" then return end
+	if require("gv-utils").check_lsp_client_active("elixirls") then
+		return
+	end
 
-    require("lspconfig").elixirls.setup {
-        cmd = {DATA_PATH .. "/lspinstall/elixir/elixir-ls/language_server.sh"},
-        on_attach = require("lsp").common_on_attach,
-        capabilities = require('lsp').common_capabilities
-    }
+	require("lspconfig").elixirls.setup({
+		cmd = { DATA_PATH .. "/lspinstall/elixir/elixir-ls/language_server.sh" },
+		on_attach = require("lsp").common_on_attach,
+		capabilities = require("lsp").common_capabilities,
+	})
 end
 
 M.dap = function()
-    -- TODO: implement dap
-    return "No DAP configured!"
+	-- TODO: implement dap
+	return "No DAP configured!"
 end
 
 -- needed for the LSP to recognize elixir files (alternativly just use elixir-editors/vim-elixir)
