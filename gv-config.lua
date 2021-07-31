@@ -20,7 +20,6 @@ O.smart_case = true
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 O.plugin.dashboard.active = true
-O.plugin.telescope = { todo = { keywords = { "TODO", "FIXME", "XXX" } } }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 O.treesitter.ensure_installed = "maintained"

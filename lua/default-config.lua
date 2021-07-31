@@ -69,11 +69,15 @@ O = {
 	},
 
 	disabled_built_ins = {
+		"netrw",
+		"netrwPlugin",
+		"netrwSettings",
+		"netrwFileHandlers",
 		"gzip",
 		"zip",
 		"zipPlugin",
 		"tar",
-		"tarPlugin", -- 'man',
+		"tarPlugin",
 		"getscript",
 		"getscriptPlugin",
 		"vimball",
@@ -226,7 +230,6 @@ require("core.gitsign").config()
 require("core.compe").config()
 require("core.dashboard").config()
 require("core.dap").config()
-require("core.telescope").config()
 require("core.treesitter").config()
 require("core.which-key").config()
 

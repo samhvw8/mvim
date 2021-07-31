@@ -5,7 +5,7 @@ M.config = function()
 end
 
 M.format = function()
-	vim.cmd("let proj = FindRootDirectory()")
+	vim.cmd("let proj = getcwd()")
 	local root_dir = vim.api.nvim_get_var("proj")
 
 	-- use the global prettier if you didn't find the local one

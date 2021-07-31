@@ -6,6 +6,7 @@ vim.g.colors_name = O.colorscheme
 require("settings")
 require("gv-utils")
 require("core.treesitter").setup()
+require("core.telescope").config()
 require("core.telescope").setup()
 require("core.which-key").setup()
 require("core.dashboard").setup()

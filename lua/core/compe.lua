@@ -8,7 +8,7 @@ M.config = function()
 		debug = true,
 		min_length = 1,
 		preselect = "enable",
-		throttle_time = 80,
+		throttle_time = 200,
 		source_timeout = 200,
 		incomplete_delay = 400,
 		max_abbr_width = 100,
@@ -76,19 +76,19 @@ M.setup = function()
 	_G.tab_complete = function()
 		if vim.fn.pumvisible() == 1 then
 			return t("<C-n>")
-		elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
+		elseif vim.fn["vsnip#available"](1) == 1 then
 			return t("<Plug>(vsnip-expand-or-jump)")
 		elseif check_back_space() then
 			return t("<Tab>")
 		else
-			return vim.fn()
+			return vim.fn["compe#complete"]()
 		end
 	end
 
 	_G.s_tab_complete = function()
 		if vim.fn.pumvisible() == 1 then
 			return t("<C-p>")
-		elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
+		elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 			return t("<Plug>(vsnip-jump-prev)")
 		else
 			return t("<S-Tab>")

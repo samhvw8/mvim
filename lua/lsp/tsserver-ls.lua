@@ -1,5 +1,4 @@
-vim.cmd("let proj = FindRootDirectory()")
-local root_dir = vim.api.nvim_get_var("proj")
+local root_dir = vim.loop.cwd()
 
 -- use the global prettier if you didn't find the local one
 local prettier_instance = root_dir .. "/node_modules/.bin/prettier"
@@ -42,16 +41,16 @@ require("lspconfig").tsserver.setup({
 	on_attach = require("lsp").tsserver_on_attach,
 	capabilities = require("lsp").common_capabilities,
 	-- This makes sure tsserver is not used for formatting (I prefer prettier)
-	-- on_attach = require'lsp'.common_on_attach,
+	-- on_attach = require("lsp").common_on_attach,
 	root_dir = require("lspconfig/util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
 	settings = { documentFormatting = false },
 	handlers = {
-		-- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		--   virtual_text = O.lang.tsserver.diagnostics.virtual_text,
-		--   signs = O.lang.tsserver.diagnostics.signs,
-		--   underline = O.lang.tsserver.diagnostics.underline,
-		--   update_in_insert = true,
-		-- }),
+		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			virtual_text = O.lang.tsserver.diagnostics.virtual_text,
+			signs = O.lang.tsserver.diagnostics.signs,
+			underline = O.lang.tsserver.diagnostics.underline,
+			update_in_insert = true,
+		}),
 	},
 })
 require("lsp.ts-fmt-lint").setup()

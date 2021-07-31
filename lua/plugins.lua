@@ -50,7 +50,6 @@ return require("packer").startup({
 
 		use({ "nvim-lua/popup.nvim" })
 		use({ "nvim-lua/plenary.nvim" })
-		use({ "tjdevries/astronauta.nvim" })
 
 		-- Autocomplete
 		use({ "rafamadriz/friendly-snippets" })
@@ -121,21 +120,13 @@ return require("packer").startup({
 		})
 		use({ "ray-x/lsp_signature.nvim" })
 		use({ "nvim-lua/lsp-status.nvim" })
-		use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
+		-- use({ "jose-elias-alvarez/nvim-lsp-ts-utils" })
 
-		-- Debugging
-		use({ "mfussenegger/nvim-dap" })
-		use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap" })
-		use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, after = "nvim-dap" })
-		use("Pocco81/DAPInstall.nvim")
-
-		-- vim-rooter
-		use({
-			"airblade/vim-rooter",
-			config = function()
-				vim.g.rooter_silent_chdir = 1
-			end,
-		})
+		-- -- Debugging
+		-- use({ "mfussenegger/nvim-dap" })
+		-- use({ "theHamsta/nvim-dap-virtual-text", after = "nvim-dap" })
+		-- use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" }, after = "nvim-dap" })
+		-- use("Pocco81/DAPInstall.nvim")
 
 		use({
 			"kevinhwang91/rnvimr",
@@ -366,8 +357,8 @@ return require("packer").startup({
 		use("junegunn/fzf.vim")
 		use("vijaymarupudi/nvim-fzf")
 
-		-- SQL
-		use({ "tpope/vim-dadbod", requires = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" } })
+		-- -- SQL
+		-- use({ "tpope/vim-dadbod", requires = { "kristijanhusak/vim-dadbod-completion", "kristijanhusak/vim-dadbod-ui" } })
 
 		-- docs
 
@@ -397,12 +388,12 @@ return require("packer").startup({
 		-- fix gx open command in vim
 		use({ "felipec/vim-sanegx" })
 
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-			config = function()
-				require("null-ls").setup()
-			end,
-		})
+		-- use({
+		-- 	"jose-elias-alvarez/null-ls.nvim",
+		-- 	ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+		-- 	config = function()
+		-- 		require("null-ls").setup()
+		-- 	end,
+		-- })
 	end,
 })

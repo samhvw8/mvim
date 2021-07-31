@@ -3,32 +3,22 @@ local M = {}
 M.config = function()
 	O.lang.java = {
 		java_tools = { active = false },
-		formatter = { exe = "prettier", args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" } },
 	}
 end
 
 M.format = function()
-	vim.cmd("let proj = FindRootDirectory()")
-	local root_dir = vim.api.nvim_get_var("proj")
+	-- O.formatters.filetype["java"] = {
+	-- 	function()
+	-- 		return {
+	-- 			exe = prettier_instance,
+	-- 			-- TODO: allow user to override this
+	-- 			args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+	-- 			stdin = true,
+	-- 		}
+	-- 	end,
+	-- }
 
-	-- use the global prettier if you didn't find the local one
-	local prettier_instance = root_dir .. "/node_modules/.bin/prettier"
-	if vim.fn.executable(prettier_instance) ~= 1 then
-		prettier_instance = O.lang.tsserver.formatter.exe
-	end
-
-	O.formatters.filetype["java"] = {
-		function()
-			return {
-				exe = prettier_instance,
-				-- TODO: allow user to override this
-				args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-				stdin = true,
-			}
-		end,
-	}
-
-	require("formatter.config").set_defaults({ logging = false, filetype = O.formatters.filetype })
+	-- require("formatter.config").set_defaults({ logging = false, filetype = O.formatters.filetype })
 end
 
 M.lint = function()

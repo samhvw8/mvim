@@ -120,46 +120,57 @@ capabilities_snip.textDocument.completion.completionItem.resolveSupport = {
 local capabilities = vim.tbl_extend("keep", capabilities_snip, lsp_status.capabilities)
 
 lsp_config.common_capabilities = lsp_status.capabilities
+-- lsp_config.common_capabilities = capabilities
 lsp_config.capabilities_all = capabilities
 lsp_config.capabilities_snip = capabilities_snip
 
+lsp_config.common_flags = {
+	debounce_text_changes = 120,
+}
+
 function lsp_config.tsserver_on_attach(client, bufnr)
-	-- lsp_config.common_on_attach(client, bufnr)
+	-- require("lsp_signature").on_attach({
+	-- 	bind = true, -- This is mandatory, otherwise border config won't get registered.
+	-- 	handler_opts = { border = "single" },
+	-- })
+	-- lsp_status.on_attach(client, bufnr)
+	lsp_config.common_on_attach(client, bufnr)
+
 	client.resolved_capabilities.document_formatting = false
 
-	local ts_utils = require("nvim-lsp-ts-utils")
+	-- local ts_utils = require("nvim-lsp-ts-utils")
 
 	-- defaults
-	ts_utils.setup({
-		debug = false,
-		disable_commands = false,
-		enable_import_on_completion = false,
-		import_all_timeout = 5000, -- ms
-
-		-- eslint
-		eslint_enable_code_actions = true,
-		eslint_enable_disable_comments = true,
-		eslint_bin = O.lang.tsserver.linter,
-		eslint_config_fallback = nil,
-		eslint_enable_diagnostics = true,
-
-		-- formatting
-		enable_formatting = O.lang.tsserver.autoformat,
-		formatter = O.lang.tsserver.formatter.exe,
-		formatter_config_fallback = nil,
-
-		-- parentheses completion
-		complete_parens = false,
-		signature_help_in_parens = false,
-
-		-- update imports on file move
-		update_imports_on_move = false,
-		require_confirmation_on_move = false,
-		watch_dir = nil,
-	})
-
-	-- required to fix code action ranges
-	ts_utils.setup_client(client)
+	-- 	ts_utils.setup({
+	-- 		debug = false,
+	-- 		disable_commands = false,
+	-- 		enable_import_on_completion = false,
+	-- 		import_all_timeout = 5000, -- ms
+	--
+	-- 		-- eslint
+	-- 		eslint_enable_code_actions = true,
+	-- 		eslint_enable_disable_comments = true,
+	-- 		eslint_bin = O.lang.tsserver.linter,
+	-- 		eslint_config_fallback = nil,
+	-- 		eslint_enable_diagnostics = true,
+	--
+	-- 		-- formatting
+	-- 		enable_formatting = O.lang.tsserver.autoformat,
+	-- 		formatter = O.lang.tsserver.formatter.exe,
+	-- 		formatter_config_fallback = nil,
+	--
+	-- 		-- parentheses completion
+	-- 		complete_parens = false,
+	-- 		signature_help_in_parens = false,
+	--
+	-- 		-- update imports on file move
+	-- 		update_imports_on_move = false,
+	-- 		require_confirmation_on_move = false,
+	-- 		watch_dir = nil,
+	-- 	})
+	--
+	-- 	-- required to fix code action ranges
+	-- 	ts_utils.setup_client(client)
 
 	-- TODO: keymap these?
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})

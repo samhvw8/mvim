@@ -34,6 +34,12 @@ M.lsp = function()
 		cmd = { DATA_PATH .. "/lspinstall/yaml/node_modules/.bin/yaml-language-server", "--stdio" },
 		on_attach = require("lsp").common_on_attach,
 		capabilities = require("lsp").common_capabilities,
+
+		settings = {
+			["yaml.schemas"] = {
+				["kubernetes"] = "/*.yaml",
+			},
+		},
 	})
 end
 

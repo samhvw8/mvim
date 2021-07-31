@@ -114,6 +114,7 @@ M.config = function()
 			},
 		},
 	}
+	O.plugin.telescope.todo = { keywords = { "TODO", "FIXME", "XXX" } }
 end
 
 M.setup = function()
