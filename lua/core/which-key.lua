@@ -1,6 +1,12 @@
 local M = {}
-M.config = function()
-	O.plugin.which_key = {
+
+M.setup = function()
+	local status_ok, which_key = pcall(require, "which-key")
+	if not status_ok then
+		return
+	end
+
+	local which_key_config = {
 		setup = {
 			plugins = {
 				marks = true, -- shows a list of your marks on ' and `
@@ -67,6 +73,7 @@ M.config = function()
 			["e"] = { "<cmd>lua require'core.nvimtree'.toggle_tree()<CR>", "Explorer" },
 			["4"] = { "<cmd>lua require('replacer').run()<cr>" },
 			[";"] = { "<cmd>Dashboard<CR>", "dashboard" },
+			
 			-- ["h"] = {'<cmd>let @/=""<CR>', "No Highlight"},
 			["o"] = { ":Telescope buffers<CR>", "List Buffer" },
 			a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
@@ -148,27 +155,18 @@ M.config = function()
 			T = { name = "Treesitter", i = { ":TSConfigInfo<cr>", "Info" } },
 		},
 	}
-end
 
-M.setup = function()
-	local status_ok, which_key = pcall(require, "which-key")
-	if not status_ok then
-		return
-	end
+	which_key.setup(which_key_config.setup)
 
-	which_key.setup(O.plugin.which_key.setup)
+	local opts = which_key_config.opts
+	local vopts = which_key_config.vopts
 
-	local opts = O.plugin.which_key.opts
-	local vopts = O.plugin.which_key.vopts
+	local mappings = which_key_config.mappings
+	local vmappings = which_key_config.vmappings
 
-	local mappings = O.plugin.which_key.mappings
-	local vmappings = O.plugin.which_key.vmappings
-
-	local wk = require("which-key")
-
-	wk.register(mappings, opts)
-	wk.register(vmappings, vopts)
-	wk.register(O.user_which_key, opts)
+	which_key.register(mappings, opts)
+	which_key.register(vmappings, vopts)
+	which_key.register(O.user_which_key, opts)
 end
 
 return M

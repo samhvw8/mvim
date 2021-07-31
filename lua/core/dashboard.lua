@@ -1,33 +1,23 @@
 local M = {}
-M.config = function()
-	O.plugin.dashboard = {
-		active = false,
-		search_handler = "telescope",
-
-		custom_section = {
-			a = {
-				description = { "  Find File          " },
-				command = ':lua require("telescope").extensions.fzf_writer.files()',
-			},
-			b = { description = { "  Recently Used Files" }, command = "Telescope oldfiles" },
-			c = { description = { "  Update Package     " }, command = "PackerSync" },
-			d = {
-				description = { "  Find Word          " },
-				command = "lua require('telescope').extensions.fzf_writer.grep()",
-			},
-			e = { description = { "  Settings           " }, command = ":e ~/.config/nvim/gv-settings.lua" },
-		},
-	}
-end
 
 M.setup = function()
 	vim.g.dashboard_disable_at_vimenter = 0
 
-	vim.g.dashboard_default_executive = O.plugin.dashboard.search_handler
+	vim.g.dashboard_default_executive =  "telescope"
 
-	vim.g.dashboard_custom_section = O.plugin.dashboard.custom_section
-
-	O.plugin.which_key.mappings[";"] = { "<cmd>Dashboard<CR>", "Dashboard" }
+	vim.g.dashboard_custom_section = {
+		a = {
+			description = { "  Find File          " },
+			command = ':lua require("telescope").extensions.fzf_writer.files()',
+		},
+		b = { description = { "  Recently Used Files" }, command = "Telescope oldfiles" },
+		c = { description = { "  Update Package     " }, command = "PackerSync" },
+		d = {
+			description = { "  Find Word          " },
+			command = "lua require('telescope').extensions.fzf_writer.grep()",
+		},
+		e = { description = { "  Settings           " }, command = ":e ~/.config/nvim/gv-settings.lua" },
+	}
 
 	-- f = {
 	--   description = { "  Neovim Config Files" },
@@ -40,7 +30,7 @@ M.setup = function()
 	vim.api.nvim_exec(
 		[[
     let g:dashboard_custom_footer = ['LuaJIT loaded '..packages..' plugins']
-]],
+		]],
 		false
 	)
 

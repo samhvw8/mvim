@@ -1,22 +1,50 @@
 local M = {}
-M.config = function()
+
+M.setup = function()
+	local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
+	if not status_ok then
+		return
+	end
+
 	local custom_captures = {
 		["function.call"] = "LuaFunctionCall",
 		["function.bracket"] = "Type",
 		["namespace.type"] = "TSNamespaceType",
 	}
 
-	O.treesitter = {
-		ensure_installed = O.treesitter.ensure_installed, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-		ignore_install = O.treesitter.ignore_install,
+	local treesitter = {
+		ensure_installed = "all",
+		ignore_install ={ "haskell" },
 		highlight = {
-			enable = O.treesitter.highlight.enabled, -- false will disable the whole extension
+			enable = true,
 			additional_vim_regex_highlighting = true,
 			disable = { "latex" },
 			custom_captures = custom_captures,
 		},
 		indent = { enable = { "javascriptreact" } },
 		autotag = { enable = true },
+		textobj_prefixes = {
+			goto_next = "]", -- Go to next
+			goto_previous = "[", -- Go to previous
+			inner = "i", -- Select inside
+			outer = "a", -- Selct around
+			swap = "<leader>a", -- Swap with next
+		},
+		textobj_suffixes = {
+			-- Start and End respectively for the goto keys
+			-- for other keys it only uses the first
+			["function"] = { "f", "F" },
+			["class"] = { "m", "M" },
+			["parameter"] = { "a", "A" },
+			["block"] = { "k", "K" },
+			["conditional"] = { "i", "I" },
+			["call"] = { "c", "C" },
+			["loop"] = { "l", "L" },
+			["statement"] = { "s", "S" },
+			["comment"] = { "/", "?" },
+		},
+		-- The below is for treesitter hint textobjects plugin
+		hint_labels = { "h", "j", "f", "d", "n", "v", "s", "l", "a" },
 		textobjects = {
 			select = {
 				enable = true,
@@ -68,15 +96,8 @@ M.config = function()
 			-- smart_rename = {enable = true, keymaps = {smart_rename = "<leader>R"}}
 		},
 	}
-end
 
-M.setup = function()
-	local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
-	if not status_ok then
-		return
-	end
-
-	treesitter_configs.setup(O.treesitter)
+	treesitter_configs.setup(treesitter)
 end
 
 return M

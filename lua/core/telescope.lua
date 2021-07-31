@@ -1,11 +1,16 @@
 local M = {}
-M.config = function()
-	local status_ok, actions = pcall(require, "telescope.actions")
+
+M.setup = function()
+	local status_ok, telescope = pcall(require, "telescope")
 	if not status_ok then
 		return
 	end
 
-	O.plugin.telescope = {
+	local status_ok, actions = pcall(require, "telescope.actions")
+	if not status_ok then
+		return
+	end
+	telescope.setup({
 		pickers = {
 			-- Your special builtin config goes in here
 			buffers = {
@@ -52,7 +57,7 @@ M.config = function()
 			borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 			color_devicons = true,
 			use_less = true,
-			path_display = { "shorten" },
+			-- path_display = { "shorten" },
 			set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 			grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
@@ -113,16 +118,9 @@ M.config = function()
 				},
 			},
 		},
-	}
-	O.plugin.telescope.todo = { keywords = { "TODO", "FIXME", "XXX" } }
-end
+	})
 
-M.setup = function()
-	local status_ok, telescope = pcall(require, "telescope")
-	if not status_ok then
-		return
-	end
-	telescope.setup(O.plugin.telescope)
+	local todo = { keywords = { "TODO", "FIXME", "XXX" } }
 	require("telescope").load_extension("fzf")
 	require("telescope").load_extension("media_files")
 	require("telescope").load_extension("project")
@@ -137,9 +135,7 @@ M.setup = function()
 	vim.api.nvim_set_keymap(
 		"n",
 		"<M-1>",
-		':lua require("telescope.builtin").grep_string { search = "'
-			.. table.concat(O.plugin.telescope.todo.keywords, "|")
-			.. '" }<CR>',
+		':lua require("telescope.builtin").grep_string { search = "' .. table.concat(todo.keywords, "|") .. '" }<CR>',
 		opt
 	)
 	vim.api.nvim_set_keymap("n", "<M-2>", [[<Cmd>Telescope<CR>]], opt)

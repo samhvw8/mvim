@@ -108,36 +108,6 @@ O = {
 
 	formatters = { filetype = {} },
 
-	-- @usage pass a table with your desired languages
-	treesitter = {
-		ensure_installed = "all",
-		ignore_install = { "haskell" },
-		highlight = { enabled = true },
-		-- The below are for treesitter-textobjects plugin
-		textobj_prefixes = {
-			goto_next = "]", -- Go to next
-			goto_previous = "[", -- Go to previous
-			inner = "i", -- Select inside
-			outer = "a", -- Selct around
-			swap = "<leader>a", -- Swap with next
-		},
-		textobj_suffixes = {
-			-- Start and End respectively for the goto keys
-			-- for other keys it only uses the first
-			["function"] = { "f", "F" },
-			["class"] = { "m", "M" },
-			["parameter"] = { "a", "A" },
-			["block"] = { "k", "K" },
-			["conditional"] = { "i", "I" },
-			["call"] = { "c", "C" },
-			["loop"] = { "l", "L" },
-			["statement"] = { "s", "S" },
-			["comment"] = { "/", "?" },
-		},
-		-- The below is for treesitter hint textobjects plugin
-		hint_labels = { "h", "j", "f", "d", "n", "v", "s", "l", "a" },
-	},
-
 	lang = {
 		cmake = {},
 		clang = {
@@ -227,11 +197,6 @@ O = {
 
 require("core.status_colors")
 require("core.gitsign").config()
-require("core.compe").config()
-require("core.dashboard").config()
-require("core.dap").config()
-require("core.treesitter").config()
-require("core.which-key").config()
 
 require("lang.clang").config()
 require("lang.cmake").config()

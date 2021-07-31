@@ -8,7 +8,6 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 O.format_on_save = true
-O.completion.autocomplete = true
 O.colorscheme = "dracula"
 O.auto_close_tree = 0
 O.default_options.wrap = true
@@ -17,14 +16,6 @@ O.leader_key = " "
 O.ignore_case = true
 O.smart_case = true
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-O.plugin.dashboard.active = true
-
--- if you don't want all the parsers change this to a table of the ones you want
-O.treesitter.ensure_installed = "maintained"
-O.treesitter.ignore_install = { "haskell" }
-O.treesitter.highlight.enabled = true
 
 -- python
 -- O.lang.python.linter = 'flake8'
@@ -36,9 +27,6 @@ O.lang.python.analysis.use_library_code_types = true
 O.lang.tsserver.linter = nil
 
 -- if you don't want all the parsers change this to a table of the ones you want
-O.treesitter.ensure_installed = "all"
-O.treesitter.ignore_install = { "haskell" }
-O.treesitter.highlight.enabled = true
 
 O.lang.clang.diagnostics.virtual_text = false
 O.lang.clang.diagnostics.signs = false

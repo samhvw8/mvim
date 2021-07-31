@@ -2,8 +2,15 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.dictionary = "/usr/share/dict/words"
 
 local M = {}
-M.config = function()
-	O.completion = {
+M.setup = function()
+	vim.g.vsnip_snippet_dir = O.vsnip_dir
+
+	local status_ok, compe = pcall(require, "compe")
+	if not status_ok then
+		return
+	end
+
+	compe.setup({
 		autocomplete = true,
 		debug = true,
 		min_length = 1,
@@ -44,18 +51,7 @@ M.config = function()
 			-- ultisnips = {kind = "  "},
 			look = true,
 		},
-	}
-end
-
-M.setup = function()
-	vim.g.vsnip_snippet_dir = O.vsnip_dir
-
-	local status_ok, compe = pcall(require, "compe")
-	if not status_ok then
-		return
-	end
-
-	compe.setup(O.completion)
+	})
 
 	local t = function(str)
 		return vim.api.nvim_replace_termcodes(str, true, true, true)
