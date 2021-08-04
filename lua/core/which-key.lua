@@ -162,7 +162,7 @@ M.setup = function()
 
 	vim.api.nvim_set_keymap("n", "<M-2>", [[<Cmd>CocFzfList symbols<CR>]], opt)
 	vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>CocFzfList<CR>]], opt)
-	vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>lua require('fzf-lua').builtin()<CR>]], opt)
+	vim.api.nvim_set_keymap("n", "<M-4>", [[<Cmd>lua require('fzf-lua').builtin()<CR>]], opt)
 	vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>lua require('fzf-lua').live_grep()<CR>]], opt)
 
 end
