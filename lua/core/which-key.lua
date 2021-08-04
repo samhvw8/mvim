@@ -75,7 +75,7 @@ M.setup = function()
 			[";"] = { "<cmd>Dashboard<CR>", "dashboard" },
 			
 			-- ["h"] = {'<cmd>let @/=""<CR>', "No Highlight"},
-			["o"] = { ":lua require('fzf-lua').buffers<CR>", "List Buffer" },
+			["o"] = { ":lua require('fzf-lua').buffers()<CR>", "List Buffer" },
 			a = { "<Plug>(coc-codeaction)", "Code Action" },
 			u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
 
