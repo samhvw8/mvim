@@ -65,7 +65,14 @@ M.setup = function()
 		},
 		-- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
 		-- see https://neovim.io/doc/user/map.html#:map-cmd
-		vmappings = { ["/"] = { ":CommentToggle<CR>", "Comment" } },
+		vmappings = {
+      ["/"] = { ":CommentToggle<CR>", "Comment" },
+			s = {
+				name = "+Search",
+				w = { "<cmd>lua require('fzf-lua').grep_visual()<cr>", "Search selected word" },
+			},
+    },
+
 		mappings = {
 			["w"] = { "<cmd>update!<CR>", "Update buffer" },
 			["W"] = { "<cmd>update!<CR>", "Update buffer without autocommand" },
