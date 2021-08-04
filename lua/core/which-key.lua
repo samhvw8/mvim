@@ -75,28 +75,14 @@ M.setup = function()
 			[";"] = { "<cmd>Dashboard<CR>", "dashboard" },
 			
 			-- ["h"] = {'<cmd>let @/=""<CR>', "No Highlight"},
-			["o"] = { ":Telescope buffers<CR>", "List Buffer" },
-			a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
+			["o"] = { ":lua require('fzf-lua').buffers<CR>", "List Buffer" },
+			a = { "<Plug>(coc-codeaction)", "Code Action" },
 			u = { "<cmd>UndotreeToggle<cr>", "Undo tree" },
-			f = { "<cmd>lua require('telescope').extensions.flutter.commands()<cr>", "Flutter Tools" },
 
-			["c"] = { "<cmd>Telescope commands<cr>", "Command" },
-			["p"] = "List all projects",
+			["c"] = { "<cmd>CocFzfList commands<cr>", "Command" },
 
 			t = {
-				a = { "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "tasks" },
 				c = { "<cmd>tabclose<cr>", "Tab close" },
-			},
-
-			d = {
-				b = { "<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint" },
-				c = { "<cmd>DebugContinue<cr>", "Continue" },
-				i = { "<cmd>DebugStepInto<cr>", "Step Into" },
-				o = { "<cmd>DebugStepOver<cr>", "Step Over" },
-				r = { "<cmd>DebugToggleRepl<cr>", "Toggle Repl" },
-				s = { "<cmd>DebugStart<cr>", "Start" },
-				v = { "<cmd>DiffviewOpen", "DiffviewOpen" },
-				g = "Document generate",
 			},
 
 			b = {
@@ -118,38 +104,31 @@ M.setup = function()
 
 			l = {
 				name = "+LSP",
-				A = { "<cmd>Lspsaga range_code_action<cr>", "Selected Action" },
-				d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics" },
-				D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
-				i = { "<cmd>LspInfo<cr>", "Info" },
-				q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
-				r = { "<cmd>Lspsaga rename<cr>", "Rename" },
+				a = { "<cmd>CocFzfList actions<cr>", "Action" },
+				d = { "<cmd>CocFzfList diagnostics --current-buf<cr>", "Document Diagnostics" },
+				D = { "<cmd>CocFzfList diagnostics<cr>", "Workspace Diagnostics" },
+				q = { "<cmd>lua require('fzf-lua').quickfix<cr>", "Quickfix" },
+				r = { "<Plug>(coc-rename)", "Rename" },
+				f = { "<Plug>(coc-rename)", "refactor" },
 				x = { "<cmd>cclose<cr>", "Close Quickfix" },
-				s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-				S = { "<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols" },
+				-- s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 			},
 
 			s = {
 				name = "+Search",
-				s = { "<plug>(esearch)", "Search essearch" },
-				c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-				m = { "<cmd>Telescope marks<cr>", "Marks" },
-				w = { "<cmd>Telescope grep_string<cr>", "Search current word" },
-				M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-				r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-				R = { "<cmd>Telescope registers<cr>", "Registers" },
-				t = { "<cmd>Telescope live_grep<cr>", "Text" },
-				n = { "<cmd>Telescope node_modules list<cr>", "Node modules" },
+				c = { "<cmd>lua require('fzf-lua').colorschemes()<cr>", "Colorscheme" },
+				m = { "<cmd>Marks<cr>", "Marks" },
+				w = { "<cmd>lua require('fzf-lua').grep_cWORD()<cr>", "Search current word" },
+				M = { "<cmd>lua require('fzf-lua').man_pages<cr>", "Man Pages" },
+				r = { "<cmd>lua require('fzf-lua').oldfiles<cr>", "Open Recent File" },
+				t = { "<cmd>lua require('fzf-lua').live_grep<cr>", "Text" },
 			},
 
 			g = {
 				name = "+Git",
-				b = { "<cmd>Telescope git_branches<cr>", "Git Branch" },
 				g = { "<cmd>Neogit<cr>", "Neogit" },
-				d = { "<cmd>Telescope git_status<cr>", "Git Status" },
-				["1"] = { "<cmd>GitBlameToggle<cr>", "Git blame" },
-				c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-				C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
+				d = { "<cmd>GFiles?<cr>", "Git Status" },
+				["1"] = { "<cmd>GitBlameToggle<cr>", "Git blame" }
 			},
 
 			T = { name = "Treesitter", i = { ":TSConfigInfo<cr>", "Info" } },
@@ -163,10 +142,29 @@ M.setup = function()
 
 	local mappings = which_key_config.mappings
 	local vmappings = which_key_config.vmappings
-
+	
 	which_key.register(mappings, opts)
 	which_key.register(vmappings, vopts)
-	which_key.register(O.user_which_key, opts)
+
+	local opt = {silent = true}
+
+	vim.api.nvim_set_keymap("n", "<M-p>", "<Cmd>lua require('fzf-lua').files()<CR>", opt)
+
+	vim.g.tasks_anotation_list = {'TODO', 'FIXME', 'XXX'}
+	vim.cmd([[command! -nargs=0 TODO execute "Rg (" . join(g:tasks_anotation_list, "|") . ")"]])
+
+	vim.api.nvim_set_keymap(
+		"n",
+		"<M-1>",
+		'<CMD>TODO<CR>',
+		opt
+	)
+
+	vim.api.nvim_set_keymap("n", "<M-2>", [[<Cmd>CocFzfList symbols<CR>]], opt)
+	vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>CocFzfList<CR>]], opt)
+	vim.api.nvim_set_keymap("n", "<M-3>", [[<Cmd>lua require('fzf-lua').builtin()<CR>]], opt)
+	vim.api.nvim_set_keymap("n", "<M-\\>", [[<Cmd>lua require('fzf-lua').live_grep()<CR>]], opt)
+
 end
 
 return M

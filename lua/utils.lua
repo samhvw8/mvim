@@ -49,7 +49,6 @@ M.define_augroups({
 	--     {'BufNewFile', '*.gmi', 'setlocal filetype=markdown'}
 	-- },
 	_markdown = { { "FileType", "markdown", "setlocal wrap" }, { "FileType", "markdown", "setlocal spell" } },
-	_buffer_bindings = { { "FileType", "floaterm", "nnoremap <silent> <buffer> q :q<CR>" } },
 	_auto_resize = {
 		-- will cause split windows to be resized evenly if main window is resized
 		{ "VimResized", "*", "wincmd =" },
@@ -57,6 +56,10 @@ M.define_augroups({
 	_packer_compile = {
 		-- will cause split windows to be resized evenly if main window is resized
 		{ "BufWritePost", "plugins.lua", "PackerCompile" },
+	},
+	_qf = {
+		-- will cause split windows to be resized evenly if main window is resized
+		{ "FileType", "qf", "set nobuflisted" },
 	},
 	-- _fterm_lazygit = {
 	--   -- will cause esc key to exit lazy git

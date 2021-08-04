@@ -11,25 +11,21 @@ _G.MUtils = {}
 
 vim.g.completion_confirm_key = ""
 MUtils.completion_confirm = function()
-	if vim.fn.pumvisible() ~= 0 then
-		if vim.fn.complete_info()["selected"] ~= -1 then
-			return vim.fn["compe#confirm"](npairs.esc("<cr>"))
-		else
-			return npairs.esc("<cr>")
-		end
-	else
-		return npairs.autopairs_cr()
-	end
+  if vim.fn.pumvisible() ~= 0 then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["coc#_select_confirm"]()
+    else
+      return npairs.esc("<C-g>u<cr>")
+    end
+  else
+    return npairs.autopairs_cr()
+  end
 end
 
-if package.loaded["compe"] then
-	require("nvim-autopairs.completion.compe").setup({
-		map_cr = true, --  map <CR> on insert mode
-		map_complete = true, -- it will auto insert `(` after select function or method item
-	})
-end
 
--- remap('i', '<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true, noremap = true})
+-- inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                            --   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+remap('i', '<CR>', 'v:lua.MUtils.completion_confirm()', {expr = true, noremap = true})
 
 npairs.setup({
 	check_ts = true,

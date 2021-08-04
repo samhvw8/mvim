@@ -3,28 +3,40 @@ if not status_ok then
 	return
 end
 
-local palette_status_ok, colors = pcall(require, O.colorscheme .. ".palette")
-if not palette_status_ok then
-	colors = O.plugin.galaxyline.colors
-end
+
+local colors = {
+	alt_bg = "#2E2E2E",
+	bg = "#292D38",
+	blue = "#569CD6",
+	cyan = "#4EC9B0",
+	dark_yellow = "#D7BA7D",
+	error_red = "#F44747",
+	green = "#608B4E",
+	grey = "#858585",
+	hint_blue = "#9CDCFE",
+	info_yellow = "#FFCC66",
+	light_blue = "#9CDCFE",
+	light_green = "#B5CEA8",
+	magenta = "#D16D9E",
+	orange = "#FF8800",
+	purple = "#C586C0",
+	red = "#D16969",
+	string_orange = "#CE9178",
+	vivid_blue = "#4FC1FF",
+	warning_orange = "#FF8800",
+	yellow = "#DCDCAA",
+}
+
 
 local space = function()
 	return "  "
 end
 
--- local inner_separator = function()
---     return '|'
--- end
-
--- local fileinfo = require('galaxyline.provider_fileinfo')
-local lsp_messages = require("lsp-status/messaging").messages
 
 local condition = require("galaxyline.condition")
 
 local gls = gl.section
 gl.short_line_list = { "NvimTree", "vista", "dbui", "packer" }
-
-local spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" }
 
 table.insert(gls.left, {
 	ViMode = {
@@ -129,13 +141,7 @@ table.insert(gls.left, {
 table.insert(gls.right, {
 	LspStatus = {
 		provider = function()
-			local lsp_function = vim.b.lsp_current_function
-
-			if lsp_function ~= nil then
-				return lsp_function
-			end
-
-			return ""
+			return vim.g.coc_current_function
 		end,
 		icon = " ƒ ",
 		condition = condition.hide_in_width,
@@ -146,42 +152,16 @@ table.insert(gls.right, {
 table.insert(gls.right, { Void = { provider = { space }, highlight = { colors.bg, colors.bg } } })
 
 table.insert(gls.right, {
-	LspProgress = {
-		provider = {
-			function()
-				local msgs = lsp_messages()
-				local spinner
-
-				if #msgs > 0 and msgs[1].spinner then
-					local index = (msgs[1].spinner % #spinner_frames) + 1
-					spinner = spinner_frames[index]
-				else
-					spinner = ""
-				end
-
-				return spinner
-			end,
-		},
-		highlight = { colors.light_blue, colors.bg },
+	LspStatus = {
+		provider = function()
+			return vim.fn['coc#status']()
+		end,
+		condition = condition.hide_in_width,
+		highlight = { colors.vivid_blue },
 	},
 })
+
 table.insert(gls.right, { Void = { provider = { space }, highlight = { colors.bg, colors.bg } } })
-
-table.insert(gls.right, {
-	DiagnosticError = { provider = "DiagnosticError", icon = "  ", highlight = { colors.error_red, colors.bg } },
-})
-table.insert(
-	gls.right,
-	{ DiagnosticWarn = { provider = "DiagnosticWarn", icon = "  ", highlight = { colors.orange, colors.bg } } }
-)
-
-table.insert(gls.right, {
-	DiagnosticHint = { provider = "DiagnosticHint", icon = "  ", highlight = { colors.vivid_blue, colors.bg } },
-})
-
-table.insert(gls.right, {
-	DiagnosticInfo = { provider = "DiagnosticInfo", icon = "  ", highlight = { colors.info_yellow, colors.bg } },
-})
 
 table.insert(gls.right, {
 	TreesitterIcon = {
@@ -194,21 +174,6 @@ table.insert(gls.right, {
 		separator = " ",
 		separator_highlight = { "NONE", colors.bg },
 		highlight = { colors.green, colors.bg },
-	},
-})
-
-table.insert(gls.right, {
-	ShowLspClient = {
-		provider = "GetLspClient",
-		condition = function()
-			local tbl = { ["dashboard"] = true, [" "] = true }
-			if tbl[vim.bo.filetype] then
-				return false
-			end
-			return true
-		end,
-		icon = "  ",
-		highlight = { colors.grey, colors.bg },
 	},
 })
 

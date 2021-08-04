@@ -8,9 +8,7 @@ O = {
 	leader_key = "space",
 	colorscheme = "dracula",
 	line_wrap_cursor_movement = true,
-	transparent_window = false,
 	format_on_save = true,
-	vsnip_dir = vim.fn.stdpath("config") .. "/snippets",
 
 	default_options = {
 		backup = false, -- creates a backup file
@@ -58,15 +56,6 @@ O = {
 		sidescrolloff = 8,
 	},
 
-	lsp = {
-		diagnostics = {
-			virtual_text = { prefix = "", spacing = 0 },
-			signs = true,
-			underline = true,
-			document_highlight = true,
-			popup_border = "single",
-		},
-	},
 
 	disabled_built_ins = {
 		"netrw",
@@ -89,135 +78,10 @@ O = {
 		-- 'matchit', 'matchparen', 'shada_plugin',
 	},
 
-	plugin = {},
-
 	-- TODO: refactor for tree
 	auto_close_tree = 0,
 	nvim_tree_disable_netrw = 0,
 
-	database = { save_location = "~/.config/lunarvim_db", auto_execute = 1 },
-
-	-- TODO: just using mappings (leader mappings)
-	user_which_key = {},
-
-	user_plugins = {
-		-- use lv-config.lua for this not put here
-	},
-
-	user_autocommands = { { "FileType", "qf", "set nobuflisted" } },
-
-	formatters = { filetype = {} },
-
-	lang = {
-		cmake = {},
-		clang = {
-			diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true },
-			cross_file_rename = true,
-			header_insertion = "never",
-		},
-		css = { virtual_text = true },
-		dart = { sdk_path = "/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot" },
-		docker = {},
-		efm = {},
-		elm = {},
-		emmet = { active = true },
-		elixir = {},
-		graphql = {},
-		go = {},
-		html = {},
-		java = {},
-		json = { diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true } },
-		kotlin = {},
-		latex = {},
-		lua = { diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true } },
-		php = {
-			format = { format = { default = "psr12" } },
-			environment = { php_version = "7.4" },
-			diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true },
-			filetypes = { "php", "phtml" },
-		},
-		python = {
-			linter = "",
-			isort = false,
-			diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true },
-			analysis = { type_checking = "basic", auto_search_paths = true, use_library_code_types = true },
-		},
-		ruby = {
-			diagnostics = { virtualtext = { spacing = 0, prefix = "" }, signs = true, underline = true },
-			filetypes = { "rb", "erb", "rakefile", "ruby" },
-		},
-		rust = {
-			rust_tools = {
-				active = false,
-				parameter_hints_prefix = "<-",
-				other_hints_prefix = "=>", -- prefix for all the other hints (type, chaining)
-			},
-			linter = "",
-			diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true },
-		},
-		sh = {
-			-- @usage can be 'shellcheck'
-			linter = "shellcheck",
-			-- @usage can be 'shfmt'
-			diagnostics = { virtual_text = { spacing = 0, prefix = "" }, signs = true, underline = true },
-		},
-		svelte = {},
-		terraform = {},
-		tailwindcss = {
-			active = false,
-			filetypes = {
-				"html",
-				"css",
-				"scss",
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-			},
-		},
-		tsserver = {
-			-- @usage can be 'eslint' or 'eslint_d'
-			linter = "",
-			diagnostics = {
-				virtual_text = { spacing = 0, prefix = "" },
-				signs = true,
-				underline = true,
-			},
-			formatter = {
-				exe = "prettier",
-				args = {},
-			},
-		},
-		vim = {},
-		yaml = {},
-		-- css = {formatter = '', autoformat = false, virtual_text = true},
-		-- json = {formatter = '', autoformat = false, virtual_text = true}
-	},
 }
 
-require("core.status_colors")
 require("core.gitsign").config()
-
-require("lang.clang").config()
-require("lang.cmake").config()
-require("lang.css").config()
-require("lang.dart").config()
-require("lang.dockerfile").config()
-require("lang.elixir").config()
-require("lang.elm").config()
-require("lang.go").config()
-require("lang.graphql").config()
-require("lang.html").config()
-require("lang.java").config()
-require("lang.json").config()
-require("lang.kotlin").config()
-require("lang.lua").config()
-require("lang.php").config()
-require("lang.python").config()
-require("lang.ruby").config()
-require("lang.rust").config()
-require("lang.sh").config()
-require("lang.terraform").config()
-require("lang.tex").config()
-require("lang.vim").config()
-require("lang.yaml").config()

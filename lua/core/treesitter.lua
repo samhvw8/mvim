@@ -88,7 +88,7 @@ M.setup = function()
 				show_help = "?",
 			},
 		},
-		autopairs = { enable = true },
+		autopairs = { enable = vim.fn.exists("g:vscode") ~= 1 },
 		context_commentstring = { enable = true },
 		refactor = {
 			highlight_definitions = { enable = true },

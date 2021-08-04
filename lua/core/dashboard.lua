@@ -3,20 +3,19 @@ local M = {}
 M.setup = function()
 	vim.g.dashboard_disable_at_vimenter = 0
 
-	vim.g.dashboard_default_executive =  "telescope"
+	vim.g.dashboard_default_executive =  "fzf"
 
 	vim.g.dashboard_custom_section = {
 		a = {
 			description = { "  Find File          " },
-			command = ':lua require("telescope").extensions.fzf_writer.files()',
+			command = ':lua require("fzf-lua").files()',
 		},
-		b = { description = { "  Recently Used Files" }, command = "Telescope oldfiles" },
+		b = { description = { "  Recently Used Files" }, command = "lua require('fzf-lua').oldfiles" },
 		c = { description = { "  Update Package     " }, command = "PackerSync" },
 		d = {
 			description = { "  Find Word          " },
-			command = "lua require('telescope').extensions.fzf_writer.grep()",
+			command = 'lua require("fzf-lua").grep()',
 		},
-		e = { description = { "  Settings           " }, command = ":e ~/.config/nvim/gv-settings.lua" },
 	}
 
 	-- f = {
@@ -38,7 +37,7 @@ M.setup = function()
 
 	-- vim.g.dashboard_session_directory = CACHE_PATH..'/session'
 	-- vim.g.dashboard_custom_footer = O.dashboard.footer
-	require("gv-utils").define_augroups({
+	require("utils").define_augroups({
 		_dashboard = {
 			-- seems to be nobuflisted that makes my stuff disapear will do more testing
 			{

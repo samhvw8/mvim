@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+M = {}
+
 local function register_mappings(mappings, default_options)
 	for mode, mode_mappings in pairs(mappings) do
 		for _, mapping in pairs(mode_mappings) do
