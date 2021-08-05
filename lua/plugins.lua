@@ -20,9 +20,9 @@ packer.init({
 	max_jobs = 5,
 })
 
- -- vim.cmd 'source ~/.config/nvim/custom/unimpaired.vim'
+-- vim.cmd 'source ~/.config/nvim/custom/unimpaired.vim'
 if isVscode() then
-	vim.cmd 'source ~/.config/nvim/custom/vscode.vim'
+	vim.cmd("source ~/.config/nvim/custom/vscode.vim")
 end
 
 return require("packer").startup({
@@ -41,32 +41,33 @@ return require("packer").startup({
 		use("nvim-treesitter/nvim-treesitter-textobjects")
 		-- use("nvim-treesitter/nvim-treesitter-refactor")
 		use({ "nvim-treesitter/playground" })
-		use({ "windwp/nvim-ts-autotag", cond = { isNotVscode} }) -- ts auto tag
+		use({ "windwp/nvim-ts-autotag", cond = { isNotVscode } }) -- ts auto tag
 		use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
--- 		use({
--- 			"kevinhwang91/rnvimr",
--- 			config = function()
--- 				vim.g.rnvimr_enable_ex = 1
--- 				vim.g.rnvimr_draw_border = 1
--- 				vim.g.rnvimr_pick_enable = 1
--- 				vim.g.rnvimr_bw_enable = 1
--- 				vim.api.nvim_set_keymap("n", "-", ":RnvimrToggle<CR>", { noremap = true, silent = true })
--- 			end,
--- 			cond = { isNotVscode },
--- 		})
--- 		
--- 
+		-- 		use({
+		-- 			"kevinhwang91/rnvimr",
+		-- 			config = function()
+		-- 				vim.g.rnvimr_enable_ex = 1
+		-- 				vim.g.rnvimr_draw_border = 1
+		-- 				vim.g.rnvimr_pick_enable = 1
+		-- 				vim.g.rnvimr_bw_enable = 1
+		-- 				vim.api.nvim_set_keymap("n", "-", ":RnvimrToggle<CR>", { noremap = true, silent = true })
+		-- 			end,
+		-- 			cond = { isNotVscode },
+		-- 		})
+		--
+		--
 		-- Formatter.nvim
-		-- use({
-		-- 	"mhartington/formatter.nvim",
-		-- 	config = function()
-		-- 		require("core.formatter")
-		-- 	end,
-		-- })
+		use({
+			"mhartington/formatter.nvim",
+			config = function()
+				require("core.formatter")
+			end,
+			cond = { isNotVscode },
+		})
 
 		-- solidity
-		use({"TovarishFin/vim-solidity", cond = { isNotVscode }})
+		use({ "TovarishFin/vim-solidity", cond = { isNotVscode } })
 
 		-- Explorer
 		use({
@@ -75,10 +76,8 @@ return require("packer").startup({
 			config = function()
 				require("core.nvimtree")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
-		
-		
 
 		-- Git
 		use({
@@ -86,7 +85,7 @@ return require("packer").startup({
 			config = function()
 				require("core.gitsign").setup()
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 		use({
 			"TimUntersberger/neogit",
@@ -94,11 +93,11 @@ return require("packer").startup({
 			config = function()
 				require("neogit").setup({ integrations = { diffview = true } })
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 		use({
 			"f-person/git-blame.nvim",
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 		use({ "kdheepak/lazygit.nvim", cmd = "LazyGit", cond = { isNotVscode } })
 		use({
@@ -106,34 +105,34 @@ return require("packer").startup({
 			config = function()
 				require("core.diffview")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 
-		use({ 
-			"folke/which-key.nvim", 
-			config = function ()
+		use({
+			"folke/which-key.nvim",
+			config = function()
 				require("core.which-key").setup()
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 
 		use({ "glepnir/dashboard-nvim", cond = { isNotVscode } })
-		
+
 		use({
 			"windwp/nvim-autopairs",
-			config = function ()
+			config = function()
 				require("core.autopairs")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 		-- Comments
 		use({
 			"terrortylor/nvim-comment",
 			config = function()
 				require("nvim_comment").setup()
-			end
+			end,
 		})
-		
+
 		use({
 			"kevinhwang91/nvim-bqf",
 			config = function()
@@ -146,7 +145,7 @@ return require("packer").startup({
 			"kyazdani42/nvim-web-devicons",
 			config = function()
 				require("nvim-web-devicons")
-			end
+			end,
 		})
 
 		-- Status Line and Bufferline
@@ -155,14 +154,14 @@ return require("packer").startup({
 			config = function()
 				require("core.galaxyline")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 		use({
 			"romgrk/barbar.nvim",
 			config = function()
 				require("core.barbar")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 
 		-- for text object
@@ -208,6 +207,7 @@ return require("packer").startup({
 		use("tpope/vim-abolish")
 		use("tpope/vim-repeat")
 		use("tpope/vim-unimpaired")
+		use("vim-scripts/ReplaceWithRegister")
 
 		use({
 			"junegunn/vim-easy-align",
@@ -224,14 +224,13 @@ return require("packer").startup({
 			config = function()
 				require("surround").setup({ mappings_style = "surround" })
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
-		
+
 		use({
 			"tpope/vim-surround",
-			config = function()
-			end,
-			cond = { isVscode }
+			config = function() end,
+			cond = { isVscode },
 		})
 
 		-- color
@@ -241,7 +240,7 @@ return require("packer").startup({
 				require("colorizer").setup()
 				-- vim.cmd("ColorizerReloadAllBuffers")
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 
 		-- for note taking
@@ -307,7 +306,7 @@ return require("packer").startup({
 
 				vim.g.indent_blankline_show_current_context = true
 			end,
-			cond = { isNotVscode }
+			cond = { isNotVscode },
 		})
 
 		use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", ft = "markdown" })
@@ -315,28 +314,32 @@ return require("packer").startup({
 		use("dstein64/vim-startuptime")
 
 		if isMac() then
-			use({"/usr/local/opt/fzf", cond = { isNotVscode }})
+			use({ "/usr/local/opt/fzf", cond = { isNotVscode } })
 		else
-			use({ "junegunn/fzf", dir = "~/.fzf", run = "./install --all", cond = { isNotVscode }})
+			use({ "junegunn/fzf", dir = "~/.fzf", run = "./install --all", cond = { isNotVscode } })
 		end
-		use {"junegunn/fzf.vim", cond = { isNotVscode } }
-		use {"vijaymarupudi/nvim-fzf", cond = { isNotVscode }}
+		use({ "junegunn/fzf.vim", cond = { isNotVscode } })
+		use({ "vijaymarupudi/nvim-fzf", cond = { isNotVscode } })
 
-		use {
-			'neoclide/coc.nvim', 
-			branch = 'master', 
-			run = 'yarn install --frozen-lockfile', 
-			config = function ()
-				require('core.coc')
-			end, 
-			cond = { isNotVscode }
-		}
+		use({
+			"neoclide/coc.nvim",
+			branch = "master",
+			run = "yarn install --frozen-lockfile",
+			config = function()
+				require("core.coc")
+			end,
+			cond = { isNotVscode },
+		})
 
-		use { 'ibhagwan/fzf-lua', config = function ()
-			require('core.fzf')
-		end, cond = { isNotVscode }}
+		use({
+			"ibhagwan/fzf-lua",
+			config = function()
+				require("core.fzf")
+			end,
+			cond = { isNotVscode },
+		})
 
-		use {'antoinemadec/coc-fzf', cond = { isNotVscode }}
+		use({ "antoinemadec/coc-fzf", cond = { isNotVscode } })
 
 		use({
 			"kkoomen/vim-doge",
@@ -349,16 +352,15 @@ return require("packer").startup({
 		})
 
 		-- theme
-		use({ "dracula/vim", as = "dracula"})
+		use({ "dracula/vim", as = "dracula" })
 
-		use({"gennaro-tedesco/nvim-jqx", cond = { isNotVscode }})
+		use({ "gennaro-tedesco/nvim-jqx", cond = { isNotVscode } })
 
-		use({ "haringsrob/nvim_context_vt", cond = { isNotVscode }})
+		use({ "haringsrob/nvim_context_vt", cond = { isNotVscode } })
 
 		use({ "neo4j-contrib/cypher-vim-syntax" })
 
 		-- fix gx open command in vim
 		use({ "felipec/vim-sanegx" })
-
 	end,
 })

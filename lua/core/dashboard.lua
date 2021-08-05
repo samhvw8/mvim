@@ -14,7 +14,7 @@ M.setup = function()
 		c = { description = { "  Update Package     " }, command = "PackerSync" },
 		d = {
 			description = { "  Find Word          " },
-			command = 'lua require("fzf-lua").grep()',
+			command = 'lua require("fzf-lua").live_grep()',
 		},
 	}
 
