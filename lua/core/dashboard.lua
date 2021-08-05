@@ -3,7 +3,7 @@ local M = {}
 M.setup = function()
 	vim.g.dashboard_disable_at_vimenter = 0
 
-	vim.g.dashboard_default_executive =  "fzf"
+	vim.g.dashboard_default_executive = "fzf"
 
 	vim.g.dashboard_custom_section = {
 		a = {
@@ -12,7 +12,8 @@ M.setup = function()
 		},
 		b = { description = { "  Recently Used Files" }, command = "lua require('fzf-lua').oldfiles" },
 		c = { description = { "  Update Package     " }, command = "PackerSync" },
-		d = {
+		d = { description = { "  Update Coc" }, command = "CocUpdate" },
+		e = {
 			description = { "  Find Word          " },
 			command = 'lua require("fzf-lua").live_grep()',
 		},
