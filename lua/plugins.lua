@@ -207,7 +207,7 @@ return require("packer").startup({
 		use("tpope/vim-abolish")
 		use("tpope/vim-repeat")
 		use("tpope/vim-unimpaired")
-		use("vim-scripts/ReplaceWithRegister")
+		-- use("vim-scripts/ReplaceWithRegister")
 
 		use({
 			"junegunn/vim-easy-align",
@@ -334,8 +334,9 @@ return require("packer").startup({
 		use({
 			"ibhagwan/fzf-lua",
 			config = function()
-				require("core.fzf")
+				-- require("core.fzf")
 			end,
+			requires = { "vijaymarupudi/nvim-fzf", "kyazdani42/nvim-web-devicons" },
 			cond = { isNotVscode },
 		})
 

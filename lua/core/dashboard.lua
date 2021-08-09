@@ -12,7 +12,7 @@ M.setup = function()
 		},
 		b = { description = { "  Recently Used Files" }, command = "lua require('fzf-lua').oldfiles" },
 		c = { description = { "  Update Package     " }, command = "PackerSync" },
-		d = { description = { "  Update Coc" }, command = "CocUpdate" },
+		d = { description = { "  Update Coc         " }, command = "CocUpdate" },
 		e = {
 			description = { "  Find Word          " },
 			command = 'lua require("fzf-lua").live_grep()',
