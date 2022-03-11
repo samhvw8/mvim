@@ -26,7 +26,10 @@ M.setup = function()
 		numhl = false,
 		linehl = false,
 		keymaps = { noremap = true, buffer = true },
-		watch_index = { interval = 1000 },
+		watch_gitdir = {
+			interval = 1000,
+			follow_files = true
+		  },
 		sign_priority = 6,
 		update_debounce = 200,
 		status_formatter = nil, -- Use default

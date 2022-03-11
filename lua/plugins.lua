@@ -99,7 +99,6 @@ return require("packer").startup({
 			"f-person/git-blame.nvim",
 			cond = { isNotVscode },
 		})
-		use({ "kdheepak/lazygit.nvim", cmd = "LazyGit", cond = { isNotVscode } })
 		use({
 			"sindrets/diffview.nvim",
 			config = function()
@@ -220,7 +219,7 @@ return require("packer").startup({
 		-- " use 'tpope/vim-sleuth'
 
 		use({
-			"blackCauldron7/surround.nvim",
+			"ur4ltz/surround.nvim",
 			config = function()
 				require("surround").setup({ mappings_style = "surround" })
 			end,
